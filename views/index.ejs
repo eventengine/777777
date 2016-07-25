@@ -1,0 +1,713 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+    <meta charset="utf-8" />
+    <title>Добро пожаловать домой!</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no" />
+    <link rel="apple-touch-icon" href="pages/ico/60.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="pages/ico/76.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="pages/ico/120.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="pages/ico/152.png">
+    <link rel="icon" type="image/x-icon" href="favicon.ico" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-touch-fullscreen" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta content="#gdetus" name="геолокационный сервис для SMM-хулиганов" />
+    <meta content="#gdetus" name="#NothingPersonal Corp." />
+	<link href="assets/plugins/bootstrap-tag/bootstrap-tagsinput.css" rel="stylesheet" type="text/css" />
+    <link href="assets/plugins/pace/pace-theme-flash.css" rel="stylesheet" type="text/css" />
+    <link href="assets/plugins/boostrapv3/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="assets/plugins/font-awesome/css/font-awesome.css" rel="stylesheet" type="text/css" />
+    <link href="assets/plugins/jquery-scrollbar/jquery.scrollbar.css" rel="stylesheet" type="text/css" media="screen" />
+    <link href="assets/plugins/bootstrap-select2/select2.css" rel="stylesheet" type="text/css" media="screen" />
+    <link href="assets/plugins/switchery/css/switchery.min.css" rel="stylesheet" type="text/css" media="screen" />
+    <link href="pages/css/pages-icons.css" rel="stylesheet" type="text/css">
+    <link class="main-stylesheet" href="pages/css/pages.css" rel="stylesheet" type="text/css" />
+    <!--[if lte IE 9]>
+        <link href="pages/css/ie9.css" rel="stylesheet" type="text/css" />
+    <![endif]-->
+    <script type="text/javascript">
+    window.onload = function()
+    {
+      // fix for windows 8
+      if (navigator.appVersion.indexOf("Windows NT 6.2") != -1)
+        document.head.innerHTML += '<link rel="stylesheet" type="text/css" href="pages/css/windows.chrome.fix.css" />'
+    }
+    </script>
+  </head>
+  <body class="fixed-header ">
+    <div class="login-wrapper ">
+      <!-- START Login Background Pic Wrapper-->
+      <div class="bg-pic">
+        <!-- START Background Pic-->
+        <img src="assets/img/index/m.jpg" data-src="assets/img/index/m.jpg" data-src-retina="assets/img/index/m.jpg" alt="" class="lazy">
+        <!-- END Background Pic-->
+        <!-- START Background Caption-->
+        <div class="bg-caption pull-bottom sm-pull-bottom text-white p-l-20 m-b-20">
+          <div class="fit">
+          <h1 class="m-t-5  text-left text-white">
+		  <i class="fa fa-quote-left"></i>
+		  Каждый раз, когда я смотрю на звезды - я чувствую, что я не одна. А что ощущаешь ты, поднимая глаза к небу?
+         <i class="fa fa-quote-right"></i></h1>
+        </div>
+          <p class="small">
+            кто: <a href="http://gdetus.io/reddawn" class="warning-info">@reddawn</a></p>
+			<p class="small">
+			где: <a href="/search-results/cities/" class="warning-info"><i class="fa fa-map-marker"></i> Россия, Тула</a></p>
+          <p class="small">
+		    когда: <a href="http://gdetus.io/search-results" class="warning-info">21.07.2К16</a></p>
+		  <p class="small">
+            *сюда попадают фотографии с хэштегом <a href="http://gdetus.io/hashtag/на_стене">#на_стене</a>, которые загружают пользователи сервиса и набравшие наибольшее количество лайков</p>
+		  <p class="small">
+			© 2016 #gdetus
+          </p>
+        </div>
+        <!-- END Background Caption-->
+      </div>
+      <!-- END Login Background Pic Wrapper-->
+      <!-- START Login Right Container-->
+      <div class="login-container bg-white">
+        <div class="p-l-50 p-r-50 m-r-20 p-t-50 m-t-30 sm-p-l-15 sm-p-r-15 sm-p-t-40">
+          <img src="assets/img/logon.png" alt="logo" data-src="assets/img/logon.png" data-src-retina="assets/img/logon.png" width="140" height="34">
+		  <span class="badge badge-primary">alpha v. 0.0.7.7_fastfix</span>
+          <p class="p-t-35">Открой свою страницу!</p>
+          <!-- START Login Form -->
+          <form id="form-login" class="p-t-15" role="form" method="post" action="/login?redirect=/feed">
+            <!-- START Form Control-->
+            <div class="form-group form-group-default">
+              <label>Логин</label>
+              <div class="controls">
+                <input type="text" name="login" placeholder="Почта или телефон в формате +71234567890" class="form-control" required>
+              </div>
+            </div>
+            <!-- END Form Control-->
+            <!-- START Form Control-->
+            <div class="form-group form-group-default">
+              <label>Пароль</label>
+              <div class="controls">
+                <input type="password" class="form-control" name="password" placeholder="Не забыл? ;)" required>
+              </div>
+            </div>
+            <!-- START Form Control-->
+            <div class="row">
+              <div class="col-md-6 no-padding">
+                <div class="checkbox check-primary">
+                  <input type="checkbox" value="1" id="checkbox1">
+                  <label for="checkbox1">Запомнить меня</label>
+                </div>
+              </div>
+              <div class="col-md-16 text-right">
+                <a href="http://gdetus.io/restore" class="text-info small" data-target="#restore" data-toggle="modal">Я забыл пароль :(</a>
+              </div>
+            </div>
+            <!-- END Form Control-->
+            <button class="btn btn-primary btn-cons m-t-10" type="submit">Войти</button>
+          </form>
+          <!--END Login Form-->
+          <div class="pull-bottom sm-pull-bottom">
+            <div class="m-b-30 p-r-60 sm-m-t-20 sm-p-r-15 sm-p-b-20 clearfix">
+              <div class="col-sm-20 no-padding m-t-15">
+                <p>
+                  <small>
+					Сервис находится <strong>в тестовом режиме</strong> и регистрация новых пользователей пока недоступна, но вы можете узнать что у нас нового зайдя к нам <a href="https://vk.com/gdetusio" target="blank">ВКонтакте</a>, в <a href="https://instagram.com/gdetus" target="blank">Инстаграм</a> или <a href="https://twitter.com/gdetus" target="blank">Твиттер</a>
+				 </small>
+                </p>
+				<p>
+                <small> 
+<a href="http://gdetus.io/about" class="" data-target="#about" data-toggle="modal">о нас</a>
+<a href="http://gdetus.io/digits" class="m-l-10" data-target="#digits" data-toggle="modal">цифры</a>
+<a href="http://gdetus.io/terms" class="m-l-10" data-target="#terms" data-toggle="modal">правила</a>
+<a href="http://gdetus.io/ads" class="m-l-10" data-target="#ads" data-toggle="modal">реклама</a>
+<a href="http://gdetus.io/vac" class="m-l-10" data-target="#vac" data-toggle="modal">вакансии</a>
+<a href="http://gdetus.io/accreq" class="m-l-10" data-target="#accreq" data-toggle="modal">регистрация</a>
+				</small>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+	  <!-- START Restore Control-->
+	  <div class="modal fade slide-right" id="restore" tabindex="-4" role="dialog" aria-hidden="true">
+            <div class="modal-dialog modal-sm" style="width: 445px;">
+              <div class="modal-content-wrapper">
+                <div class="modal-content">
+                  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+				  <i class="pg-close fs-14"></i>
+                  </button>
+                  <div class="container-xs-height full-height">
+                    <div class="row-xs-height">
+                      <div class="modal-body col-xs-height col-middle text-center">
+                        <h5 class="text-primary ">Восстановление пароля</h5>
+                        <br>
+						<div class="col-sm-14">
+                        <input type="email" class="form-control" id="restore" placeholder="Почта" required></div>
+						<br>
+                        <button type="button" class="btn btn-primary btn-block" data-dismiss="modal">Выслать новый пароль</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- /.modal-content -->
+            </div>
+            <!-- /.modal-dialog -->
+          </div>
+      <!-- END Right Container-->
+    </div>
+	<div class="content ">
+	<!-- START Modal container -->
+          <!-- Modal Registration-->
+          <div class="modal fade fill-in" id="accreq" tabindex="-2" role="dialog" aria-hidden="true">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+              <i class="pg-close"></i>
+            </button>
+            <div class="modal-dialog ">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="text-center p-b-5">Создай свой собственный Гдетус! Это очень просто! :)</h5>
+                <p>
+				<small>Ты сможешь не только в реальном времени следить за мероприятиями, событиями, квестами, тусовками и вписками своих друзей и заведений города на карте, но и создавать свои собственные!</small>
+				</p>
+				</div>
+                <div class="panel panel-transparent">
+                  <div class="panel-body">
+                    <form id="form-personal" role="form" autocomplete="off">
+                      <div class="row clearfix">
+                        <div class="col-sm-6">
+                          <div class="form-group form-group-default required">
+                            <label>Твоё имя</label>
+                            <input type="text" class="form-control" name="firstName" required disabled>
+                          </div>
+                        </div>
+                        <div class="col-sm-6">
+                          <div class="form-group form-group-default required">
+                            <label>Твоя фамилия</label>
+                            <input type="text" class="form-control" name="lastName" required disabled>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-sm-12">
+                          <div class="form-group form-group-default input-group">
+                            <label>Твой адрес в Гдетусе</label>
+                            <input type="text" class="form-control" name="useraddr" placeholder="Например: ivanpetrov (ты сможешь изменить этот адрес позже)" default disabled>
+                            <span class="input-group-addon primary">
+                                                       gdetus.io/ivanpetrov
+                                                    </span>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-sm-12">
+                          <div class="form-group form-group-default required">
+                            <label>Твой пароль</label>
+                            <input type="password" class="form-control" name="password" placeholder="Не менее 8 знаков, включая спецсимволы"  disabled>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-sm-12">
+                          <div class="form-group form-group-default required">
+                            <label>Твоя почта</label>
+                            <input type="email" class="form-control" name="email" placeholder="Мы вышлем тебе сверхсекретное послание ;))" disabled>
+                          </div>
+                        </div>
+                      </div>
+                      <p class="pull-left"><small>
+					  <div class="checkbox check-primary">
+                  <input type="checkbox" value="2" id="checkbox2">
+                  <label for="checkbox2">Я прочитал <a href="http://gdetus.io/terms">правила</a> и согласен на всё! ;)</label>
+                      <p class="pull-right">
+                        <a href="https://new.vk.com/im?media=&sel=-108146224" target= "blank" class="text-info small">Нужна помощь?</a>
+                      </p>
+					  </small>
+					  </div>
+                      <div class="clearfix"></div>
+                      <button class="btn btn-primary" type="submit">Создать аккаунт</button>
+                    </form>
+                  </div>
+                </div>
+              <!-- /.modal-content -->
+            </div>
+          </div>
+          <!-- /.modal-dialog -->
+		  
+		  </div>
+		  
+          <!-- Modal Digits -->
+          <div class="modal fade fill-in" id="digits" tabindex="-3" role="dialog" aria-hidden="true">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+              <i class="pg-close"></i>
+            </button>
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="text-center p-b-5">Цифры Гдетуса:</h5>
+                <p>
+				<small>Несколько ключевых показателей, которые дают представление о том, насколько активны наши пользователи и что происходит внутри сервиса к текущему моменту времени.
+				</small>
+				</p>
+				</div>
+                <div class="panel panel-transparent">
+                  <div class="panel-body">
+				  
+                      <div class="row">
+                        <div class="col-sm-4">
+                          <div class="form-group">
+                            <h1 class="form-control-static"  name="count" >9</h1>
+                            <h5>стран:</h5>
+                          </div>
+                        </div>
+                        <div class="col-sm-4">
+                          <div class="form-group">
+                            <h1 class="form-control-static" name="count" >17</h1>
+                            <h5>городов:</h5>
+                          </div>
+                        </div>
+                        <div class="col-sm-4">
+                          <div class="form-group">
+                            <h1 class="form-control-static" name="count" >6</h1>
+                            <h5>пользователей:</h5>
+                          </div>
+                        </div>
+						
+						</div>
+						
+                      <div class="row">
+                        <div class="col-sm-4">
+                          <div class="form-group">
+                            <h1 class="form-control-static" name="count" >3</h1>
+                            <h5>постов:</h5>
+                          </div>
+                        </div>
+                        <div class="col-sm-4">
+                          <div class="form-group">
+                            <h1 class="form-control-static" name="count" >4</h1>
+                            <h5>хэштегов:</h5>
+                          </div>
+                        </div>
+                        <div class="col-sm-4">
+                          <div class="form-group">
+                            <h1 class="form-control-static" name="count" >9</h1>
+                            <h5>фотографий:</h5>
+                          </div>
+                        </div>
+						
+						</div>
+						
+                      <div class="row">
+                        <div class="col-sm-4">
+                          <div class="form-group">
+                            <h1 class="form-control-static" name="count" >3</h1>
+                            <h5>лайков:</h5>
+                          </div>
+                        </div>
+                        <div class="col-sm-4">
+                          <div class="form-group">
+                            <h1 class="form-control-static" name="count" >4</h1>
+                            <h5>заведений:</h5>
+                          </div>
+                        </div>
+                        <div class="col-sm-4">
+                          <div class="form-group">
+                            <h1 class="form-control-static" name="count" >9</h1>
+                            <h5>квестов:</h5>
+                          </div>
+                        </div>
+						
+                    </form>
+                  </div>
+              <!-- /.modal-content -->
+            </div>
+          </div>
+		  </div>
+		  </div>
+		  </div>
+          <!-- /.modal-dialog -->
+	
+		  <!-- Modal About -->
+          <div class="modal fade fill-in" id="about" tabindex="-3" role="dialog" aria-hidden="true">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+              <i class="pg-close"></i>
+            </button>
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="text-center p-b-5">О нас:</h5>
+                <p>
+				<small>Небольшой импровизированный "вопрос-ответ", который снимет кучу вопросов о том - что такое Гдетус и для чего он нужен. И кому.
+				</small>
+				</p>
+				</div>
+                <div class="panel panel-transparent">
+                  <div class="panel-body">
+<div class="col-md-14 sortable-column ui-sortable">
+<div class="panel panel-default bg-primary" data-pages="portlet">
+<div class="panel-heading ui-sortable-handle">
+<h3 class="text-white">
+<span class="semi-bold">Тусовщику:</span></h3>
+</div>
+<div class="panel-body">
+<p class="text-white">Здесь ты можешь в режиме реального времени видеть на карте - где проходят или будут проходить тусовки, кто и какие вписки и безумства планирует из числа твоих друзей или незнакомцев и даже где ты можешь сегодня на халяву перекусить, посетить какое-нибудь крутое мероприятие или даже выиграть что-нибудь от заведений просто оказавшись в нужное время в нужном месте! ;))
+<ul class="lg-icon">
+                          <li><span>общайся со старыми друзьями и заводи новых! </span>
+                          </li>
+                          <li><span>выполняй квесты и делай собственные </span>
+                          </li>
+                          <li><span>развлекайся и этим зарабатывай! </span>
+                          </li>
+                        </ul>
+</div>
+</div>
+<div class="panel panel-default bg-complete" data-pages="portlet">
+<div class="panel-heading ui-sortable-handle">
+<h3 class="text-black">
+<span class="semi-bold">Бизнесу:</span></h3>
+</div>
+<div class="panel-body">
+<p class="text-black">У вас стартап? Или вы бизнесмен с многолетним стажем? А может быть вы открываете новое направление, зашли в регион, или даже сами приобрели франшизу? В любом случае - мы не будем рассказывать вам сколько сейчас стоит продвижение в интернете, не говоря уже о оффлайн. <p> Наш проект помогает тем, что 
+<ul class="lg-icon" color="black">
+                          <li><span>Life isn’t about getting and having...</span>
+                          </li>
+                          <li><span>Strive not to be a success... </span>
+                          </li>
+                          <li><span>Whatever the mind of man can... </span>
+                          </li>
+                        </ul>
+</div>
+</div>
+</div>
+              <!-- /.modal-content -->
+            </div>
+          </div>
+          <!-- /.modal-dialog -->
+		             </div>
+          </div>
+		  </div>
+          <!-- Modal Terms -->
+          <div class="modal fade fill-in" id="terms" tabindex="-3" role="dialog" aria-hidden="true">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+              <i class="pg-close"></i>
+            </button>
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="text-center p-b-5">Правила пользования сервисом:</h5>
+                <p>
+				<small>этот раздел в стадии наполнения
+				</small>
+				</p>
+				</div>
+                <div class="panel panel-transparent">
+				
+				<div class="col-lg-12">
+                    <div class="panel panel-transparent">
+                      <ul class="nav nav-tabs nav-tabs-simple nav-tabs-right bg-white" id="tab-4" role="tablist">
+                        <li><a href="#tab4hellowWorld" data-toggle="tab" role="tab">основная информация</a>
+                        </li>
+                        <li><a href="#tab4FollowUs" data-toggle="tab" role="tab">Контакты</a>
+                        </li>
+                        <li class="active"><a href="#tab4Inspire" data-toggle="tab" role="tab">Интересы</a>
+                        </li>
+                      </ul>
+                      <div class="tab-content bg-white">
+                        <div class="tab-pane" id="tab4hellowWorld">
+                          <div class="row column-seperation">
+                            <div class="col-md-6">
+                              <h3>
+                                                    <span class="semi-bold">Sometimes</span> Small things in life means the most
+                                                </h3>
+                            </div>
+                            <div class="col-md-6">
+                              <h3 class="semi-bold">great tabs</h3>
+                              <p>Native boostrap tabs customized to Pages look and feel, simply changing class name you can change color as well as its animations</p>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="tab-pane " id="tab4FollowUs">
+                          <div class="row">
+                            <div class="col-md-12">
+                              <h3>“ Nothing is
+                                                    <span class="semi-bold">impossible</span>, the word itself says 'I'm
+                                                    <span class="semi-bold">possible</span>'! ”</h3>
+                              <p>A style represents visual customizations on top of a layout. By editing a style, you can use Squarespace's visual interface to customize your...</p>
+                              <br>
+                              <p class="pull-right">
+                                <button type="button" class="btn btn-default btn-cons">White</button>
+                                <button type="button" class="btn btn-success btn-cons">Success</button>
+                              </p>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="tab-pane active" id="tab4Inspire">
+                          <div class="row">
+                            <div class="col-md-12">
+                              <h3>Follow us &amp; get updated!</h3>
+                              <p>Instantly connect to what's most important to you. Follow your friends, experts, favorite celebrities, and breaking news.</p>
+                              <br>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+</div>
+              <!-- /.modal-content -->
+            </div>
+          </div>
+          <!-- /.modal-dialog -->
+		             </div>
+          </div>
+		  </div>
+		  <!-- Modal Ads -->
+          <div class="modal fade fill-in" id="ads" tabindex="-3" role="dialog" aria-hidden="true">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+              <i class="pg-close"></i>
+            </button>
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="text-center p-b-5">Реклама в сервисе:</h5>
+                <p>
+				<small>Нашими основными коммерческими предложениями для рекламодателей являются:
+				</small>
+				</p>
+				</div>
+                <div class="panel panel-transparent">
+                  <div class="panel-body">
+<div class="col-md-12 sortable-column ui-sortable">
+<div class="panel panel-default bg-white" data-pages="portlet">
+<div class="panel-heading ui-sortable-handle">
+<div class="panel-controls">
+</div>
+</div>
+<div class="panel-body">
+<h3><span class="semi-bold">Basic</span> Tools</h3>
+                            <p>Basic Portlet tools include a slide toggle button  and a close button  All these are fully customizable and come with callback functions to integrate with your code. Clicking on the refresh button will simulate an AJAX call.
+                            </p>
+</div>
+</div>
+<div class="panel panel-default bg-complete" data-pages="portlet">
+<div class="panel-heading ui-sortable-handle">
+<div class="panel-controls">
+</ul>
+</div>
+</div>
+<div class="panel-body">
+<h3 class="text-white">
+<span class="semi-bold">Drag</span> me!</h3>
+<p class="text-white">When it comes to digital design, the lines between functionality,
+aesthetics, and psychology are inseparably blurred. Without the constraints of the
+physical world, there’s no natural form to fall back on, and every bit of constraint
+and affordance must be introduced intentionally. Good design makes a product useful.
+A product is bought to be used. It has to satisfy certain criteria, not only
+functional, but also psychological and aesthetic. </p>
+</div>
+</div>
+</div>
+              <!-- /.modal-content -->
+            </div>
+          </div>
+          <!-- /.modal-dialog -->
+		             </div>
+          </div>
+		  </div>
+
+
+         <div class="modal fade fill-in " id="vac" tabindex="-3" role="dialog" aria-hidden="true">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+              <i class="pg-close"></i>
+            </button>
+            <div class="modal-dialog modal-lg">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="text-center p-b-5">Хэй, тусовщик! Хочешь попробовать свои силы в нашей странноватой и безбашенной компании? Тогда тебе сюда! Выбери должность, заполни несложную анкету и мы обязательно тебя найдём!</h5>
+                
+				</div>
+                <div class="panel panel-transparent">
+                  <div class="panel-body">
+				  
+<div class="row">
+<div class="col-sm-10">
+<form id="form-work" class="form-horizontal" role="form" autocomplete="off" novalidate="">
+<div class="form-group">
+<label for="fname" class="col-sm-3 control-label">Меня зовут:</label>
+<div class="col-sm-9">
+<input type="text" class="form-control" id="fname" placeholder="Дарт Вейдер" name="name" required="" aria-required="true">
+</div>
+</div>
+<div class="form-group">
+<label class="col-sm-3 control-label">Я у мамы:</label>
+<div class="col-sm-9">
+<div class="radio radio-primary">
+<input type="radio" value="male" name="options" id="male">
+<label for="male">Йа мужык! \m/</label>
+<input type="radio" checked="checked" value="female" name="options" id="female">
+<label for="female">Нет, я - девочка :3</label>
+<input type="radio" checked="checked" value="unknown" name="options" id="unknown">
+<label for="female">Не скажу -_-</label>
+</div>
+</div>
+</div>
+<div class="form-group">
+<label class="col-sm-3 control-label">Меня можно найти:</label>
+<div class="col-sm-9">
+
+<div class="row">
+<div class="col-sm-4">
+<input type="text" class="form-control" placeholder="ВК/Твиттер/Инста/Фейсбук" required="true" area-required="true">
+</div>
+<div class="col-sm-4 sm-m-t-10">
+<input type="text" placeholder="Номер телефона" class="form-control">
+</div>
+<div class="col-sm-4 sm-m-t-10">
+<input type="mail" type="text" placeholder="E-mail" class="form-control">
+</div>
+</div>
+</div>
+</div>
+<div class="form-group">
+<label for="name" class="col-sm-3 control-label">Черкни нам о себе пару слов:</label>
+<div class="col-sm-9">
+<textarea rows="7" style="resize: none;" class="form-control" id="name" placeholder="Что ты умеешь, чего ты не любишь, на что не подписывался, ну и всё такое %))"></textarea>
+</div>
+</div>
+<div class="form-group">
+<label for="position" style="margin-top: 18px;" class="col-sm-3 control-label">Хочу работать:</label>
+<div class="col-sm-9">
+
+                      <div class="form-group required">
+					  
+                        <select class="full-width" data-init-plugin="select2" style=" width: 95%;margin-left: 15px;">
+						
+                          <optgroup label="Административный персонал">
+                            <option value="CM">Коммерческий представитель</option>
+							<option value="RM">Региональный представитель</option>
+                          </optgroup>
+                          <optgroup label="Технический персонал">
+                            <option value="NJSP">Программист Node JS</option>
+							<option value="FEHC">Фронтенд специалист HTML 5 + CSS 3</option>
+							<option value="FEA">Фронтенд специалист Angular</option>
+							<option value="NGX">Специалист по конфигурации Nginx</option>
+							<option value="APPWP">Разработчик приложений WP 7/8/10</option>
+							<option value="APPAND">Разработчик приложений Android</option>
+							<option value="APAPP">Разработчик приложений Apple</option>
+							<option value="APIVK">Специалист по работе с API ВКонтакте</option>
+							<option value="APIT">Специалист по работе с API Twitter</option>
+							<option value="APIFB">Специалист по работе с API Facebook</option>
+							<option value="APII">Специалист по работе с API Instagram</option>
+							<option value="ST">Тестировщик</option>
+                          </optgroup>
+                          <optgroup label="Оперативный персонал">
+						    <option value="AMVK">Аккаунт-менеджер ВКонтакте</option>
+						    <option value="AMT">Аккаунт-менеджер Twitter</option>
+							<option value="AMF">Аккаунт-менеджер Facebook</option>
+							<option value="AMI">Аккаунт-менеджер Instagram</option>
+                            <option value="SMM">СММ-специалист</option>
+							<option value="TSS">Специалист службы поддержки</option>
+							<option value="CWR">Копирайтер</option>
+                          </optgroup>
+                          <optgroup label="Производственный персонал">
+                            <option value="PI">Художник-иллюстратор</option>
+							<option value="GD">Графический дизайнер Photoshop/CorelDRAW</option>
+							<option value="GD">Верстальщик Photoshop/CorelDRAW</option>
+							<option value="FC">Каллиграф</option>
+                          </optgroup>
+                          <optgroup label="Прочие специальности">
+                            <option value="CT"></option>
+                          </optgroup>
+                        </select>
+                      </div>
+                   
+</div>
+</div>
+<div class="form-group">
+<label for="position" style="margin-top: 18px;" class="col-sm-3 control-label">Ключевые навыки:</label>
+<div class="col-sm-9">
+
+                <!-- START PANEL -->
+            <div class="col-sm-12">
+                    <div class="form-group form-group-default ">             
+                      <input class="tagsinput custom-tag-input" type="text" value="Node JS, упорство, самостоятельность, есть опыт, СММ, я - опытный копирайтер"/>
+                    </div>
+            </div>
+                <!-- END PANEL -->
+</div>
+ </div>
+ <div class="col-sm-3">
+
+ </div>
+<div class="col-sm-9">
+<div class="pull-left">
+                        <div class="checkbox check-primary">
+                          <input type="checkbox" value="1" id="checkbox-agree">
+                         <label for="checkbox-agree">Я прочитал <a href="http://gdetus.io/terms">правила</a> сервиса и согласен на обработку моих персональных данных.</label>
+                          </label>
+                        </div>
+                      </div>
+					  <br>
+					  <div class="form-group">
+					  <div class="pull-left">
+					  <button class="btn btn-primary" type="submit">Отправить</button>
+					  </div>
+					  </div>
+					   </div>
+					   <br>
+
+</form>
+
+
+              <!-- /.modal-content -->
+           
+          </div>
+          <!-- /.modal-dialog -->
+		             </div>
+          </div>
+		  </div>
+		  
+    <!-- BEGIN VENDOR JS -->
+
+    <script src="assets/plugins/pace/pace.min.js" type="text/javascript"></script>
+    <script src="assets/plugins/jquery/jquery-1.11.1.min.js" type="text/javascript"></script>
+    <script src="assets/plugins/modernizr.custom.js" type="text/javascript"></script>
+    <script src="assets/plugins/jquery-ui/jquery-ui.min.js" type="text/javascript"></script>
+    <script src="assets/plugins/boostrapv3/js/bootstrap.min.js" type="text/javascript"></script>
+    <script src="assets/plugins/jquery/jquery-easy.js" type="text/javascript"></script>
+    <script src="assets/plugins/jquery-unveil/jquery.unveil.min.js" type="text/javascript"></script>
+    <script src="assets/plugins/jquery-bez/jquery.bez.min.js"></script>
+    <script src="assets/plugins/jquery-ios-list/jquery.ioslist.min.js" type="text/javascript"></script>
+    <script src="assets/plugins/jquery-actual/jquery.actual.min.js"></script>
+    <script src="assets/plugins/jquery-scrollbar/jquery.scrollbar.min.js"></script>
+    <script type="text/javascript" src="assets/plugins/bootstrap-select2/select2.min.js"></script>
+    <script type="text/javascript" src="assets/plugins/classie/classie.js"></script>
+    <script src="assets/plugins/switchery/js/switchery.min.js" type="text/javascript"></script>
+    <script src="assets/plugins/bootstrap3-wysihtml5/bootstrap3-wysihtml5.all.min.js"></script>
+    <script type="text/javascript" src="assets/plugins/jquery-autonumeric/autoNumeric.js"></script>
+    <script type="text/javascript" src="assets/plugins/dropzone/dropzone.min.js"></script>
+    <script type="text/javascript" src="assets/plugins/bootstrap-tag/bootstrap-tagsinput.min.js"></script>
+    <script type="text/javascript" src="assets/plugins/jquery-inputmask/jquery.inputmask.min.js"></script>
+    <script src="assets/plugins/boostrap-form-wizard/js/jquery.bootstrap.wizard.min.js" type="text/javascript"></script>
+    <script src="assets/plugins/jquery-validation/js/jquery.validate.min.js" type="text/javascript"></script>
+    <script src="assets/plugins/bootstrap-datepicker/js/bootstrap-datepicker.js" type="text/javascript"></script>
+    <script src="assets/plugins/summernote/js/summernote.min.js" type="text/javascript"></script>
+    <script src="assets/plugins/moment/moment.min.js"></script>
+    <script src="assets/plugins/bootstrap-daterangepicker/daterangepicker.js"></script>
+    <script src="assets/plugins/bootstrap-timepicker/bootstrap-timepicker.min.js"></script>
+    <!-- END VENDOR JS -->
+    <!-- BEGIN CORE TEMPLATE JS -->
+    <script src="pages/js/pages.min.js"></script>
+    <!-- END CORE TEMPLATE JS -->
+    <!-- BEGIN PAGE LEVEL JS -->
+    <script src="assets/js/form_elements.js" type="text/javascript"></script>
+    <script src="assets/js/scripts.js" type="text/javascript"></script>
+	<script src="js/index.js" type="text/javascript"></script>
+    <script>
+    $(function()
+    {
+      $('#form-login').validate()
+    })
+    </script>
+  </body>
+</html>
