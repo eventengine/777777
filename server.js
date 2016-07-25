@@ -7,9 +7,36 @@ var passport = require('passport'),
 	LocalStrategy = require('passport-local').Strategy;
 var session = require('express-session');
 var MySQLStore = require('express-mysql-session')(session);
+var fs = require("fs");
+var yaml = require("js-yaml");
 
 Promise.resolve().then(function() {
-	var app = express();	
+	
+	// Чтение конфигурационного файла нашей программы.
+	// Файл будет разным на сервере разработки и на боевом сервере.
+	// Если файл не будет найден, то будет предложено его заполнить.
+	
+	try {
+		var config = fs.readFileSync(__dirname + "/config.yaml", "utf8");
+		config = yaml.safeLoad(config);
+	} catch(err) {
+		throw Error("Ошибка, либо не найден config.yaml, либо он имеет ошибку YAML-формата.");
+	}
+	
+	return config;
+	
+}).then(function(config) {
+	
+	// Настройка подключения к базе данных.
+	// Передаем настройки БД из конфиг.файла в модуль models/db.js
+	require("./models/db").configure(config.database);
+	
+	
+	
+	var app = express();
+	
+	// Сохраняем наш конфиг файл в приложении экспресса app
+	app.locals.config = config;
 
 	app.disable('x-powered-by');
 	
@@ -18,7 +45,7 @@ Promise.resolve().then(function() {
 	// - - - - - - - - - - - - - - - - - - - - -
 	// блок базовых настроек // 
 	// - - - - - - - - - - - - - - - - - - - - -
-	app.set('views',path.join(__dirname,'views'));
+	app.set('views', path.join(__dirname,'views'));
 	app.set('view engine','ejs');
 	app.set('trust proxy', 1) // trust first proxy
 
@@ -28,7 +55,6 @@ Promise.resolve().then(function() {
 	
     return app;
 }).then(function(app) {
-	
 	
 	
 	return new Promise(function (resolve, reject) {
@@ -160,15 +186,13 @@ Promise.resolve().then(function() {
 	app.post('/registration', require("./controllers/registration"));
 
 
-
-
 	//контроллеры обработки ошибок
 	app.use(require("./controllers/404"));
 	app.use(require("./controllers/500"));
 
-	//назначение порта
-	app.listen(8080, function () {
-	  console.log('#c9io is on line. Port: 8080');
+	// Запуск веб-сервера.
+	app.listen(app.locals.config.server.port, function () {
+	  console.log('#c9io is on line. Port: ' + app.locals.config.server.port);
 	});
 
     
@@ -179,7 +203,4 @@ Promise.resolve().then(function() {
 	console.log("Фатальная ошибка:");
 	console.error(err);
 });
-
-
-
 
