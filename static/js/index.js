@@ -1,3 +1,6 @@
+
+/* global $ */
+
 $(function() {
     
     /**
@@ -58,6 +61,34 @@ $(function() {
             console.error(arguments);
         });
         return false;
+    });
+    
+    
+    /**
+     * Обработчик формы восстановления пароля пользователя.
+     */
+    $("#restore button[type='submit']").click(function() {
+        var email = $("#restore [name='email']").val();
+        
+        $.post("/passrestore", {
+            email: email
+        })
+        .done(function(data, textStatus) {
+            if (data.success) {
+                alert("Письмо для восстановления пароля отправлено успешно!");
+                console.log("Письмо для восстановления пароля отправлено успешно!");
+                console.log(data);
+                $('#restore').modal('hide');
+            } else {
+                alert(data.message);
+            }
+        })
+        .fail(function() {
+            alert("Ошибка при отправке формы. См. подробности в консоли браузера.");
+            console.error("Ошибка при отправке письма для восстановления пароля.");
+            console.error(arguments);
+        });
+        return false; 
     });
     
 });

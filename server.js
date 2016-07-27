@@ -184,6 +184,8 @@ Promise.resolve().then(function() {
 	app.get('/achievements', require("./controllers/achievements"));
 	app.post('/login', require("./controllers/login"));
 	app.post('/registration', require("./controllers/registration"));
+	app.post('/passrestore', require("./controllers/passrestore"));
+	
 
 
 	//контроллеры обработки ошибок
