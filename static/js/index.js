@@ -50,7 +50,7 @@ $(function() {
         .done(function(data, textStatus) {
             if (data.success) {
                 alert("Регистрация произведена успешно!");
-                $('#accreq').modal('hide')
+                $('#accreq').modal('hide');
             } else {
                 alert(data.message);
             }
@@ -63,6 +63,16 @@ $(function() {
         return false;
     });
     
+    /**
+     * Обработка чекбокса Акцепт формы регистрации.
+     */
+    $("#accreq #regaccepted").change(function() {
+        if (this.checked) {
+            $("#accreq button[type='submit']").removeAttr("disabled");
+        } else {
+            $("#accreq button[type='submit']").attr("disabled", "disabled");
+        }
+    });
     
     /**
      * Обработчик формы восстановления пароля пользователя.
