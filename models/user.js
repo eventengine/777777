@@ -58,43 +58,68 @@ User.getUserByUserUri = function(useruri) {
 };
 
 /**
+ * Получение пользователей по стране
+ */
+User.getUsersByCountry = function(country) {
+    return db.query('select * from users where country = ?', [country]).spread(function(rows) {
+        return rows;
+    });
+};
+
+/**
+ * Получение пользователей по городу
+ */
+User.getUsersByCity = function(city) {
+    return db.query('select * from users where city = ?', [city]).spread(function(rows) {
+        return rows;
+    });
+};
+
+
+/**
  * Регистрация пользователя
  */
-User.registrationUser = function(config) {
+User.registrationUser = function(newUser) {
     var result = Promise.resolve()
     
     .then(function() {
         var errors = [];
-        if (!config.firstName) errors.push("Не заполнено поле Имя.");
-        if (!config.lastName) errors.push("Не заполнено поле Фамилия.");
-        if (!config.password) errors.push("Не заполнено поле Пароль.");
-        if (!config.email) errors.push("Не заполнено поле Почта.");
+        // Проверяем заполненность трех полей:
+        if (!newUser.firstName) errors.push("Не заполнено поле Имя.");
+        if (!newUser.lastName) errors.push("Не заполнено поле Фамилия.");
+        if (!newUser.password) errors.push("Не заполнено поле Пароль.");
         return errors;
     })
     
     .then(function(errors) {
-        if (config.email) {
-            return db.query("select count(*) as count from users where email = ?", [config.email])
+        // Если у нового пользователя поле Почта заполнена, то
+        if (newUser.email) {
+            // то ищем пользователей с такой почтой (у нас регистрация с существующей почтой запрещена руководством свыше)
+            return db.query("select count(*) as count from users where email = ?", [newUser.email])
             .spread(function(rows) {
+                // Конвертируем количество найденных записей в переменную булевского типа, 
+                // то бишь, если записей больше нуля, переменная равна true, иначе false.
                 return !!rows[0].count;
             })
             .then(function(emailExists) {
-                if (emailExists) errors.push("Аккаунт с почтой " + config.email + " уже зарегистрирован.");
+                // уведомление для пользователя о том что такой емейл уже использован
+                if (emailExists) errors.push("Аккаунт с почтой " + newUser.email + " уже зарегистрирован.");
                 return errors;
             });
         } else {
+            errors.push("Не заполнено поле Почта.");
             return errors;
         }
     })
 	
 	.then(function(errors) {
-        if (config.useruri) {
-            return db.query("select count(*) as count from users where useruri = ?", [config.useruri])
+        if (newUser.useruri) {
+            return db.query("select count(*) as count from users where useruri = ?", [newUser.useruri])
             .spread(function(rows) {
                 return !!rows[0].count;
             })
             .then(function(useruriExists) {
-                if (emailExists) errors.push("Аккаунт с адресом " + config.useruri + " уже зарегистрирован.");
+                if (useruriExists) errors.push("Аккаунт с адресом " + newUser.useruri + " уже зарегистрирован или зарезервирован.");
                 return errors;
             });
         } else {
@@ -102,29 +127,35 @@ User.registrationUser = function(config) {
         }
     })
 	
-    
     .then(function(errors) {
+        // Если имеются ошибки
         if (errors.length) {
+            // то возвращаем браузеру сообщение об ошибках.
             return {
                 success: false,
-                message: "Ошибки при регистрации пользователя: " + errors.join(" ")
+                message: "Ошибки при регистрации пользователя: " + errors.join(" "),
+                errors: errors
             };
+        // иначе регистрируем нового пользователя
         } else {
+            // процедура регистрации, путем составления SQL-запроса и отправка этого запроса в MySQL
             var fieldNames = [], values = [];
-            for (var fieldName in config) {
+            for (var fieldName in newUser) {
                 fieldNames.push(fieldName);
-                values.push(config[fieldName]);
+                values.push(newUser[fieldName]);
             }
             return db.query(`
                 insert into users (${fieldNames.join(", ")}) 
                 values (${fieldNames.map(i => "?").join(", ")})
             `, values)
+            // После регистрации в консоль сервера выводим отладочные сообщения
             .spread(function(rows) {
                 console.log("Зарегистрирован пользователь");
-                console.log("ID нового пользователя: " + rows[0].insertId);
-                console.log("Количество записей: " + rows[0].affectedRows);
+                console.log("ID нового пользователя: " + rows.insertId);
+                console.log("Количество записей: " + rows.affectedRows);
                 return;
             })
+            // А браузеру сообщаем об успехе
             .then(function() {
                 return {
                     success: true,
