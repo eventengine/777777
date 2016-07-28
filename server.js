@@ -4,7 +4,8 @@ var express = require('express');
 var bodyParser = require('body-parser');
 var cookieParser = require('cookie-parser');
 var passport = require('passport'), 
-	LocalStrategy = require('passport-local').Strategy;
+	LocalStrategy = require('passport-local').Strategy,
+	RememberMeStrategy = require('passport-remember-me').Strategy;
 var session = require('express-session');
 var MySQLStore = require('express-mysql-session')(session);
 var fs = require("fs");
@@ -69,9 +70,6 @@ Promise.resolve().then(function() {
 	})
 
 	.then(function(connection) {
-		
-		
-		
 		var sessionStoreConfig = {
 			expiration: 86400000, // The maximum age of a valid session; milliseconds.
 			createDatabaseTable: true,
@@ -118,6 +116,47 @@ Promise.resolve().then(function() {
 
 	app.set('models', models);
 	app.use(bodyParser.urlencoded({ extended: true }));
+	
+	var RememberMeToken = {
+		tokens: {},
+		consume: function(token, fn) {
+			var userId = this.tokens[token];
+			delete this.tokens[token];
+			return fn(null, userId);
+		},
+		save: function(token, userId, fn) {
+			this.tokens[token] = userId;
+			return fn();
+		},
+		generateToken: function(len) {
+			var chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+			var buf = [], charlen = chars.length;
+			var getRandomInt = function(min, max) {
+				return Math.floor(Math.random() * (max - min + 1)) + min;
+			};
+			for (var i = 0; i < len; ++i) buf.push(chars[getRandomInt(0, charlen - 1)]);
+			return buf.join('');
+		} 
+	};
+	
+	passport.use(new RememberMeStrategy(function(token, done) {
+	    RememberMeToken.consume(token, function (err, userId) {
+			if (err) return done(err);
+			models.user.getUserById(userId).then(user => {
+				if (user) {
+					done(null, user);
+				} else {
+					done(null, false);
+				}
+			});
+	    });
+	}, function(user, done) {
+		var token = RememberMeToken.generateToken(64);
+		RememberMeToken.save(token, user.id, function(err) {
+			if (err) return done(err);
+			return done(null, token);
+		});
+	}));
 
 	// настройка стратегии аутентификации пользователя в сервисе
 	passport.use(new LocalStrategy({
@@ -156,6 +195,7 @@ Promise.resolve().then(function() {
 	// подключаем методы инициализации пользователя и его сессии
 	app.use(passport.initialize());
 	app.use(passport.session());
+	app.use(passport.authenticate('remember-me'));
 
 
 	// - - - - - - - - - - - - - - - - - - - - -
@@ -182,11 +222,23 @@ Promise.resolve().then(function() {
 	app.get('/profile', require("./controllers/profile"));
 	app.get('/timeline', require("./controllers/timeline"));
 	app.get('/achievements', require("./controllers/achievements"));
-	app.post('/login', require("./controllers/login"));
+	app.post('/login', require("./controllers/login"), function(req, res, next) {
+		// Issue a remember me cookie if the option was checked
+		if (req.body.rememberme !== "true") return next();
+		var token = RememberMeToken.generateToken(64);
+		RememberMeToken.save(token, req.user.id, function(err) {
+			if (err) return next(err);
+			res.cookie('remember_me', token, { path: '/', httpOnly: true, maxAge: 604800000 }); // 7 days
+			next();
+		});
+	}, function(req, res, next) {
+		res.send({
+			success: true,
+			user: req.user
+		});
+	});
 	app.post('/registration', require("./controllers/registration"));
 	app.post('/passrestore', require("./controllers/passrestore"));
-	
-
 
 	//контроллеры обработки ошибок
 	app.use(require("./controllers/404"));

@@ -9,10 +9,12 @@ $(function() {
     $("#form-login").submit(function() {
         var login = $("#form-login [name='login']").val();
         var password = $("#form-login [name='password']").val();
+        var rememberme = $("#form-login #rememberme").get(0).checked;
         if ($.trim(login) && $.trim(password)) {
             $.post("/login", {
                 email: login,
-                password: password
+                password: password,
+                rememberme: rememberme
             })
             .done(function(data, textStatus) {
                 if (data.success) {

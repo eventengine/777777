@@ -9,10 +9,11 @@ module.exports = function(req, res, next) {
 			req.login(user, function(err) {
 				if (err) return next(err);
 				// Успешно вошли.
-				res.send({
+				/*res.send({
 					success: true,
 					user: user
-				});
+				});*/
+				next();
 			});
 		}
 		if (!user) {
