@@ -1,5 +1,9 @@
 "use strict";
 
 module.exports = function (req, res) {
-	res.render('index');
+	if (req.isAuthenticated()) {
+		res.redirect("/feed");
+	} else {
+		res.render('index');
+	}
 };

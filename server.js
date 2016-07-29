@@ -1,4 +1,5 @@
 
+
 var path = require('path');
 var express = require('express');
 var bodyParser = require('body-parser');
@@ -10,6 +11,7 @@ var session = require('express-session');
 var MySQLStore = require('express-mysql-session')(session);
 var fs = require("fs");
 var yaml = require("js-yaml");
+
 
 Promise.resolve().then(function() {
 	
@@ -71,7 +73,7 @@ Promise.resolve().then(function() {
 
 	.then(function(connection) {
 		var sessionStoreConfig = {
-			expiration: 86400000, // The maximum age of a valid session; milliseconds.
+			expiration: 86400000, // Максимальный срок жизни сессии; в миллисекундах.
 			createDatabaseTable: true,
 			schema: {
 				tableName: 'sessions',
@@ -111,51 +113,31 @@ Promise.resolve().then(function() {
 }).then(function(app) {
     // определение моделей пользователя из архитектуры mvc
 	var models = {
-		user: require("./models/user")
+		user: require("./models/user"),
+		tokensRememberMe: require("./models/tokensRememberMe")
 	};
 
 	app.set('models', models);
 	app.use(bodyParser.urlencoded({ extended: true }));
 	
-	var RememberMeToken = {
-		tokens: {},
-		consume: function(token, fn) {
-			var userId = this.tokens[token];
-			delete this.tokens[token];
-			return fn(null, userId);
-		},
-		save: function(token, userId, fn) {
-			this.tokens[token] = userId;
-			return fn();
-		},
-		generateToken: function(len) {
-			var chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-			var buf = [], charlen = chars.length;
-			var getRandomInt = function(min, max) {
-				return Math.floor(Math.random() * (max - min + 1)) + min;
-			};
-			for (var i = 0; i < len; ++i) buf.push(chars[getRandomInt(0, charlen - 1)]);
-			return buf.join('');
-		} 
-	};
-	
+	// Настройка стратегии RememberMeStrategy модуля Паспорт для кнопки Запомнить Меня 
 	passport.use(new RememberMeStrategy(function(token, done) {
-	    RememberMeToken.consume(token, function (err, userId) {
-			if (err) return done(err);
-			models.user.getUserById(userId).then(user => {
-				if (user) {
-					done(null, user);
-				} else {
-					done(null, false);
-				}
+	    models.tokensRememberMe.consume(token).then(function(userId) {
+			models.user.getUserById(userId).then(function(user) {
+				if (user) done(null, user); else done(null, false);
 			});
+	    })
+	    .catch(function(err) {
+	    	done(err);
 	    });
 	}, function(user, done) {
-		var token = RememberMeToken.generateToken(64);
-		RememberMeToken.save(token, user.id, function(err) {
-			if (err) return done(err);
-			return done(null, token);
-		});
+		var token = models.tokensRememberMe.generateToken();
+		models.tokensRememberMe.save(token, user.id).then(function() {
+			done(null, token);
+		})
+	    .catch(function(err) {
+	    	done(err);
+	    });
 	}));
 
 	// настройка стратегии аутентификации пользователя в сервисе
@@ -165,7 +147,7 @@ Promise.resolve().then(function() {
 	}, function(email, password, done){
 		models.user.getUser(email).then(function(user) {
 			if (user) {
-				if (user.password == password) {
+				if (models.user.checkPassword(user, password)) {
 					done(null, user);
 				} else {
 					done(null, false, { message: 'Incorrect password.' });
@@ -186,7 +168,7 @@ Promise.resolve().then(function() {
 	// определяем функцию ДЕсериализации пользователя
 	passport.deserializeUser(function(user, done) {
 	  models.user.getUserById(user.id).then(function(user) {
-		done(null,user);
+	  	if (user) done(null, user); else throw Error(`passport.deserializeUser: Пользователь с номером ${user.id} не найден.`);
 	  }).catch(function(err) {
 		done(err);
 	  });
@@ -225,11 +207,12 @@ Promise.resolve().then(function() {
 	app.post('/login', require("./controllers/login"), function(req, res, next) {
 		// Issue a remember me cookie if the option was checked
 		if (req.body.rememberme !== "true") return next();
-		var token = RememberMeToken.generateToken(64);
-		RememberMeToken.save(token, req.user.id, function(err) {
-			if (err) return next(err);
+		var token = models.tokensRememberMe.generateToken();
+		models.tokensRememberMe.save(token, req.user.id).then(function() {
 			res.cookie('remember_me', token, { path: '/', httpOnly: true, maxAge: 604800000 }); // 7 days
 			next();
+		}).catch(function(err) {
+			next(err);
 		});
 	}, function(req, res, next) {
 		res.send({

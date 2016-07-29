@@ -1,9 +1,31 @@
 "use strict";
 
+var crypto = require('crypto');
 var Promise = require("bluebird");
 var db = require('./db');
 
 var User = module.exports = {};
+
+/**
+ * Проверка правильности ввода пароля пользователя.
+ */
+User.checkPassword = function(user, password) {
+    return User.encryptPassword(password, user.salt) === user.password;
+};
+
+/**
+ * Шифрование пароля с солью.
+ */
+User.encryptPassword = function(password, salt) {
+    return crypto.createHmac('sha1', salt).update(password).digest('hex');
+};
+
+/**
+ * Функция создания соли для шифрования паролей.
+ */
+User.makeSalt = function() {
+    return Math.round((new Date().valueOf() * Math.random())) + '';
+};
 
 /**
  * Получение всех юзеров из бд
@@ -138,6 +160,9 @@ User.registrationUser = function(newUser) {
             };
         // иначе регистрируем нового пользователя
         } else {
+            // Шифрование пароля пользователя перед регистрацией
+            newUser.salt = User.makeSalt();
+            newUser.password = User.encryptPassword(newUser.password, newUser.salt);
             // процедура регистрации, путем составления SQL-запроса и отправка этого запроса в MySQL
             var fieldNames = [], values = [];
             for (var fieldName in newUser) {
