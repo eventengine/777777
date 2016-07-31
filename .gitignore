@@ -4,3 +4,5 @@ bower_components
 npm-debug.log
 
 config.yaml
+
+id_rsa_deploy.pub

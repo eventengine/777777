@@ -120,7 +120,7 @@ Promise.resolve().then(function() {
 	app.set('models', models);
 	app.use(bodyParser.urlencoded({ extended: true }));
 	
-	// Настройка стратегии RememberMeStrategy модуля Паспорт для кнопки Запомнить Меня 
+	// Настройка стратегии RememberMeStrategy модуля passport для кнопки "Запомнить меня" 
 	passport.use(new RememberMeStrategy(function(token, done) {
 	    models.tokensRememberMe.consume(token).then(function(userId) {
 			models.user.getUserById(userId).then(function(user) {
@@ -180,13 +180,9 @@ Promise.resolve().then(function() {
 	app.use(passport.authenticate('remember-me'));
 
 
-	// - - - - - - - - - - - - - - - - - - - - -
+	// - - - - - - - - - - - - - - -//
 	// конец блока базовых настроек //
-	// - - - - - - - - - - - - - - - - - - - - -
-
-	//require('./models/user').getAllUsers().spread(function(rows) {
-	//	console.log('We got some muthafuckaz!!!', rows);
-	//});
+	// - - - - - - - - - - - - - - -//
 
 
 	//блок подключения статики и файлов
