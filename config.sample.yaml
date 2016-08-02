@@ -1,0 +1,15 @@
+
+database:
+  host: *****
+  user: root
+  password: *****
+  database: gdetus
+
+server:
+  port: 8080
+
+nodemailer:
+  service: Gmail
+  auth: 
+    user: *****@gmail.com
+    pass: *****

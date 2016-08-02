@@ -21,22 +21,6 @@
 0)  решить - стоит ли прописывать параметры запуска проекта на боевом сервере
     и на сервере разработки (use process.env.PORT as the port and process.env.IP
     as the host и т.д.) внутри файла package.json
-    
-0.1)сделать скрипт для деплоя на боевой сервер (минимально необходимый для 
-    работы функционал: deploy, rollback)
-    
-............сопутствующие ссылки............
-    
-    https://www.npmjs.com/package/shipit-pm2
-    http://pm2.keymetrics.io/docs/usage/deployment/
-    http://pm2.keymetrics.io/docs/tutorials/capistrano-like-deployments
-    https://github.com/shipitjs/shipit-deploy
-    https://github.com/shipitjs/shipit
-    
-    https://github.com/mattanglin/shipit-pm2-nginx
-    
-    
-............
 
 
 1)  определить требования к созданию паролей при регистрации и смене пароля
@@ -56,6 +40,7 @@
     сайт.ру/юзер если он назначил себе useruri при регистрации или впоследствии
     и адрес вида сайт.ру/id1 если useruri не назначен
 
+6)
 
 
 
@@ -75,6 +60,13 @@ git commit --amend         (если закоммитив, забыл внест
                             файл, или неверно указал коментарий, вернет коммит
                             и можно добавить файл и сделать коммит как обычно)
 
+
+////////////////////команды для управления деплоем////////////////////
+
+shipit gdetus deploy (стартует скрипт деплоя, который стягивает с гитхаба проект
+                      на боевой сервер и разворачивает его в свою папку)
+                      
+npm run deploy        (стартует скрипт деплоя)
 
 _________
 

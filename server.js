@@ -11,6 +11,12 @@ var session = require('express-session');
 var MySQLStore = require('express-mysql-session')(session);
 var fs = require("fs");
 var yaml = require("js-yaml");
+var program = require('commander');
+
+program
+  .version('0.0.1')
+  .option('-c, --config [file]', 'Конфигурационный файл приложения.')
+  .parse(process.argv);
 
 
 Promise.resolve().then(function() {
@@ -19,11 +25,13 @@ Promise.resolve().then(function() {
 	// Файл будет разным на сервере разработки и на боевом сервере.
 	// Если файл не будет найден, то будет предложено его заполнить.
 	
+	var pathToConfig = program.config ? program.config : __dirname + "/config.yaml";
+	
 	try {
-		var config = fs.readFileSync(__dirname + "/config.yaml", "utf8");
+		var config = fs.readFileSync(pathToConfig, "utf8");
 		config = yaml.safeLoad(config);
 	} catch(err) {
-		throw Error("Ошибка, либо не найден config.yaml, либо он имеет ошибку YAML-формата.");
+		throw Error("Ошибка, либо не найден config.yaml, либо он имеет ошибку YAML-формата. " + err.message);
 	}
 	
 	return config;
@@ -92,7 +100,7 @@ Promise.resolve().then(function() {
 		return {
 			app: app,
 			sessionStore: sessionStore
-		}
+		};
 	});
     
 }).then(function(result) {

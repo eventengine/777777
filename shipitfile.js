@@ -1,19 +1,21 @@
 
 module.exports = function (shipit) {
 	
+	var projectName = "gdetus2";
+	
 	require('shipit-deploy')(shipit);
 
 	shipit.initConfig({
 		default: {
-			workspace: '/tmp/gdetus2/github-monitor',
-			deployTo: '/gdetus2',
+			workspace: `/tmp/${projectName}`,
+			deployTo: `/${projectName}`,
 			repositoryUrl: 'https://github.com/eventengine/777777',
-			ignores: ['.git'],
+			ignores: ['.git', 'shipitfile.js'],
 			keepReleases: 3,
 			key: '/home/ubuntu/.ssh/id_rsa',
 			shallowClone: true
 		},
-		staging: {
+		gdetus: {
 			servers: 'insomakarma@141.8.194.121'
 		}
 	});
@@ -43,15 +45,15 @@ module.exports = function (shipit) {
 	 * Задача: Подготовка приложения перед запуском.
 	 * Восстановление папки node_modules командой npm install.
 	 */
-	shipit.task("gdetus-prepare", function() {
-		
+	shipit.blTask("gdetus-prepare", function() {
+		return shipit.remote(`cd ${shipit.config.deployTo}/current && npm install`);
 	});
 	
 	/**
 	 * Задача: Запуск приложения при помощи PM2.
 	 */
-	shipit.task("gdetus-start", function() {
-		
+	shipit.blTask("gdetus-start", function() {
+		return shipit.remote(`cd ${shipit.config.deployTo}/current && pm2 startOrRestart pm2.json -- -c ${shipit.config.deployTo}/config.yaml`);
 	});
 	
 };

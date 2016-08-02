@@ -1,5 +1,6 @@
 
 Инструкция как настраивать deploy для Шипита
+===========================================
 
 Папка куда разворачивается проект
 deployTo: '/gdetus2',
@@ -19,3 +20,14 @@ key: '/home/ubuntu/.ssh/id_rsa',
 Здесь указываем логин того пользователя, для которого копировали публичный ключ
 servers: 'insomakarma@141.8.194.121'
 
+
+Ссылки по теме:
+-----------------
+
+https://www.npmjs.com/package/shipit-pm2
+http://pm2.keymetrics.io/docs/usage/deployment/
+http://pm2.keymetrics.io/docs/tutorials/capistrano-like-deployments
+https://github.com/shipitjs/shipit-deploy
+https://github.com/shipitjs/shipit
+
+https://github.com/mattanglin/shipit-pm2-nginx
