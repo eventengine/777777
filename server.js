@@ -29,9 +29,14 @@ Promise.resolve().then(function() {
 	
 	try {
 		var config = fs.readFileSync(pathToConfig, "utf8");
+	} catch(err) {
+		throw Error("Ошибка, не найден config.yaml. " + err.message);
+	}
+	
+	try {
 		config = yaml.safeLoad(config);
 	} catch(err) {
-		throw Error("Ошибка, либо не найден config.yaml, либо он имеет ошибку YAML-формата. " + err.message);
+		throw Error("Ошибка, config.yaml он имеет ошибку YAML-формата. " + err.message);
 	}
 	
 	return config;
@@ -261,7 +266,7 @@ Promise.resolve().then(function() {
 })
 
 .catch(function(err) {
-	console.log("Фатальная ошибка:");
+	console.error("Фатальная ошибка:");
 	console.error(err);
 });
 
