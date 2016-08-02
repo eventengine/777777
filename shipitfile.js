@@ -41,7 +41,7 @@ module.exports = function (shipit) {
 	 * Задача: Останов приложения при помощи PM2.
 	 */
 	shipit.task("gdetus-stop", function() {
-		return shipit.remote(`pm2 stop ${app.name}`);
+		return shipit.remote(`pm2 stop "${app.name} && exit 0"`);
 	});
 	
 	/**
