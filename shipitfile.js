@@ -3,7 +3,8 @@ module.exports = function (shipit) {
 	
 	var app = {
 		name: "Gdetus Application",
-		folder: "gdetus"
+		folder: "gdetus",
+		repository: "https://github.com/eventengine/777777"
 	};
 	
 	require('shipit-deploy')(shipit);
@@ -12,7 +13,7 @@ module.exports = function (shipit) {
 		default: {
 			workspace: `/tmp/${app.folder}`,
 			deployTo: `/${app.folder}`,
-			repositoryUrl: 'https://github.com/eventengine/777777',
+			repositoryUrl: app.repository,
 			ignores: ['.git', 'shipitfile.js'],
 			keepReleases: 3,
 			key: '/home/ubuntu/.ssh/id_rsa',
