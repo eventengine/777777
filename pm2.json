@@ -1,8 +1,0 @@
-{
-  "apps": [{
-    "name": "Gdetus Application",
-    "script": "./server.js",
-    "exec_mode": "fork"
-  }]
-}
-
