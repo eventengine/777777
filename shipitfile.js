@@ -3,7 +3,7 @@ module.exports = function (shipit) {
 	
 	var app = {
 		name: "Gdetus Application",
-		folder: "gdetus2"
+		folder: "gdetus"
 	};
 	
 	require('shipit-deploy')(shipit);
@@ -39,9 +39,11 @@ module.exports = function (shipit) {
 	
 	/**
 	 * Задача: Останов приложения при помощи PM2.
+	 * Внимание, пользователь должен иметь доступ к команде sudo без ввода пароля
+	 * либо необходимо заходить под суперпользователем root.
 	 */
 	shipit.task("gdetus-stop", function() {
-		//return shipit.remote(`pm2 stop "${app.name}" && exit 0`);
+		return shipit.remote(`sudo pm2 stop "${app.name}"`).catch(function() {});
 	});
 	
 	/**

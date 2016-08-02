@@ -242,6 +242,7 @@ Promise.resolve().then(function() {
 	});
 	
 	function getBind(addr) {
+		if (!addr) return "<not address>";
 		if (typeof addr === "string") return `Pipe ${addr}`;
 		switch (addr.family) {
 			case "IPv6": return `[${addr.address}]:${addr.port}`;
