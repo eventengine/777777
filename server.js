@@ -232,8 +232,28 @@ Promise.resolve().then(function() {
 	app.use(require("./controllers/500"));
 
 	// Запуск веб-сервера.
-	app.listen(app.locals.config.server.port, function () {
+	var server = app.listen(app.locals.config.server.port, function () {
 	  console.log('#c9io is on line. Port: ' + app.locals.config.server.port);
+	});
+	
+	function getBind(addr) {
+		if (typeof addr === "string") return `Pipe ${addr}`;
+		switch (addr.family) {
+			case "IPv6": return `[${addr.address}]:${addr.port}`;
+			case "IPv4": return `${addr.address}:${addr.port}`;
+		}
+	}
+	
+	server.on("error", err => {
+		if (err.syscall == "listen") {
+			var bind = getBind(server.address());
+			console.error("Внимание, сервер не запущен.");
+			console.error({
+				EACCES: `Адрес ${bind} требует повышенных привилегий.`,
+				EADDRINUSE: `Адрес ${bind} уже используется.`
+			}[err.code] || "Неизвестная ошибка.");
+			console.error(err);
+		}
 	});
 
     
