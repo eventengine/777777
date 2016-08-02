@@ -57,12 +57,12 @@ module.exports = function (shipit) {
 	 */
 	shipit.blTask("gdetus-start", function() {
 		var options = {
-			pm2: [`--name ${app.name}`],
+			pm2: [`--name="${app.name}"`],
 			gdetus: [`-c ${shipit.config.deployTo}/config.yaml`]
 		};
 		var commands = [
 			`cd ${shipit.config.deployTo}/current`, 
-			`pm2 startOrRestart ${options.pm2.join(" ")} server.js -- ${options.gdetus.join(" ")}`
+			`pm2 start ${options.pm2.join(" ")} server.js -- ${options.gdetus.join(" ")}`
 		];
 		return shipit.remote(commands.join(" && "));
 	});
