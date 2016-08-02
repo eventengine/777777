@@ -43,7 +43,7 @@ module.exports = function (shipit) {
 	 * либо необходимо заходить под суперпользователем root.
 	 */
 	shipit.task("gdetus-stop", function() {
-		return shipit.remote(`sudo pm2 stop "${app.name}"`).catch(function() {});
+		return shipit.remote(`sudo pm2 delete "${app.name}"`).catch(function() {});
 	});
 	
 	/**
