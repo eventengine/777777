@@ -53,13 +53,10 @@ module.exports = function (shipit) {
 	 * Задача: Запуск приложения при помощи PM2.
 	 */
 	shipit.blTask("gdetus-start", function() {
-		var pm2Options = [];
-		for (var option in {
-			"--name": "Gdetus Application",
-			"--": `-c ${shipit.config.deployTo}/config.yaml`
-		}) {
-			pm2Options.push(`${option} ${pm2Options[option]}`);
-		}
+		var pm2Options = [
+			"--name Gdetus Application", 
+			`-- -c ${shipit.config.deployTo}/config.yaml`
+		];
 		var commands = [
 			`cd ${shipit.config.deployTo}/current`, 
 			`pm2 startOrRestart server.js ${pm2Options.join(" ")}`
