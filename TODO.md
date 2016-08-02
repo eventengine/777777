@@ -70,7 +70,17 @@ npm run deploy        (стартует скрипт деплоя)
 
 _________
 
+Подготовка нового пространства c9.io:
+npm update npm -g
+nvm install v6.3.1
+nvm use v6.3.1
+nvm alias default v6.3.1
 
+
+Oбновить NPM до последней версии:
+npm update npm -g
+
+_________
 
 
 *ознакомиться с битбакетом
