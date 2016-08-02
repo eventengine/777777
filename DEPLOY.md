@@ -31,3 +31,12 @@ https://github.com/shipitjs/shipit-deploy
 https://github.com/shipitjs/shipit
 
 https://github.com/mattanglin/shipit-pm2-nginx
+
+
+
+Проблемы:
+----------
+
+1) Для любого пользователя не root запрещено занимать порт 80.
+В итоге невозможно запустить сервер на этом порту, если деплой запускать от обычного пользователя.
+

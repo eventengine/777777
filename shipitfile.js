@@ -54,6 +54,8 @@ module.exports = function (shipit) {
 	
 	/**
 	 * Задача: Запуск приложения при помощи PM2.
+	 * Внимание, пользователь должен иметь доступ к команде sudo без ввода пароля
+	 * либо необходимо заходить под суперпользователем root.
 	 */
 	shipit.blTask("gdetus-start", function() {
 		var options = {
@@ -62,7 +64,7 @@ module.exports = function (shipit) {
 		};
 		var commands = [
 			`cd ${shipit.config.deployTo}/current`, 
-			`pm2 start ${options.pm2.join(" ")} server.js -- ${options.gdetus.join(" ")}`
+			`sudo pm2 start ${options.pm2.join(" ")} server.js -- ${options.gdetus.join(" ")}`
 		];
 		return shipit.remote(commands.join(" && "));
 	});
