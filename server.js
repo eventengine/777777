@@ -127,6 +127,7 @@ Promise.resolve().then(function() {
     // определение моделей пользователя из архитектуры mvc
 	var models = {
 		user: require("./models/user"),
+		digits: require("./models/digits"),
 		tokensRememberMe: require("./models/tokensRememberMe")
 	};
 
@@ -207,6 +208,7 @@ Promise.resolve().then(function() {
 	app.get('/im', require("./controllers/im"));
 	app.get('/test', require("./controllers/test"));
 	app.get('/map', require("./controllers/map"));
+	app.get('/digits', require("./controllers/digits"));
 	app.get('/edit', require("./controllers/edit"));
 	app.get('/lock', require("./controllers/lock"));
 	app.get('/feed', require("./controllers/feed"));
@@ -215,6 +217,8 @@ Promise.resolve().then(function() {
 	app.get('/profile', require("./controllers/profile"));
 	app.get('/timeline', require("./controllers/timeline"));
 	app.get('/achievements', require("./controllers/achievements"));
+	app.post('/registration', require("./controllers/registration"));
+	app.post('/passrestore', require("./controllers/passrestore"));
 	app.post('/login', require("./controllers/login"), function(req, res, next) {
 		// Issue a remember me cookie if the option was checked
 		if (req.body.rememberme !== "true") return next();
@@ -231,8 +235,6 @@ Promise.resolve().then(function() {
 			user: req.user
 		});
 	});
-	app.post('/registration', require("./controllers/registration"));
-	app.post('/passrestore', require("./controllers/passrestore"));
 
 	//контроллеры обработки ошибок
 	app.use(require("./controllers/404"));

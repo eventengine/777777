@@ -4,6 +4,20 @@
 $(function() {
     
     /**
+     * Запрос количественных параметров, необходимых для страницы быстрой статистики /digits.
+     */
+    $.get("/digits").done(function(data, textStatus) {
+        if (data.success) {
+            $("#digits h1[name='userCount']").text(data.info.userCount);
+        } else {
+            console.error("Ошибка при запросе количественных параметров, необходимых для страницы быстрой статистики /digits.");
+        }
+    }).fail(function() {
+        console.error("Ошибка при запросе количественных параметров, необходимых для страницы быстрой статистики /digits.");
+        console.error(arguments);
+    });
+    
+    /**
      * Обработчик формы авторизации пользователя.
      */
     $("#form-login").submit(function() {

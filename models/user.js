@@ -7,6 +7,15 @@ var db = require('./db');
 var User = module.exports = {};
 
 /**
+ * Получить количество пользователей.
+ */
+User.getCount = function() {
+    return db.query('select count(*) as count from users').spread(function(rows) {
+        return Number(rows[0].count);
+    });
+};
+
+/**
  * Проверка правильности ввода пароля пользователя.
  */
 User.checkPassword = function(user, password) {
@@ -31,7 +40,9 @@ User.makeSalt = function() {
  * Получение всех юзеров из бд
  */
 User.getAllUsers = function() {
-    return db.query('select * from users');
+    return db.query('select * from users').spread(function(rows) {
+        return rows[0];
+    });
 };
 
 /**

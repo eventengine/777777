@@ -41,4 +41,6 @@ module.exports = function (req, res, next) {
     	});
     }
     
+    // некая функция для использрвания пользователем lock
+    
 };

@@ -2,13 +2,13 @@
 Команды управления деплоем
 ---------
 
-`run npm start`  
+`npm run start`  
 запуск приложения в режиме отладки.
 
-`run npm deploy`  
+`npm run deploy`  
 разворачивание проекта на боевом сервере.
 
-`run npm rollback`  
+`npm run rollback`  
 откат на предыдущую версию.
 
 
