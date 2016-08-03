@@ -47,6 +47,7 @@ User.getUser = function(email) {
  * Получение пользователя по ID
  */
 User.getUserById = function(id) {
+    id = isNaN(id) ? "nan" : id;
     return db.query('select * from users where id = ?', [id]).spread(function(rows) {
         return rows[0];
     });

@@ -529,7 +529,9 @@
           <!-- START User Info-->
           <div class="visible-lg visible-md m-t-10">
             <div class="pull-left p-r-10 p-t-10 fs-16 font-heading">
-              <span class="semi-bold">David</span> <span class="text-master">Nest</span>
+              <a href="<%= user.useruri ? user.useruri : "id" + user.id%>"><% if (user) { %>
+                  <%= user.firstname + " " + user.lastname %>
+                  <% } %></a>
             </div>
             <div class="dropdown pull-right">
               <button class="profile-dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

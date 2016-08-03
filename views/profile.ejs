@@ -470,7 +470,7 @@
           <!-- START User Info-->
           <div class="visible-lg visible-md m-t-10">
             <div class="pull-left p-r-10 p-t-10 fs-16 font-heading">
-              <a href="#"><% if (user) { %>
+              <a href="<%= user.useruri%>"><% if (user) { %>
                   <%= user.firstname + " " + user.lastname %>
                   <% } %></a>
             </div>
@@ -520,8 +520,8 @@
                     <div class="bottom-left m-b-30">
                     <div class="thumbnail-wrapper d68 circular bordered b-primary">
 					<img alt="Profile Image" width="103" height="103" data-src-retina="assets/img/profiles/avatar.jpg" data-src="assets/img/profiles/avatar.jpg" src="assets/img/profiles/avatar.jpg"></div>
-					  <h3 class="text-white"><% if (user) { %>
-                  <%= user.firstname + " " + user.lastname %>
+					  <h3 class="text-white"><% if (profileUser) { %>
+                  <%= profileUser.firstname + " " + profileUser.lastname %>
                   <% } %></h3>
                       <h5 class="">
 					  <a href="http://" target="blank"><i class="fa fa-vk"></i></a>

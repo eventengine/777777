@@ -2,7 +2,7 @@
 module.exports = function (shipit) {
 	
 	var app = {
-		name: "Gdetus Application",
+		name: "gdetus",
 		folder: "gdetus",
 		repository: "https://github.com/eventengine/777777"
 	};

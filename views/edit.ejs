@@ -465,7 +465,7 @@
           <!-- START User Info-->
           <div class="visible-lg visible-md m-t-10">
             <div class="pull-left p-r-10 p-t-10 fs-16 font-heading">
-              <a href="/profile"><% if (user) { %>
+              <a href="<%= user.useruri ? user.useruri : "id" + user.id%>"><% if (user) { %>
                   <%= user.firstname + " " + user.lastname %>
                   <% } %></a>
             </div>
@@ -541,13 +541,13 @@
                         <div class="col-sm-6">
                           <div class="form-group form-group-default">
                             <label>Имя</label>
-                            <input type="text" class="form-control">
+                            <input type="text" class="form-control" placeholder="<%= user.firstname %>">
                           </div>
                         </div>
                         <div class="col-sm-6">
                           <div class="form-group form-group-default">
                             <label>Фамилия</label>
-                            <input type="text" class="form-control">
+                            <input type="text" class="form-control" placeholder="<%= user.lastname %>">
                           </div>
                         </div>
                       </div>
@@ -557,9 +557,9 @@
                       </div>
 					  <div class="form-group form-group-default input-group">
                         <label>Адрес в Гдетусе</label>
-                        <input type="email" class="form-control" placeholder="gdetus.io/superstar">
+                        <input type="email" class="form-control" placeholder="<%= user.useruri %>">
                         <span class="input-group-addon primary">
-                                           gdetus.io/superstar
+                                           gdetus.io/<%= user.useruri %>
                                         </span>
                       </div>
                     <div class="form-group form-group-default input-group col-sm-12">
@@ -586,27 +586,27 @@
                     <button class="btn btn-block btn-info" type="button">
                       <span class="pull-left"><i class="fa fa-vk"></i>
                                     </span>
-                      <span class="bold">Войти в ВКонтакте</span>
+                      <span class="bold">Подключить ВКонтакте</span>
                     </button>
 					<button class="btn btn-block btn-info" type="button">
                       <span class="pull-left"><i class="fa fa-twitter"></i>
                                     </span>
-                      <span class="bold">Войти в Twitter </span>
+                      <span class="bold">Подключить Twitter </span>
                     </button>
                     <button class="btn btn-block btn-success" type="button">
                       <span class="pull-left"><i class="fa fa-facebook"></i>
                                     </span>
-                      <span class="bold">Войти в Facebook</span>
+                      <span class="bold">Подключить Facebook</span>
                     </button>
 					<button class="btn btn-block btn-warning" type="button">
                       <span class="pull-left"><i class="fa fa-facebook"></i>
                                     </span>
-                      <span class="bold">Войти в Одноклассники</span>
+                      <span class="bold">Подключить Одноклассники</span>
                     </button>
                     <button class="btn btn-block btn-danger" type="button">
                       <span class="pull-left"><i class="fa fa-google-plus"></i>
                                     </span>
-                      <span class="bold">Войти в Google+</span>
+                      <span class="bold">Подключить Google+</span>
                     </button>
 					<div class="checkbox">
                       <input type="checkbox" value="1" id="checkbox2">
@@ -706,9 +706,10 @@
             <!-- END PANEL -->
 			<!-- START PANEL -->
                   <div class="col-md-4">
-                    <h5>Оповещения</h5>
+                    <h5>Приватность</h5>
                     <div class="form-row">
-                                <p>Ты можешь настроить оповещения на почту <span class="dim">(e*****@ngs.ru)</span> о новых действиях в Гдетусе.</p>
+                                <p>Ты можешь закрыть свой профиль и от зарегистрированных пользователей и от всего интернета. Но 
+                                зарегистрированные пользователи смогут писать тебе короткое сообщение!</p>
             </div>
             <div class="form-row">
                 <div class="grid-row">
@@ -727,21 +728,21 @@
                 </div>
                 <div class="grid-row js-mailing-filters" style="display">
                     <div class="grid-col-whole" style="margin-bottom:20px;">
-                        <p class="big">Фильтры уведомлений</p>
+                        <p class="big">Фильтры приватности</p>
                     </div>
                     <div class="grid-col-1-3">
                         <ul class="check-list">
                             <div class="checkbox">
                       <input type="checkbox" value="1" id="checkbox4">
-                      <label for="checkbox4">Гости</label>
+                      <label for="checkbox4">Закрыть профиль от пользователей</label>
                     </div>
 					<div class="checkbox">
                       <input type="checkbox" value="1" id="checkbox5">
-                      <label for="checkbox5">Взаимные симпатии</label>
+                      <label for="checkbox5">Закрыть профиль от ПС</label>
                     </div>
                     <div class="checkbox">
                       <input type="checkbox" value="1" id="checkbox6">
-                      <label for="checkbox6">Сообщения</label>
+                      <label for="checkbox6">Закрыть профиль от незарегистрированных пользователей</label>
                     </div>
                     <div class="checkbox">
                       <input type="checkbox" value="1" id="checkbox7">

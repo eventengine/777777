@@ -202,6 +202,7 @@ Promise.resolve().then(function() {
 	app.use(express.static(__dirname + '/static'));
 
 	//блок подключения основных контроллеров
+	app.get('*', require("./controllers/useruri"));
 	app.get('/', require("./controllers/index"));
 	app.get('/im', require("./controllers/im"));
 	app.get('/test', require("./controllers/test"));
@@ -209,6 +210,7 @@ Promise.resolve().then(function() {
 	app.get('/edit', require("./controllers/edit"));
 	app.get('/lock', require("./controllers/lock"));
 	app.get('/feed', require("./controllers/feed"));
+	app.get('/payment', require("./controllers/payment"));
 	app.get('/logout', require("./controllers/logout"));
 	app.get('/profile', require("./controllers/profile"));
 	app.get('/timeline', require("./controllers/timeline"));

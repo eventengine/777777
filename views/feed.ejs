@@ -467,7 +467,7 @@
           <!-- START User Info-->
           <div class="visible-lg visible-md m-t-10">
             <div class="pull-left p-r-10 p-t-10 fs-16 font-heading">
-              <a href="/profile"><% if (user) { %>
+              <a href="<%= user.useruri ? user.useruri : "id" + user.id%>"><% if (user) { %>
                   <%= user.firstname + " " + user.lastname %>
                   <% } %></a>
             </div>
