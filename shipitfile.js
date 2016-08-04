@@ -52,7 +52,8 @@ module.exports = function (shipit) {
 	 * Восстановление папки node_modules командой npm install.
 	 */
 	shipit.blTask("gdetus-prepare", function() {
-		return shipit.remote(`cd ${shipit.config.deployTo}/current && npm install --link --production`);
+		return shipit.remote(`cd ${shipit.config.deployTo}/current && npm install`);
+		//return shipit.remote(`cd ${shipit.config.deployTo}/current && npm install --link --production`);
 	});
 	
 	/**
