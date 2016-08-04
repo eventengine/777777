@@ -9,23 +9,31 @@ module.exports = function (req, res) {
 	var models = req.app.get("models");
 	
 	models.user.getUser(req.body.email).then(user => {
-	    var subject = "Восстановление пароля";
-	    var text = [];
-	    text.push(subject);
-	    text.push(user.password);
-	    return sendmail({
-	        to: user.email,
-	        subject: subject,
-	        text: text.join("\n")
-	    }, config);
-
-	})
-	.then(info => {
-	    console.log('Message sent: ' + info.response);
-	    res.send({
-	        success: true,
-	        info: info
-	    });
+		if (user) {
+			models.user.generatePassword(user).then(function(password) {
+			    var subject = "Password restore. Восстановление пароля";
+			    var text = [];
+			    text.push(subject);
+			    text.push('Привет! :) Вот твой пароль, мы очень долго думали и придумали тебе новый:');
+			    text.push(password);
+			    text.push('С уважением, ваш Гдетус!');
+			    var info = sendmail({
+			        to: user.email,
+			        subject: subject,
+			        text: text.join("\n")
+			    }, config);
+			    console.log('Message sent: ' + info.response);
+			    res.send({
+			        success: true,
+			        info: info
+			    });
+			});
+		} else {
+			res.send({
+		        success: false,
+		        message: "Пользователь с таким мэйлом не найден."
+		    });
+		}
 	})
 	.catch(function(err) {
 	    console.log("Проблемы при отправке письма: ", err);
@@ -39,10 +47,7 @@ module.exports = function (req, res) {
 
 function sendmail(mail, config) {
 	var defaultMail = {
-        from: 'gdetusinfo@mail.ru', 
-        to: 'gdetusinfo@mail.ru', 
-        subject: 'Hello ', 
-        text: 'Hello world'
+        from: 'fdfsdfdsffdsfsdfs@gmail.com'
     };
     mail = _.merge({}, defaultMail, mail);
 	console.log("Отправляем письмо");

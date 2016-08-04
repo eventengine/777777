@@ -115,6 +115,7 @@ Promise.resolve().then(function() {
         store: sessionStore,
         secret: "it:demo:secret",
         key: "sid",
+        saveUninitialized: false,
         cookie: {
             "path": "/",
             "httpOnly": true,

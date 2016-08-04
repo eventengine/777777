@@ -29,7 +29,8 @@
     "nodemailer": "^2.5.0",
     "passport": "^0.3.2",
     "passport-local": "^1.0.0",
-    "passport-remember-me": "0.0.1"
+    "passport-remember-me": "0.0.1",
+    "password-generator": "^2.0.2"
   },
   "devDependencies": {
     "shipit-cli": "^1.4.1",

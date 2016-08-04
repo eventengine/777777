@@ -16,7 +16,7 @@ module.exports = function(req, res) {
     })
     
     .catch(function(err) {
-        console.error("Ошибки при регистрации пользователя:")
+        console.error("Ошибки при регистрации пользователя:");
         console.error(err);
     });
     

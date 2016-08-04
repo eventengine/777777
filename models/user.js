@@ -3,8 +3,27 @@
 var crypto = require('crypto');
 var Promise = require("bluebird");
 var db = require('./db');
+var generatePassword = require("password-generator");
 
 var User = module.exports = {};
+
+/**
+ * Функция генерации нового пароля.
+ * Генерируется новый пароль, сохраняется в аккаунте пользователя, 
+ * и возвращается в виде строки вызываемой функции.
+ */
+User.generatePassword = function(user) {
+    var password = generatePassword(8, false);
+    var salt = User.makeSalt();
+    var encryptedPassword = User.encryptPassword(password, salt);
+    return db.query(`
+        update users 
+        set salt = ?, password = ?
+        where id = ?
+    `, [salt, encryptedPassword, user.id]).spread(function() {
+        return password;
+    });
+};
 
 /**
  * Получить количество пользователей.
