@@ -557,14 +557,14 @@
                       </div>
 					  <div class="form-group form-group-default input-group">
                         <label>Адрес в Гдетусе</label>
-                        <input type="text" name="useruri" class="form-control" value="<%= user.useruri %>">
+                        <input type="text" name="useruri" class="form-control" value="<%= user.useruri %>" disabled>
                         <span class="input-group-addon primary">
                                            gdetus.io/<%= user.useruri %>
                                         </span>
                       </div>
                     <div class="form-group form-group-default input-group col-sm-12">
                       <label>Дата рождения</label>
-                      <input type="datetime" name="birthday_date" class="form-control" placeholder="Выбери дату" id="datepicker-component">
+                      <input type="datetime" name="birthday_date" class="form-control" placeholder="Выбери дату" id="datepicker-component" disabled>
                       <span class="input-group-addon">
                                           <i class="fa fa-calendar"></i>
                                         </span>
@@ -2164,10 +2164,10 @@
            var options = {
              position: "top-right",
              timeout: 0,
-             type: "success",
+             type: "info",
              style: "flip",
              title: "Внимание!",
-             message: "Ваши анкетные данные обновлены!"
+             message: "Данные обновлены."
            };
            $('body').pgNotification(options).show();
         });

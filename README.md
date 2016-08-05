@@ -1,4 +1,9 @@
 
+Ссылка на документацию по фронтэнд фреймворку:
+http://pages.revox.io/dashboard/latest/doc/
+http://pages.revox.io/dashboard/latest/html/
+
+
 Команды управления деплоем
 ---------
 
