@@ -54,6 +54,10 @@ module.exports = function (shipit) {
 	shipit.blTask("gdetus-prepare", function() {
 		return shipit.remote(`cd ${shipit.config.deployTo}/current && npm install`);
 		//return shipit.remote(`cd ${shipit.config.deployTo}/current && npm install --link --production`);
+		
+		// Для нерутовского пользователя нет доступа в папку /usr/lib/node_modules
+		// Поэтому он туда не может ставить линки (командой npm install --link)
+		
 	});
 	
 	/**

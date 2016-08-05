@@ -8,6 +8,32 @@ var generatePassword = require("password-generator");
 var User = module.exports = {};
 
 /**
+ * Обновление данных пользователя.
+ */
+User.update = function(userId, data) {
+    var fieldNames = ["firstname", "lastname", "useruri", "email", "birthday_date"];
+    
+    var existsFieldNames = [];
+    fieldNames.forEach(function(fieldName) {
+        if (fieldName in data) existsFieldNames.push(fieldName);
+    });
+    
+    var setStatement = existsFieldNames.map(function(fieldName) {
+        return `${fieldName} = ?`;
+    }).join(", ");
+    
+    var values = [];
+    existsFieldNames.forEach(function(fieldName) {
+        values.push(data[fieldName]);
+    });
+    values.push(userId);
+    
+    return db.query(`update users set ${setStatement} where id = ?`, values).spread(function() {
+        return User.getUserById(userId);
+    });
+};
+
+/**
  * Функция генерации нового пароля.
  * Генерируется новый пароль, сохраняется в аккаунте пользователя, 
  * и возвращается в виде строки вызываемой функции.
