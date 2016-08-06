@@ -528,8 +528,29 @@
               </div>
             </div>
           <!-- END JUMBOTRON -->
+          
+          
 	<!-- START CONTAINER FLUID -->
           <div class="container-fluid container-fixed-lg ">
+          
+        	  <% if (errors) { %>
+          	  <div class="alert alert-danger" role="alert">
+                <button class="close" data-dismiss="alert"></button>
+                <% errors.forEach(function(error) { %>
+                   <div>
+                      <% if (error.value) { %>
+                        <strong><%= error.value %>:</strong>
+                      <% } %>
+                      <%= error.msg %>
+                    </div>
+                <% }) %>
+              </div>
+        	  <% } %>
+          
+          
+          
+          
+          
 <!-- START PANEL -->
             <div class="panel panel-default">
               <div class="panel-body">
@@ -553,11 +574,11 @@
                       </div>
                       <div class="form-group  form-group-default">
                         <label>Почта</label>
-                        <input type="email" name="email" class="form-control" value="<%= user.email %>" >
+                        <input type="text" name="email" class="form-control" value="<%= user.email %>" >
                       </div>
 					  <div class="form-group form-group-default input-group">
                         <label>Адрес в Гдетусе</label>
-                        <input type="text" name="useruri" class="form-control" value="<%= user.useruri %>" disabled>
+                        <input type="text" name="useruri" class="form-control" value="<%= user.useruri %>" >
                         <span class="input-group-addon primary">
                                            gdetus.io/<%= user.useruri %>
                                         </span>

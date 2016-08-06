@@ -5,7 +5,37 @@ var Promise = require("bluebird");
 var db = require('./db');
 var generatePassword = require("password-generator");
 
+
 var User = module.exports = {};
+
+/**
+ * Валидация полей анкеты пользователя.
+ */
+User.getValidateSchema = function() {
+    return {
+        email: {
+            notEmpty: {
+                errorMessage: "Поле с адресом почты не должно быть пустым."
+            },
+            isEmail: {
+                errorMessage: "Увы, но это не похоже на адрес электронной почты. Попробуй ещё раз! ;)"
+            }
+        },
+        useruri: {
+            checkUserUri: {
+                errorMessage: "Неправильно ты, дядя Федор, будерброд ешь!"
+            }
+        }
+    };
+};
+
+/**
+ * Получить валидатор для поля формы useruri.
+ * https://www.npmjs.com/package/express-validator
+ */
+User.getUserUriValidator = function(useruri) {
+    return true;
+};
 
 /**
  * Обновление данных пользователя.

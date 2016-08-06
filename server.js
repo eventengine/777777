@@ -2,6 +2,7 @@
 
 var path = require('path');
 var express = require('express');
+var expressValidator = require('express-validator');
 var bodyParser = require('body-parser');
 var cookieParser = require('cookie-parser');
 var passport = require('passport'), 
@@ -63,10 +64,9 @@ Promise.resolve().then(function() {
 	// - - - - - - - - - - - - - - - - - - - - -
 	app.set('views', path.join(__dirname,'views'));
 	app.set('view engine','ejs');
-	app.set('trust proxy', 1) // trust first proxy
+	app.set('trust proxy', 1); // trust first proxy
 
 	app.use(cookieParser());
-	
 	
 	
     return app;
@@ -134,6 +134,12 @@ Promise.resolve().then(function() {
 
 	app.set('models', models);
 	app.use(bodyParser.urlencoded({ extended: true }));
+	
+	app.use(expressValidator({
+		customValidators: {
+			checkUserUri: models.user.getUserUriValidator()
+		}
+	}));
 	
 	// Настройка стратегии RememberMeStrategy модуля passport для кнопки "Запомнить меня" 
 	passport.use(new RememberMeStrategy(function(token, done) {
