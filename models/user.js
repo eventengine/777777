@@ -1,7 +1,8 @@
+
 "use strict";
 
+var Promise = require('bluebird');
 var crypto = require('crypto');
-var Promise = require("bluebird");
 var db = require('./db');
 var generatePassword = require("password-generator");
 
@@ -9,32 +10,46 @@ var generatePassword = require("password-generator");
 var User = module.exports = {};
 
 /**
+ * Удаление полей формы, которые не изменены.
+ */
+User.preValidation = function(userId, data) {
+    return User.getUserById(userId).then(function(user) {
+        for (var fieldname in data) {
+            if (user[fieldname] == data[fieldname]) delete data[fieldname];
+        }
+    });
+};
+
+/**
  * Валидация полей анкеты пользователя.
  */
 User.getValidateSchema = function() {
     return {
         email: {
+            optional: true,
             notEmpty: {
                 errorMessage: "Поле с адресом почты не должно быть пустым."
             },
             isEmail: {
                 errorMessage: "Увы, но это не похоже на адрес электронной почты. Попробуй ещё раз! ;)"
+            },
+            isUnique: {
+                options: ["users", "email"],
+                errorMessage: "Почта с таким адресом уже существует."
             }
         },
         useruri: {
-            checkUserUri: {
-                errorMessage: "Неправильно ты, дядя Федор, будерброд ешь!"
+            optional: true,
+            isUnique: {
+                options: ["users", "useruri"],
+                errorMessage: "Аккаунт с таким адресом уже существует."
+            },
+            checkBlackList: {
+                options: ["forbidden_useruri"],
+                errorMessage: "Аккаунт с таким адресом зарезервирован."
             }
         }
     };
-};
-
-/**
- * Получить валидатор для поля формы useruri.
- * https://www.npmjs.com/package/express-validator
- */
-User.getUserUriValidator = function(useruri) {
-    return true;
 };
 
 /**
@@ -58,9 +73,13 @@ User.update = function(userId, data) {
     });
     values.push(userId);
     
-    return db.query(`update users set ${setStatement} where id = ?`, values).spread(function() {
+    if (setStatement) {
+        return db.query(`update users set ${setStatement} where id = ?`, values).spread(function() {
+            return User.getUserById(userId);
+        });
+    } else {
         return User.getUserById(userId);
-    });
+    }
 };
 
 /**

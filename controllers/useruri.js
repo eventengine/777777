@@ -3,9 +3,6 @@
 module.exports = function (req, res, next) {
     
 	var models = req.app.get("models");
-	
-    // http://site.ru/id<что угодно>
-    // http://site.ru/<что угодно>
     
     var path = req.path.replace(/^\//, "");
     var useruri = path;

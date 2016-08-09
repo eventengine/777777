@@ -135,9 +135,7 @@ Promise.resolve().then(function() {
 	app.use(bodyParser.urlencoded({ extended: true }));
 	
 	app.use(expressValidator({
-		customValidators: {
-			checkUserUri: models.user.getUserUriValidator()
-		}
+		customValidators: require("./models/validators")
 	}));
 	
 	// Настройка стратегии RememberMeStrategy модуля passport для кнопки "Запомнить меня" 
