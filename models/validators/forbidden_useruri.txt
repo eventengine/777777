@@ -1,4 +1,4 @@
-﻿
+
 2ch
 2ch.hk
 228
@@ -169,10 +169,6 @@ google
 guf
 
 
-
-
-
-
 hub
 huv
 hash
@@ -183,17 +179,12 @@ h377
 hell
 hello
 hikkikomori
-
+hivemind
 hipster
 hipsta
 heuforia
 honda
 hereiam
-
-
-
-
-
 
 
 idoleast
@@ -231,7 +222,6 @@ junglistic_movement
 
 
 kactopka
-korben
 kill
 k1ll
 k177
@@ -261,16 +251,13 @@ marketing
 matrix
 manu
 mdk
+mindcraft
 money
 meduza
 meduza.project
 meduza_project
 mementomori
 murchim
-
-
-
-
 
 
 npc
@@ -303,11 +290,8 @@ obnimi
 obnimu
 onuka
 optimus
-
-
-
-
-
+optimusprime
+optimus.prime
 
 paranoid
 paranoidtimes
@@ -317,20 +301,14 @@ production
 prostudakosmosom
 prostuda.kosmosom
 prostuda_kosmosom
-
-
-
-
-
-
+pub
+public
 
 qiwi
 quicksilver
 qwe
 qwerty
 qweqwe
-
-
 
 
 
@@ -343,8 +321,6 @@ red_drum
 romantikku
 rozhkov
 relic
-
-
 
 
 

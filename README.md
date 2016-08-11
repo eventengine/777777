@@ -22,7 +22,7 @@ http://pages.revox.io/dashboard/latest/html/
 ---------
 
 
-`git status`  
+`git status`
 проверить статус и то, какие файлы были изменены
 
 `git add .`  

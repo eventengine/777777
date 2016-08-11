@@ -207,7 +207,7 @@ Promise.resolve().then(function() {
 	app.use(express.static(__dirname + '/static'));
 
 	//блок подключения основных контроллеров
-	app.get('*', require("./controllers/useruri"));
+	app.get('/:useruri', require("./controllers/useruri"));
 	app.get('/', require("./controllers/index"));
 	app.get('/im', require("./controllers/im"));
 	app.get('/test', require("./controllers/test"));

@@ -512,10 +512,10 @@
                   <li>
                     <a href="#">Главная</a>
                   </li>
-				  <li>
+                  <li>
                     <a href="#">Мой гдетус</a>
                   </li>
-				  <li>
+                  <li>
                     <a href="settings.html">Настройки гдетуса</a>
                   </li>
                   <li><a class="active">Редактирование личной страницы</a>
@@ -536,14 +536,17 @@
         	  <% if (errors) { %>
           	  <div class="alert alert-danger" role="alert">
                 <button class="close" data-dismiss="alert"></button>
-                <% errors.forEach(function(error) { %>
-                   <div>
-                      <% if (error.value) { %>
-                        <strong><%= error.value %>:</strong>
-                      <% } %>
-                      <%= error.msg %>
-                    </div>
-                <% }) %>
+                Внимание, ошибк<%= errors.length == 1 ? "а" : "и" %> в профиле пользователя:
+                <ul>
+                  <% errors.forEach(function(error) { %>
+                     <li>
+                        <% if (error.value) { %>
+                          <strong><%= error.value %>:</strong>
+                        <% } %>
+                        <%= error.msg %>
+                      </li>
+                  <% }) %>
+                </ul>
               </div>
         	  <% } %>
           
@@ -562,25 +565,25 @@
                         <div class="col-sm-6">
                           <div class="form-group form-group-default">
                             <label>Имя</label>
-                            <input type="text" name="firstname" class="form-control" value="<%= user.firstname %>">
+                            <input type="text" name="firstname" class="form-control" value="<%= userEditForm.firstname %>">
                           </div>
                         </div>
                         <div class="col-sm-6">
                           <div class="form-group form-group-default">
                             <label>Фамилия</label>
-                            <input type="text" name="lastname" class="form-control" value="<%= user.lastname %>">
+                            <input type="text" name="lastname" class="form-control" value="<%= userEditForm.lastname %>">
                           </div>
                         </div>
                       </div>
                       <div class="form-group  form-group-default">
                         <label>Почта</label>
-                        <input type="text" name="email" class="form-control" value="<%= user.email %>" >
+                        <input type="text" name="email" class="form-control" value="<%= userEditForm.email %>" >
                       </div>
 					  <div class="form-group form-group-default input-group">
                         <label>Адрес в Гдетусе</label>
-                        <input type="text" name="useruri" class="form-control" value="<%= user.useruri %>" >
+                        <input type="text" name="useruri" class="form-control" value="<%= userEditForm.useruri %>" >
                         <span class="input-group-addon primary">
-                                           gdetus.io/<%= user.useruri %>
+                                           gdetus.io/<%= userEditForm.useruri %>
                                         </span>
                       </div>
                     <div class="form-group form-group-default input-group col-sm-12">

@@ -51,14 +51,14 @@ $(function() {
      * Обработчик формы регистрации пользователя.
      */
     $("#accreq button[type='submit']").click(function() {
-        var firstName = $("#accreq [name='firstName']").val();
-        var lastName = $("#accreq [name='lastName']").val();
+        var firstname = $("#accreq [name='firstname']").val();
+        var lastname = $("#accreq [name='lastname']").val();
         var useruri = $("#accreq [name='useraddr']").val();
         var password = $("#accreq [name='password']").val();
         var email = $("#accreq [name='email']").val();
         $.post("/registration", {
-            firstName: firstName,
-            lastName: lastName,
+            firstname: firstname,
+            lastname: lastname,
             useruri: useruri,
             password: password,
             email: email
@@ -68,7 +68,12 @@ $(function() {
                 alert("Регистрация произведена успешно!");
                 $('#accreq').modal('hide');
             } else {
-                alert(data.message);
+                var message = [];
+                message.push("Внимание, ошибк" + (data.errors.length == 1 ? "а" : "и") + " в профиле пользователя:");
+                data.errors.forEach(function(error) {
+                    message.push(error.value + ": " + error.msg);
+                });
+                alert(message.join("\n"));
             }
         })
         .fail(function() {

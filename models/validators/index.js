@@ -3,5 +3,6 @@
 
 module.exports = {
     isUnique: require("./isUnique"),
-    checkBlackList: require("./checkBlackList")
+    checkBlackList: require("./checkBlackList"),
+    isFirstLetter: require("./isFirstLetter")
 };

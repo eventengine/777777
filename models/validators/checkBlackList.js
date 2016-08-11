@@ -2,6 +2,7 @@
 "use strict";
 
 var fs = require('fs');
+var _ = require('lodash');
 
 /**
  * Проверка поля по черному списку.
@@ -16,7 +17,7 @@ module.exports = function(value, listName) {
         var found = false;
         data = data.split("\n");
         data.forEach(function(forbiddenUseruri) {
-            if (value.toLowerCase() == forbiddenUseruri.toLowerCase()) {
+            if (_.trim(forbiddenUseruri) && value.toLowerCase() == forbiddenUseruri.toLowerCase()) {
                 found = true;
             }
         });

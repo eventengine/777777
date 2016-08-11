@@ -10,7 +10,13 @@ var generatePassword = require("password-generator");
 var User = module.exports = {};
 
 /**
+ * Перечисление всех полей в профиле пользователя.
+ */
+User.fieldNames = ["firstname", "lastname", "useruri", "email", "birthday_date", "password"];
+
+/**
  * Удаление полей формы, которые не изменены.
+ * Не забывать в схеме для каждого поля прописывать optional: true.
  */
 User.preValidation = function(userId, data) {
     return User.getUserById(userId).then(function(user) {
@@ -21,7 +27,7 @@ User.preValidation = function(userId, data) {
 };
 
 /**
- * Валидация полей анкеты пользователя.
+ * Валидация полей профиля пользователя.
  */
 User.getValidateSchema = function() {
     return {
@@ -40,13 +46,39 @@ User.getValidateSchema = function() {
         },
         useruri: {
             optional: true,
+            matches: {
+                options: [/^[a-z0-9_\.]+$/],
+                errorMessage: "Адрес может содержать ТОЛЬКО маленькие английские буквы, цифры, а также знаки подчёркивания и точки."
+            },
+            isLength: {
+                options: [{ min: 4, max: 21 }],
+                errorMessage: "Длина адреса не менее 4х и не более 21го символа."
+            },
             isUnique: {
-                options: ["users", "useruri"],
+                options: ["users", "useruri", true],
                 errorMessage: "Аккаунт с таким адресом уже существует."
             },
             checkBlackList: {
                 options: ["forbidden_useruri"],
                 errorMessage: "Аккаунт с таким адресом зарезервирован."
+            },
+            isFirstLetter: {
+                options: ["^_\."],
+                errorMessage: "Первый символ адреса не точка и не подчёркивание."
+            }
+        },
+        firstname: {
+            optional: true,
+            isAlpha: {
+                options: ["ru-RU"],
+                errorMessage: "Имя может содержать только русские буквы."
+            }
+        },
+        lastname: {
+            optional: true,
+            isAlpha: {
+                options: ["ru-RU"],
+                errorMessage: "Фамилия может содержать только русские буквы."
             }
         }
     };
@@ -56,7 +88,7 @@ User.getValidateSchema = function() {
  * Обновление данных пользователя.
  */
 User.update = function(userId, data) {
-    var fieldNames = ["firstname", "lastname", "useruri", "email", "birthday_date"];
+    var fieldNames = User.fieldNames;
     
     var existsFieldNames = [];
     fieldNames.forEach(function(fieldName) {
@@ -208,6 +240,44 @@ User.getUsersByCity = function(city) {
  * Регистрация пользователя
  */
 User.registrationUser = function(newUser) {
+    
+    
+    
+    // Шифрование пароля пользователя перед регистрацией
+    newUser.salt = User.makeSalt();
+    newUser.password = User.encryptPassword(newUser.password, newUser.salt);
+    // процедура регистрации, путем составления SQL-запроса и отправка этого запроса в MySQL
+    var fieldNames = [], values = [];
+    User.fieldNames.forEach(function(fieldName) {
+        fieldNames.push(fieldName);
+        values.push(newUser[fieldName]);
+    });
+    return db.query(`
+        insert into users (${fieldNames.join(", ")}) 
+        values (${fieldNames.map(i => "?").join(", ")})
+    `, values)
+    // После регистрации в консоль сервера выводим отладочные сообщения
+    .spread(function(rows) {
+        console.log("Зарегистрирован пользователь");
+        console.log("ID нового пользователя: " + rows.insertId);
+        console.log("Количество записей: " + rows.affectedRows);
+        return;
+    })
+    // А браузеру сообщаем об успехе
+    .then(function() {
+        return {
+            success: true,
+            message: "Пользователь успешно зарегистрирован!"
+        };
+    });
+    
+    
+    
+    
+    
+    
+    
+    /*
     var result = Promise.resolve()
     
     .then(function() {
@@ -296,5 +366,5 @@ User.registrationUser = function(newUser) {
         }
     });
     
-    return result;
+    return result;*/
 };

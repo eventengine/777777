@@ -2,42 +2,56 @@
 
 module.exports = function (req, res, next) {
     
-	var models = req.app.get("models");
+    var useruri = req.param("useruri");
     
-    var path = req.path.replace(/^\//, "");
-    var useruri = path;
-    var userid = null;
-    
-    var mode = "useruri";
-    
-    if (path.substr(0, 2).toLowerCase() == "id") {
-        mode = "id";
-        // id<что угодно> -> <что угодно>
-        userid = Number(path.replace("id", ""));
-    }
-    
-    switch (mode) {
-        case "useruri":
-	        // <что угодно> ищем среди useruri
-            models.user.getUserByUserUri(useruri).then(function(user) {
-                if (user) render(user); else next();
-            });
-            break;
-        case "id":
-        	// <что угодно> ищем среди id
-        	models.user.getUserById(userid).then(function(user) {
-        	    if (user) render(user); else next();
+    if (useruri) {
+        
+    	var models = req.app.get("models");
+        
+        //var path = req.path.replace(/^\//, "");
+        //var useruri = path;
+        var userid = null;
+        
+        var mode = "useruri";
+        
+        if (useruri.substr(0, 2).toLowerCase() == "id") {
+            mode = "id";
+            // id<что угодно> -> <что угодно>
+            userid = Number(useruri.replace("id", ""));
+        }
+        
+        var render = function(user) {
+        	res.render("profile", {
+        		user: req.user,
+        		profileUser: user
         	});
-            break;
+        };
+        
+        switch (mode) {
+            case "useruri":
+    	        // <что угодно> ищем среди useruri
+                models.user.getUserByUserUri(useruri).then(function(user) {
+                    if (user) render(user); else next();
+                });
+                break;
+            case "id":
+            	// <что угодно> ищем среди id
+            	models.user.getUserById(userid).then(function(user) {
+            	    if (user) render(user); else next();
+            	});
+                break;
+        }
+        
+        
+        
+        // некая функция для использования пользователем lock
+        
+        
+        
+    } else {
+        next();
     }
     
-    function render(user) {
-    	res.render("profile", {
-    		user: req.user,
-    		profileUser: user
-    	});
-    }
     
-    // некая функция для использрвания пользователем lock
     
 };
