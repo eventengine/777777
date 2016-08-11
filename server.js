@@ -207,8 +207,6 @@ Promise.resolve().then(function() {
 	app.use(express.static(__dirname + '/static'));
 
 	//блок подключения основных контроллеров
-	app.get('/:useruri', require("./controllers/useruri"));
-	app.get('/', require("./controllers/index"));
 	app.get('/im', require("./controllers/im"));
 	app.get('/test', require("./controllers/test"));
 	app.get('/map', require("./controllers/map"));
@@ -240,6 +238,8 @@ Promise.resolve().then(function() {
 			user: req.user
 		});
 	});
+	app.get('/:useruri', require("./controllers/useruri"));
+	app.get('/', require("./controllers/index"));
 
 	//контроллеры обработки ошибок
 	app.use(require("./controllers/404"));
