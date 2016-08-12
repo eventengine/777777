@@ -37,7 +37,7 @@ User.getValidateSchema = function() {
                 errorMessage: "Поле с адресом почты не должно быть пустым."
             },
             isEmail: {
-                errorMessage: "Увы, но это не похоже на адрес электронной почты. Попробуй ещё раз! ;)"
+                errorMessage: "Адрес электронной почты написан с ошибкой или пустой."
             },
             isUnique: {
                 options: ["users", "email"],
@@ -47,12 +47,12 @@ User.getValidateSchema = function() {
         useruri: {
             optional: true,
             matches: {
-                options: [/^[a-z0-9_\.]+$/],
+                options: [/^[a-z0-9_\.]*$/],
                 errorMessage: "Адрес может содержать ТОЛЬКО маленькие английские буквы, цифры, а также знаки подчёркивания и точки."
             },
             isLength: {
-                options: [{ min: 4, max: 21 }],
-                errorMessage: "Длина адреса не менее 4х и не более 21го символа."
+                options: [{ min: 4, max: 21, zeroEnable: true }],
+                errorMessage: "Адрес должен быть длиной не менее 4-х и не более 21-го символа или пустым."
             },
             isUnique: {
                 options: ["users", "useruri", true],
@@ -70,15 +70,15 @@ User.getValidateSchema = function() {
         firstname: {
             optional: true,
             isAlpha: {
-                options: ["ru-RU"],
-                errorMessage: "Имя может содержать только русские буквы."
+                options: ["ru-RU", "en-US"],
+                errorMessage: "Имя может содержать только русские или латинские буквы."
             }
         },
         lastname: {
             optional: true,
             isAlpha: {
-                options: ["ru-RU"],
-                errorMessage: "Фамилия может содержать только русские буквы."
+                options: ["ru-RU", "en-US"],
+                errorMessage: "Фамилия может содержать только русские или латинские буквы."
             }
         }
     };
@@ -240,9 +240,6 @@ User.getUsersByCity = function(city) {
  * Регистрация пользователя
  */
 User.registrationUser = function(newUser) {
-    
-    
-    
     // Шифрование пароля пользователя перед регистрацией
     newUser.salt = User.makeSalt();
     newUser.password = User.encryptPassword(newUser.password, newUser.salt);
@@ -270,101 +267,4 @@ User.registrationUser = function(newUser) {
             message: "Пользователь успешно зарегистрирован!"
         };
     });
-    
-    
-    
-    
-    
-    
-    
-    /*
-    var result = Promise.resolve()
-    
-    .then(function() {
-        var errors = [];
-        // Проверяем заполненность трех полей:
-        if (!newUser.firstName) errors.push("Не заполнено поле Имя.");
-        if (!newUser.lastName) errors.push("Не заполнено поле Фамилия.");
-        if (!newUser.password) errors.push("Не заполнено поле Пароль.");
-        return errors;
-    })
-    
-    .then(function(errors) {
-        // Если у нового пользователя поле Почта заполнена, то
-        if (newUser.email) {
-            // то ищем пользователей с такой почтой (у нас регистрация с существующей почтой запрещена руководством свыше)
-            return db.query("select count(*) as count from users where email = ?", [newUser.email])
-            .spread(function(rows) {
-                // Конвертируем количество найденных записей в переменную булевского типа, 
-                // то бишь, если записей больше нуля, переменная равна true, иначе false.
-                return !!rows[0].count;
-            })
-            .then(function(emailExists) {
-                // уведомление для пользователя о том что такой емейл уже использован
-                if (emailExists) errors.push("Аккаунт с почтой " + newUser.email + " уже зарегистрирован.");
-                return errors;
-            });
-        } else {
-            errors.push("Не заполнено поле Почта.");
-            return errors;
-        }
-    })
-	
-	.then(function(errors) {
-        if (newUser.useruri) {
-            return db.query("select count(*) as count from users where useruri = ?", [newUser.useruri])
-            .spread(function(rows) {
-                return !!rows[0].count;
-            })
-            .then(function(useruriExists) {
-                if (useruriExists) errors.push("Аккаунт с адресом " + newUser.useruri + " уже зарегистрирован или зарезервирован.");
-                return errors;
-            });
-        } else {
-            return errors;
-        }
-    })
-	
-    .then(function(errors) {
-        // Если имеются ошибки
-        if (errors.length) {
-            // то возвращаем браузеру сообщение об ошибках.
-            return {
-                success: false,
-                message: "Ошибки при регистрации пользователя: " + errors.join(" "),
-                errors: errors
-            };
-        // иначе регистрируем нового пользователя
-        } else {
-            // Шифрование пароля пользователя перед регистрацией
-            newUser.salt = User.makeSalt();
-            newUser.password = User.encryptPassword(newUser.password, newUser.salt);
-            // процедура регистрации, путем составления SQL-запроса и отправка этого запроса в MySQL
-            var fieldNames = [], values = [];
-            for (var fieldName in newUser) {
-                fieldNames.push(fieldName);
-                values.push(newUser[fieldName]);
-            }
-            return db.query(`
-                insert into users (${fieldNames.join(", ")}) 
-                values (${fieldNames.map(i => "?").join(", ")})
-            `, values)
-            // После регистрации в консоль сервера выводим отладочные сообщения
-            .spread(function(rows) {
-                console.log("Зарегистрирован пользователь");
-                console.log("ID нового пользователя: " + rows.insertId);
-                console.log("Количество записей: " + rows.affectedRows);
-                return;
-            })
-            // А браузеру сообщаем об успехе
-            .then(function() {
-                return {
-                    success: true,
-                    message: "Пользователь успешно зарегистрирован!"
-                };
-            });
-        }
-    });
-    
-    return result;*/
 };

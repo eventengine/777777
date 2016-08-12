@@ -1,4 +1,6 @@
 
+var http = require('http');
+var https = require('https');
 var path = require('path');
 var express = require('express');
 var expressValidator = require('express-validator');
@@ -12,6 +14,7 @@ var MySQLStore = require('express-mysql-session')(session);
 var fs = require("fs");
 var yaml = require("js-yaml");
 var program = require('commander');
+
 
 program
   .version('0.0.1')
@@ -36,8 +39,10 @@ Promise.resolve().then(function() {
 	try {
 		config = yaml.safeLoad(config);
 	} catch(err) {
-		throw Error("Ошибка, config.yaml он имеет ошибку YAML-формата. " + err.message);
+		throw Error("Файл config.yaml имеет ошибку YAML-формата. " + err.message);
 	}
+	
+	config.homedir = path.dirname(pathToConfig);
 	
 	return config;
 	
@@ -246,10 +251,47 @@ Promise.resolve().then(function() {
 	app.use(require("./controllers/500"));
 
 	// Запуск веб-сервера.
-	var server = app.listen(app.locals.config.server.port, function () {
-	  console.log('#c9io is on line. Port: ' + app.locals.config.server.port);
-	});
+	/*var server = app.listen(app.locals.config.server.port, function () {
+	  console.log('Программа Gdetus запущена на порту: ' + app.locals.config.server.port);
+	});*/
 	
+	
+	var httpServer = http.createServer(app);
+	httpServer.listen(app.locals.config.server.port, function () {
+	  console.log('HTTP-сервер Gdetus запущен на порту: ' + app.locals.config.server.port);
+	});
+	httpServer.on("error", onServerError.bind(httpServer));
+	
+	if (app.locals.config.https) {
+		
+		var keyFileNames = app.locals.config.https.keys;
+		var privateKey  = fs.readFileSync(path.join(app.locals.config.homedir, keyFileNames.private), 'utf8');
+		var certificateKey = fs.readFileSync(path.join(app.locals.config.homedir, keyFileNames.public), 'utf8');
+		//var rootKey = fs.readFileSync(path.join(app.locals.config.homedir, keyFileNames.root), 'utf8');
+		
+		var credentials = { key: privateKey, cert: certificateKey };
+		
+		var httpsServer = http.createServer(credentials, app);
+		httpsServer.listen(app.locals.config.https.port, function () {
+		  console.log('HTTPS-сервер Gdetus запущен на порту: ' + app.locals.config.https.port);
+		});
+		httpsServer.on("error", onServerError.bind(httpsServer));
+	}
+
+	
+	
+	function onServerError(err) {
+		if (err.syscall == "listen") {
+			var bind = getBind(this.address());
+			console.error("Внимание, сервер не запущен.");
+			console.error({
+				EACCES: `Адрес ${bind} требует повышенных привилегий.`,
+				EADDRINUSE: `Адрес ${bind} уже используется.`
+			}[err.code] || "Неизвестная ошибка.");
+			console.error(err);
+		}
+	}
+
 	function getBind(addr) {
 		if (!addr) return "<not address>";
 		if (typeof addr === "string") return `Pipe ${addr}`;
@@ -258,18 +300,6 @@ Promise.resolve().then(function() {
 			case "IPv4": return `${addr.address}:${addr.port}`;
 		}
 	}
-	
-	server.on("error", err => {
-		if (err.syscall == "listen") {
-			var bind = getBind(server.address());
-			console.error("Внимание, сервер не запущен.");
-			console.error({
-				EACCES: `Адрес ${bind} требует повышенных привилегий.`,
-				EADDRINUSE: `Адрес ${bind} уже используется.`
-			}[err.code] || "Неизвестная ошибка.");
-			console.error(err);
-		}
-	});
 
     
     return app;

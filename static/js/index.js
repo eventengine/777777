@@ -3,6 +3,18 @@
 
 $(function() {
     
+    function notificationInfo(selector, message) {
+        $(selector).pgNotification($.extend({}, {
+            position: "top-right",
+            timeout: 0,
+            type: "info",
+            style: "flip",
+            title: "Внимание!"
+        }, {
+            message: message
+        })).show();
+    }
+    
     /**
      * Запрос количественных параметров, необходимых для страницы быстрой статистики /digits.
      */
@@ -65,15 +77,15 @@ $(function() {
         })
         .done(function(data, textStatus) {
             if (data.success) {
-                alert("Регистрация произведена успешно!");
                 $('#accreq').modal('hide');
+                notificationInfo(".bg-pic", "Регистрация произведена успешно!");
             } else {
                 var message = [];
-                message.push("Внимание, ошибк" + (data.errors.length == 1 ? "а" : "и") + " в профиле пользователя:");
+                message.push("<b>Внимание, ошибк" + (data.errors.length == 1 ? "а" : "и") + " при регистрации пользователя:</b>");
                 data.errors.forEach(function(error) {
-                    message.push(error.value + ": " + error.msg);
+                    message.push("<li>" + (error.value ? "<b>" + error.value + ": " + "</b>" : "") + error.msg + "</li>");
                 });
-                alert(message.join("\n"));
+                notificationInfo("#accreq", message.join("\n"));
             }
         })
         .fail(function() {

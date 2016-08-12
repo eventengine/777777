@@ -8,6 +8,13 @@ database:
 server:
   port: 8080
 
+https:
+  port: 443
+  keys:
+    private: key.pem
+    public: certificate.pem
+    root: req.ru.crt.pem
+
 nodemailer:
   service: Gmail
   auth: 

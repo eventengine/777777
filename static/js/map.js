@@ -1,4 +1,8 @@
+
+/* global DG */
+
 var map;
+
 DG.then(function() {
 	map = DG.map('map', {
 		'center': [54.98, 82.89],
@@ -17,5 +21,12 @@ DG.then(function() {
 	map.on('click', function(e) {
 		console.log("Coordinates:", e.latlng);
 	});
-	map.locate({watch: true});
+	map.locate({setView: true, watch: true})
+	.on('locationfound', function(e) {
+	    DG.marker([e.latitude, e.longitude]).addTo(map);
+	})
+	.on('locationerror', function(e) {
+	    console.log(e);
+	    alert("Location access denied.");
+	});
 });
