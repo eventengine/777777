@@ -55,7 +55,7 @@ module.exports = function (shipit) {
 		return shipit.remote(`cd ${shipit.config.deployTo}/current && sudo npm install`);
 		//return shipit.remote(`cd ${shipit.config.deployTo}/current && npm install --link --production`);
 		
-		// Для нерутовского пользователя нет доступа в папку /usr/lib/node_modules
+		// Для нерутового пользователя нет доступа в папку /usr/lib/node_modules
 		// Поэтому он туда не может ставить линки (командой npm install --link)
 		
 	});

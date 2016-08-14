@@ -12,7 +12,7 @@ var User = module.exports = {};
 /**
  * Перечисление всех полей в профиле пользователя.
  */
-User.fieldNames = ["firstname", "lastname", "useruri", "email", "birthday_date", "password"];
+User.fieldNames = ["firstname", "lastname", "useruri", "email", "birthday_date", "password", "salt"];
 
 /**
  * Удаление полей формы, которые не изменены.
