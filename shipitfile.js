@@ -20,7 +20,7 @@ module.exports = function (shipit) {
 			shallowClone: true
 		},
 		gdetus: {
-			servers: 'insomakarma@141.8.194.121'
+			servers: 'gdetus@141.8.194.121'
 		}
 	});
 	
@@ -52,7 +52,7 @@ module.exports = function (shipit) {
 	 * Восстановление папки node_modules командой npm install.
 	 */
 	shipit.blTask("gdetus-prepare", function() {
-		return shipit.remote(`cd ${shipit.config.deployTo}/current && npm install`);
+		return shipit.remote(`cd ${shipit.config.deployTo}/current && sudo npm install`);
 		//return shipit.remote(`cd ${shipit.config.deployTo}/current && npm install --link --production`);
 		
 		// Для нерутовского пользователя нет доступа в папку /usr/lib/node_modules

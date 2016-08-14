@@ -11,9 +11,9 @@ server:
 https:
   port: 443
   keys:
-    private: key.pem
+    private: private.pem
     public: certificate.pem
-    root: req.ru.crt.pem
+    root: root.pem
 
 nodemailer:
   service: Gmail

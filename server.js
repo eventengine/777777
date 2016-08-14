@@ -271,11 +271,11 @@ Promise.resolve().then(function() {
 		
 		var credentials = { key: privateKey, cert: certificateKey, ca: rootKey, requestCert: false, rejectUnauthorized: false };
 		
-		var httpsServer = http.createServer(credentials, app);
+		/*var httpsServer = http.createServer(credentials, app);
 		httpsServer.listen(app.locals.config.https.port, function () {
 		  console.log('HTTPS-сервер Gdetus запущен на порту: ' + app.locals.config.https.port);
 		});
-		httpsServer.on("error", onServerError.bind(httpsServer));
+		httpsServer.on("error", onServerError.bind(httpsServer));*/
 	}
 
 	

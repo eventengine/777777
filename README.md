@@ -3,6 +3,8 @@
 http://pages.revox.io/dashboard/latest/doc/
 http://pages.revox.io/dashboard/latest/html/
 
+Ссылка на документацию по nvm:
+https://github.com/creationix/nvm
 
 Команды управления деплоем
 ---------
@@ -47,7 +49,7 @@ http://pages.revox.io/dashboard/latest/html/
 и можно добавить файл и сделать коммит как обычно
 
 
-Команды управления npm
+Команды управления nvm
 ---------
 
 `npm update npm -g`  
@@ -62,9 +64,19 @@ http://pages.revox.io/dashboard/latest/html/
 `nvm alias default v6.3.1`  
 приравнивает значение алиаса к версии ноды 6.3.1
 
+`nvm run v6.3.1`
+для запуска версии 6.3.1
 
+`nvm ls`
+какие версии Node.JS уже установлены
 
+`nvm ls-remote`
+просмотр всех доступных для установки версий
 
+`nvm help`
+получить справку по всем помандам
 
+`nvm deactivate`
+деактивировать nvm
 
 _________
