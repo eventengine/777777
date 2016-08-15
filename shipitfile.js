@@ -20,7 +20,7 @@ module.exports = function (shipit) {
 			shallowClone: true
 		},
 		gdetus: {
-			servers: 'gdetus@141.8.194.121'
+			servers: 'root@141.8.194.121'
 		}
 	});
 	

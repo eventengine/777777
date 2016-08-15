@@ -12,6 +12,13 @@ https://nodejs.org/en/download/package-manager/#debian-and-ubuntu-based-linux-di
 curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -
 sudo apt-get install -y nodejs
 ```
+`npm update npm -g`
+обновить нпм до актуальной версии (3.10.7 глючная, её не ставить)
+
+
+
+`apt-get install git` (если деплоим на пустой сервер, необходимо создать гит)
+
 
 Установка MySQL
 -----------------------

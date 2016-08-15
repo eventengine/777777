@@ -72,14 +72,6 @@ ROW_FORMAT = DYNAMIC;
 
 -- Таблица gdetus.tokens_remember_me не содержит данных
 
--- 
--- Вывод данных для таблицы users
---
-INSERT INTO users VALUES
-(1, 'Fktrcfylh', 'dfedfr', NULL, NULL, 'qwerty', '`12345678', 'ceo@gdetus.io', NULL, NULL),
-(2, 'Иван', 'Петров', NULL, NULL, '1q2w3e', '9169e59230f9206e61fbf40378cbc11f580c523c', 'sefs@sdfsdf.com', NULL, NULL),
-(3, 'Сухроб', 'Хусамов', NULL, NULL, 'khusamov', '65d078b84a3e36019d4cd601b0475ff487fd65fa', 'qa@qa.ru', NULL, NULL),
-(4, 'Саша', 'Novikov', NULL, NULL, 'qazwsx', 'c4853e572bb46daea61cc1243cc196deeec3e666', 'qaw@qaw.ru', NULL, '721475176616');
 
 -- 
 -- Восстановить предыдущий режим SQL (SQL mode)
