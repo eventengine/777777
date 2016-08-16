@@ -3,6 +3,7 @@ var http = require('http');
 var https = require('https');
 var path = require('path');
 var express = require('express');
+require('express-resource');
 var expressValidator = require('express-validator');
 var bodyParser = require('body-parser');
 var cookieParser = require('cookie-parser');
@@ -211,6 +212,11 @@ Promise.resolve().then(function() {
 	//блок подключения статики и файлов
 	app.use(express.static(__dirname + '/static'));
 
+	//блок подключения ресурсов (rest)API
+	var api = express();
+	api.resource('user-locations', require('./api/userLocations'));
+	app.use("/api", api);
+
 	//блок подключения основных контроллеров
 	app.get('/im', require("./controllers/im"));
 	app.get('/test', require("./controllers/test"));
@@ -271,11 +277,11 @@ Promise.resolve().then(function() {
 		
 		var credentials = { key: privateKey, cert: certificateKey, ca: rootKey, requestCert: false, rejectUnauthorized: false };
 		
-		/*var httpsServer = http.createServer(credentials, app);
+		var httpsServer = https.createServer(credentials, app);
 		httpsServer.listen(app.locals.config.https.port, function () {
 		  console.log('HTTPS-сервер Gdetus запущен на порту: ' + app.locals.config.https.port);
 		});
-		httpsServer.on("error", onServerError.bind(httpsServer));*/
+		httpsServer.on("error", onServerError.bind(httpsServer));
 	}
 
 	
