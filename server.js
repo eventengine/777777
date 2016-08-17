@@ -130,6 +130,16 @@ Promise.resolve().then(function() {
     
     return app;
 }).then(function(app) {
+	
+	// Редирект на https
+	app.use(function(req, res, next) {
+		if (app.locals.config.https && req.protocol === "http") {
+			req.redirect(`https://${req.hostname}${req.originalUrl}`);
+		} else {
+			next();
+		}
+	});
+
     // определение моделей пользователя из архитектуры mvc
 	var models = {
 		user: require("./models/user"),
@@ -215,6 +225,7 @@ Promise.resolve().then(function() {
 	//блок подключения ресурсов (rest)API
 	var api = express();
 	api.resource('user-locations', require('./api/userLocations'));
+	api.resource('current-location', require('./api/currentLocation'));
 	app.use("/api", api);
 
 	//блок подключения основных контроллеров
@@ -257,10 +268,6 @@ Promise.resolve().then(function() {
 	app.use(require("./controllers/500"));
 
 	// Запуск веб-сервера.
-	/*var server = app.listen(app.locals.config.server.port, function () {
-	  console.log('Программа Gdetus запущена на порту: ' + app.locals.config.server.port);
-	});*/
-	
 	
 	var httpServer = http.createServer(app);
 	httpServer.listen(app.locals.config.server.port, function () {
