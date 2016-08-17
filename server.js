@@ -134,7 +134,7 @@ Promise.resolve().then(function() {
 	// Редирект на https
 	app.use(function(req, res, next) {
 		if (app.locals.config.https && req.protocol === "http") {
-			req.redirect(`https://${req.hostname}${req.originalUrl}`);
+			res.redirect(`https://${req.hostname}${req.originalUrl}`);
 		} else {
 			next();
 		}
