@@ -47,7 +47,7 @@
     // Load list of emails
     emailList.length && $.ajax({
         dataType: "json",
-        url: "http://revox.io/json/emails.json",
+        url: "https://revox.io/json/emails.json",
         success: function(data) {
 
 
@@ -116,7 +116,7 @@
         var thumbnailWrapper = $(this).find('.thumbnail-wrapper');
         $.ajax({
             dataType: "json",
-            url: "http://revox.io/json/emails.json",
+            url: "https://revox.io/json/emails.json",
             success: function(data) {
                 $.each(data.emails, function(i) {
                     var obj = data.emails[i];

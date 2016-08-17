@@ -11,12 +11,12 @@ module.exports = function (req, res) {
 	models.user.getUser(req.body.email).then(user => {
 		if (user) {
 			models.user.generatePassword(user).then(function(password) {
-			    var subject = "Password restore. Восстановление пароля";
+			    var subject = "gdetus.io: Восстановление пароля.";
 			    var text = [];
 			    text.push(subject);
-			    text.push('Привет! :) Вот твой пароль, мы очень долго думали и придумали тебе новый:');
+			    text.push('Привет! :) Привет! Говорят, ты потерял свой старый пароль :( Мы придумали тебе новый, так что теперь всё в порядке!');
 			    text.push(password);
-			    text.push('С уважением, ваш Гдетус!');
+			    text.push('С уважением, твой Гдетус!');
 			    var info = sendmail({
 			        to: user.email,
 			        subject: subject,
