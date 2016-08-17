@@ -2,20 +2,10 @@
 
 //////////////// ПЕРВООЧЕРЕДНЫЕ ЗАДАЧИ ////////////////////
 
-01)  Доделать rollback, чтобы после отката на предыдущую версию он заново запускал приложение через PM2.
-
-03)  Сделать отдельные команды: старт\стоп программы на боевом сервере. 
-
-04) Сделать чтобы деплой ставил программу в автозапуск (для задач deploy, rollback).
 
 
 
 ////////////////////деплой////////////////////
-
-1) сделать папку node_modules общей для всех релизов
-
-2) разобраться с тем фактом, что файл shipitfile.js не игнорится при деплое, 
-несмотря на опцию ignores: ['.git', 'shipitfile.js']
 
 
 
@@ -38,13 +28,6 @@
     - на почту пользователю приходит ссылка на страницу создания нового пароля
     
 3) решить вопрос с адресами модальных окон. сейчас адресов вида сайт.ру/ассreq нет.
-
-4) решить вопрос с сертификатом (хром считает его недоверенным)
-    *https://www.emaro-ssl.ru/blog/intermediate/
-     http://stackoverflow.com/questions/19104215/node-js-express-js-chain-certificate-not-working
-     https://www.emaro-ssl.ru/instructions/ssl-installation.php
-     http://superuser.com/questions/644343/how-do-you-fix-an-incomplete-ssl-chain
-    **https://globalsign.ssllabs.com/analyze.html?d=gdetus.io
      
 
 

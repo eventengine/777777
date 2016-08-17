@@ -25,10 +25,24 @@ module.exports = function (shipit) {
 	});
 	
 	/**
+	 * Задачи перед началом rollback.
+	 */
+	shipit.on('rollback', function () {
+		shipit.start('gdetus-stop');
+	});
+	
+	/**
 	 * Задачи перед началом развертывания приложения.
 	 */
 	shipit.on('deploy', function () {
 		shipit.start('gdetus-stop');
+	});
+	
+	/**
+	 * Задачи после rollback.
+	 */
+	shipit.on('rollbacked', function () {
+		shipit.start('gdetus-start');
 	});
 	
 	/**
@@ -75,6 +89,27 @@ module.exports = function (shipit) {
 			`sudo pm2 start ${options.pm2.join(" ")} server.js -- ${options.gdetus.join(" ")}`
 		];
 		return shipit.remote(commands.join(" && "));
+	});
+	
+	/**
+	 * Задача: Запустить приложение.
+	 */
+	shipit.task("start", function() {
+		shipit.start('gdetus-start');
+	});
+	
+	/**
+	 * Задача: Останов приложения.
+	 */
+	shipit.task("stop", function() {
+		return shipit.remote(`sudo pm2 stop "${app.name}"`).catch(function() {});
+	});
+	
+	/**
+	 * Задача: Статус приложения.
+	 */
+	shipit.task("status", function() {
+		return shipit.remote(`sudo pm2 list`).catch(function() {});
 	});
 	
 };
