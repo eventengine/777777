@@ -108,6 +108,16 @@ User.getValidateSchema = function() {
                 options: ["ru-RU", "en-US"],
                 errorMessage: "Фамилия может содержать только русские или латинские буквы."
             }
+        },
+        password: {
+            optional: true,
+            isLength: {
+                options: [{ min: 8, zeroEnable: false }],
+                errorMessage: "Пароль должен быть длиной не менее 8-и символов."
+            },
+            isGdetusPassword: {
+                errorMessage: "латиница (большие маленькие), цифирица, спецсимволица. кирилицу низя!" 
+            }
         }
     };
 };

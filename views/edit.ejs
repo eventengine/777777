@@ -28,6 +28,7 @@
 	<![endif]-->
   </head>
   <body class="fixed-header ">
+    
     <!-- BEGIN SIDEBPANEL-->
     <nav class="page-sidebar" data-pages="sidebar">
       <!-- BEGIN SIDEBAR MENU TOP TRAY CONTENT-->
@@ -510,13 +511,10 @@
                 <!-- START BREADCRUMB -->
                 <ul class="breadcrumb">
                   <li>
-                    <a href="#">Главная</a>
+                    <a href="/">Главная</a>
                   </li>
                   <li>
-                    <a href="#">Мой гдетус</a>
-                  </li>
-                  <li>
-                    <a href="settings.html">Настройки гдетуса</a>
+                    <a href="/settings">Настройки гдетуса</a>
                   </li>
                   <li><a class="active">Редактирование личной страницы</a>
                   </li>
@@ -549,8 +547,6 @@
                 </ul>
               </div>
         	  <% } %>
-          
-          
           
           
           
@@ -598,6 +594,7 @@
                       <label for="checkbox1">Не палить возраст в профиле :3</label>
                     </div>
 				<button class="btn btn-complete btn-cons btn-xs">Сохранить</button>
+				</form>
                 </div>
 				</div>
 				<!-- END PANEL -->
@@ -640,25 +637,26 @@
 				  </div>
 				  <!-- END PANEL -->
 				  <!-- START PANEL -->
-			<h5 class="content-bubble-header">Безопасность</h5>
-            <form class="" role="form">
+			   <h5>Безопасность</h5>
+          <form class="" role="form" method="post" action="/edit">
                       <div class="row">
                         <div class="col-md-4">
                       <div class="form-group  form-group-default">
                         <label>Старый пароль</label>
-                        <input type="password" class="form-control" placeholder="" >
+                        <input type="oldPassword" class="form-control" placeholder="" >
                       </div>
 					  <div class="form-group  form-group-default">
                         <label>Новый пароль</label>
-                        <input type="password" class="form-control" placeholder="не менее 8 символов" >
+                        <input type="newPassword" class="form-control" placeholder="не менее 8 символов, включая буквы A-z, цифры и спецсимволы" >
                       </div>
 					  <div class="form-group  form-group-default">
                         <label>Ещё раз новый пароль</label>
-                        <input type="password" class="form-control" placeholder="не менее 8 символов" >
+                        <input type="repeatNewPassword" class="form-control" placeholder="не менее 8 символов, включая буквы A-z, цифры и спецсимволы" >
                       </div>
 				<button class="btn btn-complete btn-cons btn-xs">Сохранить</button>
                 </div>
 				</div>
+				</form>
 			<!-- END PANEL -->
 			<!-- START PANEL -->
                   <div class="col-md-4">
@@ -733,7 +731,7 @@
                     <h5>Приватность</h5>
                     <div class="form-row">
                                 <p>Ты можешь закрыть свой профиль и от зарегистрированных пользователей и от всего интернета. Но 
-                                зарегистрированные пользователи смогут писать тебе короткое сообщение!</p>
+                                зарегистрированные пользователи смогут написать тебе короткое сообщение!</p>
             </div>
             <div class="form-row">
                 <div class="grid-row">
@@ -752,7 +750,7 @@
                 </div>
                 <div class="grid-row js-mailing-filters" style="display">
                     <div class="grid-col-whole" style="margin-bottom:20px;">
-                        <p class="big">Фильтры приватности</p>
+                        <p class="big">Фильтры приватности:</p>
                     </div>
                     <div class="grid-col-1-3">
                         <ul class="check-list">

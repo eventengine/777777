@@ -6,5 +6,6 @@ module.exports = {
     checkBlackList: require("./checkBlackList"),
     isFirstLetter: require("./isFirstLetter"),
     isLength: require("./isLength"),
-    isAlpha: require("./isAlpha")
+    isAlpha: require("./isAlpha"),
+    isGdetusPassword: require("./isGdetusPassword")
 };
