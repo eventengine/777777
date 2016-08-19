@@ -557,6 +557,7 @@
                   <div class="col-md-4">
                     <h5>Личные данные</h5>
                     <form class="" role="form" method="post" action="/edit">
+                      <input type="hidden" name="formName" value="user-profile"/>
                       <div class="row">
                         <div class="col-sm-6">
                           <div class="form-group form-group-default">
@@ -631,7 +632,7 @@
                     </button>
 					<div class="checkbox">
                       <input type="checkbox" value="1" id="checkbox2">
-                      <label for="checkbox2">Уведомлять о моих действиях другие соцсети</label>
+                      <label for="checkbox2">Уведомлять эти соцсети о моих действиях</label>
                     </div>
                   </div>
 				  </div>
@@ -639,19 +640,20 @@
 				  <!-- START PANEL -->
 			   <h5>Безопасность</h5>
           <form class="" role="form" method="post" action="/edit">
+            <input type="hidden" name="formName" value="change-password"/>
                       <div class="row">
                         <div class="col-md-4">
                       <div class="form-group form-group-default">
                         <label>Старый пароль</label>
-                        <input type="oldPassword" class="form-control" placeholder="" >
+                        <input type="password" name="oldPassword" class="form-control" placeholder="">
                       </div>
 					  <div class="form-group form-group-default">
                         <label>Новый пароль</label>
-                        <input type="newPassword" class="form-control" placeholder="не менее 8 символов, включая буквы A-z, цифры и спецсимволы" >
+                        <input type="password" name="newPassword" class="form-control" placeholder="Не менее 8 символов, включая буквы A-z, цифры и спецсимволы" >
                       </div>
 					  <div class="form-group form-group-default">
                         <label>Ещё раз новый пароль</label>
-                        <input type="repeatNewPassword" class="form-control" placeholder="не менее 8 символов, включая буквы A-z, цифры и спецсимволы" >
+                        <input type="password" name="repeatNewPassword" class="form-control" placeholder="Не менее 8 символов, включая буквы A-z, цифры и спецсимволы" >
                       </div>
 				<button class="btn btn-complete btn-cons btn-xs">Сохранить</button>
                 </div>

@@ -233,8 +233,7 @@ Promise.resolve().then(function() {
 	app.get('/test', require("./controllers/test"));
 	app.get('/map', require("./controllers/map"));
 	app.get('/digits', require("./controllers/digits"));
-	app.get('/edit', require("./controllers/edit").get);
-	app.post('/edit', require("./controllers/edit").post);
+	app.use('/edit', require("./controllers/edit"));
 	app.get('/lock', require("./controllers/lock"));
 	app.get('/feed', require("./controllers/feed"));
 	app.get('/payment', require("./controllers/payment"));
@@ -260,8 +259,11 @@ Promise.resolve().then(function() {
 			user: req.user
 		});
 	});
+	
+	//блок подключения завершающих контроллеров
 	app.get('/:useruri', require("./controllers/useruri"));
 	app.get('/', require("./controllers/index"));
+	
 
 	//контроллеры обработки ошибок
 	app.use(require("./controllers/404"));

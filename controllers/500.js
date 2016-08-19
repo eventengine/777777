@@ -2,7 +2,7 @@
 
 module.exports = function (req, res, next) {
   var err = new Error("Братюнь, наш сервир опять напился :((");
- err.status = 500;
+ //err.status = 500;
  //next(err);
- res.render('500');
+ res.status(500).render('500');
 };

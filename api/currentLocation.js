@@ -12,8 +12,8 @@ exports.index = function(req, res){
         var models = req.app.get("models");
         
         models.user.setLocation(req.user.id, {
-            lat: req.param("latitude"),
-            lon: req.param("longitude")
+            lat: req.query.latitude,
+            lon: req.query.longitude
         }).then(function() {
             res.json({
                 success: true

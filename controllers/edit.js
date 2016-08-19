@@ -1,16 +1,47 @@
 
 "use strict";
 
-module.exports.get = function (req, res) {
+var express = require("express");
+var router = express.Router();
+
+module.exports = router;
+
+router.get("/", function (req, res) {
 	res.render("edit", {
 		isProfileUpdated: false,
 		user: req.user,
 		userEditForm: req.user,
 		errors: false
 	});
-};
+});
 
-module.exports.post = function (req, res, next) {
+router.post("/", function (req, res, next) {
+	if (req.body.formName != "change-password") return next();
+	var models = req.app.get("models");
+	req.checkBody(models.user.getPasswordValidateSchema(req));
+	req.asyncValidationErrors().then(function() {
+		// изменение старого пароля на новый
+		models.user.changePassword(req.user, req.body.newPassword).then(function() {
+			res.render("edit", {
+				isProfileUpdated: true,
+				user: req.user,
+				userEditForm: req.user,
+				errors: false
+			});
+		});
+	}).catch(function(errors) {
+		res.render("edit", {
+			isProfileUpdated: false,
+			user: req.user,
+			userEditForm: req.user,
+			errors: errors
+		});
+	});
+});
+
+router.post("/", function (req, res, next) {
+	if (req.body.formName != "user-profile") return next();
+	
 	var models = req.app.get("models");
 	
 	var newProfileData = {};
@@ -52,4 +83,4 @@ module.exports.post = function (req, res, next) {
 		
 	});
 	
-};
+});

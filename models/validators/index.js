@@ -7,5 +7,7 @@ module.exports = {
     isFirstLetter: require("./isFirstLetter"),
     isLength: require("./isLength"),
     isAlpha: require("./isAlpha"),
-    isGdetusPassword: require("./isGdetusPassword")
+    isGdetusPassword: require("./isGdetusPassword"),
+    isValidPassword: require("./isValidPassword"),
+    isValidRepeatedPassword: require("./isValidRepeatedPassword")
 };
