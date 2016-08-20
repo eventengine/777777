@@ -6,6 +6,9 @@ var router = express.Router();
 
 module.exports = router;
 
+/**
+ * Контроллер вывода страницы с данными профиля пользователя.
+ */
 router.get("/", function (req, res) {
 	res.render("edit", {
 		isProfileUpdated: false,
@@ -15,6 +18,9 @@ router.get("/", function (req, res) {
 	});
 });
 
+/**
+ * Контроллер смены пароля.
+ */
 router.post("/", function (req, res, next) {
 	if (req.body.formName != "change-password") return next();
 	var models = req.app.get("models");
@@ -39,6 +45,9 @@ router.post("/", function (req, res, next) {
 	});
 });
 
+/**
+ * Контроллер обновления данных профиля пользователя.
+ */
 router.post("/", function (req, res, next) {
 	if (req.body.formName != "user-profile") return next();
 	
@@ -65,7 +74,7 @@ router.post("/", function (req, res, next) {
 				req.login(updatedUser, function(err) {
 					if (err) return next(err);
 					res.render("edit", {
-						isProfileUpdated: true,
+						isProfileUpdated: "Ваш пароль изменен на новый.",
 						user: req.user,
 						userEditForm: newProfileData,
 						errors: false

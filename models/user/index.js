@@ -3,6 +3,7 @@
 
 var Promise = require('bluebird');
 
+var fs = require('fs');
 var db = require('../db');
 
 var User = module.exports = {};
@@ -46,5 +47,37 @@ User.update = function(userId, data) {
     } else {
         return User.getUserById(userId);
     }
+};
+
+/**
+ * Обновление аватара пользователя.
+ */
+User.updateAvatar = function(userId, avatar) {
+    var buffer;
+    if (avatar instanceof Buffer) {
+        buffer = Promise.resolve(avatar);
+    }
+    if (typeof avatar == "string") {
+        var filepath = avatar;
+        buffer = new Promise(function(resolve, reject) {
+            fs.open(filepath, "r", function(status, fd) {
+                if (status) reject(status); else resolve(fd);
+            });
+        }).then(function(fd) {
+            return new Promise(function(resolve, reject) {
+                var filesize = fs.statSync(filepath).size;
+                var buffer = new Buffer(filesize);
+                fs.read(fd, buffer, 0, filesize, 0, function(err, num) {
+                    if (err) reject(err); else resolve(buffer);
+                });
+            });
+        });
+    }
+    return buffer ? buffer.then(function(buffer) {
+        var sql = `update users set avatar = ? where id = ?`;
+        return db.query(sql, [buffer, userId]).spread(function() {
+            return;
+        });
+    }) : Promise.reject(new Error("Неправильный аватар:", avatar));
 };
 

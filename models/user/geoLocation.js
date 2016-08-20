@@ -6,7 +6,7 @@ var db = require('../db');
 var User = module.exports = {};
 
 /**
- * Получить координаты всех пользователей.
+ * Получение координат всех пользователей.
  */
 User.getLocations = function() {
     return db.query('select * from users where location_lon is not null').spread(function(rows) {

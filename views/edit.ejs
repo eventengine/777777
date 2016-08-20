@@ -562,7 +562,7 @@
                         <div class="col-sm-6">
                           <div class="form-group form-group-default">
                             <label>Имя</label>
-                            <input type="text" name="firstname" class="form-control" value="<%= userEditForm.firstname %>">
+                            <input type="text" name="firstname" class="form-control" require value="<%= userEditForm.firstname %>">
                           </div>
                         </div>
                         <div class="col-sm-6">
@@ -574,11 +574,11 @@
                       </div>
                       <div class="form-group  form-group-default">
                         <label>Почта</label>
-                        <input type="text" name="email" class="form-control" value="<%= userEditForm.email %>" >
+                        <input type="text" name="email" class="form-control" value="<%= userEditForm.email %>">
                       </div>
 					  <div class="form-group form-group-default input-group">
-                        <label>Адрес в Гдетусе</label>
-                        <input type="text" name="useruri" class="form-control" value="<%= userEditForm.useruri %>" >
+                        <label>Адрес страницы</label>
+                        <input type="text" name="useruri" class="form-control" value="<%= userEditForm.useruri %>">
                         <span class="input-group-addon primary">
                                            gdetus.io/<%= userEditForm.useruri %>
                                         </span>
@@ -2192,7 +2192,7 @@
              type: "info",
              style: "flip",
              title: "Внимание!",
-             message: "Данные обновлены."
+             message: typeof isProfileUpdated == "boolean" ? "Данные обновлены." : isProfileUpdated
            };
            $('body').pgNotification(options).show();
         });

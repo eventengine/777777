@@ -221,12 +221,16 @@ Promise.resolve().then(function() {
 
 	//блок подключения статики и файлов
 	app.use(express.static(__dirname + '/static'));
+	app.use("/blueimp-file-upload", express.static(path.dirname(require.resolve("blueimp-file-upload/package.json"))));
+	
 
 	//блок подключения ресурсов (rest)API
 	var api = express();
 	api.resource('user-locations', require('./api/userLocations'));
 	api.resource('current-location', require('./api/currentLocation'));
+	api.resource('profile-avatar', require('./api/profileAvatar'));
 	app.use("/api", api);
+
 
 	//блок подключения основных контроллеров
 	app.get('/im', require("./controllers/im"));
