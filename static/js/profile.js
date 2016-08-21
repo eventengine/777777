@@ -20,7 +20,7 @@ $(function() {
         url: "/api/profile-avatar",
         dataType: "json",
         done: function(e, data) {
-            console.log("Загрузка завершена", data);
+            notification("Ваш аватар обновлен!");
         },
         fail: function() {
             console.error("Ошибки при загрузке файла", arguments);
@@ -29,7 +29,20 @@ $(function() {
             var progress = parseInt(data.loaded / data.total * 100, 10);
             console.log(progress);
         },
-        dropZone: $(document)
+        dropZone: null
     });
     
 });
+
+function notification(message) {
+    var options = {
+        position: "top-right",
+        timeout: 0,
+        type: "info",
+        style: "flip",
+        title: "Внимание!",
+        message: message
+    };
+    $('body').pgNotification(options).show();
+}
+

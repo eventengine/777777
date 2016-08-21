@@ -212,7 +212,7 @@ Promise.resolve().then(function() {
 	app.use(passport.initialize());
 	app.use(passport.session());
 	app.use(passport.authenticate('remember-me'));
-
+	
 
 	// - - - - - - - - - - - - - - -//
 	// конец блока базовых настроек //
@@ -223,6 +223,14 @@ Promise.resolve().then(function() {
 	app.use(express.static(__dirname + '/static'));
 	app.use("/blueimp-file-upload", express.static(path.dirname(require.resolve("blueimp-file-upload/package.json"))));
 	
+	app.use(function(req, res, next) {
+		// решение может оказаться костылем, но на данный момент применено для не_обрыва связи с БД
+		// http://ru.stackoverflow.com/questions/420637/error-cannot-enqueue-query-after-fatal-error
+		res.on("close", function() {
+			require("./models/db").end();
+		});
+		next();
+	});
 
 	//блок подключения ресурсов (rest)API
 	var api = express();

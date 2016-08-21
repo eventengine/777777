@@ -477,7 +477,7 @@
             <div class="dropdown pull-right">
               <button class="profile-dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <span class="thumbnail-wrapper d32 circular inline m-t-5">
-                <img src="assets/img/profiles/avatar.jpg" alt="" data-src="assets/img/profiles/avatar.jpg" data-src-retina="assets/img/profiles/avatar_small2x.jpg" width="32" height="32">
+                <img src="/api/profile-avatar" alt="" data-src="/api/profile-avatar" data-src-retina="/api/profile-avatar" width="32" height="32">
             </span>
               </button>
               <ul class="dropdown-menu profile-dropdown" role="menu">
@@ -519,7 +519,11 @@
                   <div class="inner">
                     <div class="bottom-left m-b-30">
                     <div class="thumbnail-wrapper d68 circular bordered b-primary">
-					<img alt="Profile Image" width="103" height="103" data-src-retina="assets/img/profiles/avatar.jpg" data-src="assets/img/profiles/avatar.jpg" src="assets/img/profiles/avatar.jpg"></div>
+					<img alt="Profile Image" width="103px" height="103px" 
+					  data-src-retina="/api/profile-avatar?id=<%= profileUser.id %>" 
+					  data-src="/api/profile-avatar?id=<%= profileUser.id %>" 
+					  src="/api/profile-avatar?id=<%= profileUser.id %>">
+					  </div>
 					  <h3 class="text-white"><% if (profileUser) { %>
                   <%= profileUser.firstname + " " + profileUser.lastname %>
                   <% } %></h3>
