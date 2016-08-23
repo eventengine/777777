@@ -20,6 +20,8 @@ $(function() {
         url: "/api/profile-avatar",
         dataType: "json",
         done: function(e, data) {
+            updateSrc("profileAvatar");
+            updateSrc("authProfileAvatar");
             notification("Ваш аватар обновлен!");
         },
         fail: function() {
@@ -33,6 +35,18 @@ $(function() {
     });
     
 });
+
+function updateSrc(id) {
+    var selector = "#" + id;
+    var img = $(selector);
+    var src = img.get(0).src;
+    img.removeAttr("data-src-retina data-src src");
+    img.attr({
+        "data-src-retina": src,
+        "data-src": src,
+        "src": src
+    });
+}
 
 function notification(message) {
     var options = {

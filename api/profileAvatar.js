@@ -4,15 +4,14 @@
 // https://habrahabr.ru/post/229743/
 // https://www.npmjs.com/package/multiparty
 var multiparty = require('multiparty');
-var mime = require('mime');
 var path = require('path');
 
 exports.index = function(req, res) {
     var models = req.app.get("models");
     models.user.getAvatar(req.query.id || req.user.id).then(function(avatar) {
         if (avatar) {
-            res.set("Content-Type", mime.lookup(avatar.ext));
-            res.send(avatar.file);
+            res.set("Content-Type", avatar.mime);
+            res.send(avatar.content);
         } else {
             res.sendFile(path.normalize(__dirname + "/../static/assets/img/profiles/avatar.jpg"));
         }

@@ -53,8 +53,6 @@ Promise.resolve().then(function() {
 	// Передаем настройки БД из конфиг.файла в модуль models/db.js
 	require("./models/db").configure(config.database);
 	
-	
-	
 	var app = express();
 	
 	// Сохраняем наш конфиг файл в приложении экспресса app
@@ -62,8 +60,6 @@ Promise.resolve().then(function() {
 
 	app.disable('x-powered-by');
 	
-	
-
 	// - - - - - - - - - - - - - - - - - - - - -
 	// блок базовых настроек // 
 	// - - - - - - - - - - - - - - - - - - - - -
@@ -73,46 +69,27 @@ Promise.resolve().then(function() {
 
 	app.use(cookieParser());
 	
-	
     return app;
 }).then(function(app) {
-	
-	
-	return new Promise(function (resolve, reject) {
-		require("./models/db").pool.getConnection(function (err, connection) {
-			if (err) {
-			 if (connection) connection.release();
-			 reject(err);
+	var databaseConfig = app.locals.config.database;
+	var sessionStoreConfig = {
+		expiration: 86400000, // Максимальный срок жизни сессии; в миллисекундах.
+		createDatabaseTable: true,
+		schema: {
+			tableName: 'sessions',
+			columnNames: {
+				session_id: 'sid',
+				expires: 'expires',
+				data: 'data'
 			}
-			resolve(connection)
-			
-		});
-	})
-
-	.then(function(connection) {
-		var sessionStoreConfig = {
-			expiration: 86400000, // Максимальный срок жизни сессии; в миллисекундах.
-			createDatabaseTable: true,
-			schema: {
-				tableName: 'sessions',
-				columnNames: {
-					session_id: 'sid',
-					expires: 'expires',
-					data: 'data'
-				}
-			}
-		};
-		var sessionStore = new MySQLStore(sessionStoreConfig, connection);
-		return sessionStore;
-	})
-
-	.then(function(sessionStore) {
-		return {
-			app: app,
-			sessionStore: sessionStore
-		};
-	});
-    
+		}
+	};
+	sessionStoreConfig = Object.assign({}, sessionStoreConfig, databaseConfig);
+	var sessionStore = new MySQLStore(sessionStoreConfig);
+	return {
+		app: app,
+		sessionStore: sessionStore
+	};
 }).then(function(result) {
     var app = result.app, sessionStore = result.sessionStore;
     
@@ -223,15 +200,6 @@ Promise.resolve().then(function() {
 	app.use(express.static(__dirname + '/static'));
 	app.use("/blueimp-file-upload", express.static(path.dirname(require.resolve("blueimp-file-upload/package.json"))));
 	
-	app.use(function(req, res, next) {
-		// решение может оказаться костылем, но на данный момент применено для не_обрыва связи с БД
-		// http://ru.stackoverflow.com/questions/420637/error-cannot-enqueue-query-after-fatal-error
-		res.on("close", function() {
-			require("./models/db").end();
-		});
-		next();
-	});
-
 	//блок подключения ресурсов (rest)API
 	var api = express();
 	api.resource('user-locations', require('./api/userLocations'));

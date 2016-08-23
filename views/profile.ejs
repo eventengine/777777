@@ -470,14 +470,14 @@
           <!-- START User Info-->
           <div class="visible-lg visible-md m-t-10">
             <div class="pull-left p-r-10 p-t-10 fs-16 font-heading">
-              <a href="<%= user.useruri%>"><% if (user) { %>
+              <a href="<%= user.useruri ? user.useruri : "id" + user.id%>"><% if (user) { %>
                   <%= user.firstname + " " + user.lastname %>
                   <% } %></a>
             </div>
             <div class="dropdown pull-right">
               <button class="profile-dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <span class="thumbnail-wrapper d32 circular inline m-t-5">
-                <img src="/api/profile-avatar" alt="" data-src="/api/profile-avatar" data-src-retina="/api/profile-avatar" width="32" height="32">
+                <img id="authProfileAvatar" src="/api/profile-avatar" alt="" data-src="/api/profile-avatar" data-src-retina="/api/profile-avatar" width="32" height="32">
             </span>
               </button>
               <ul class="dropdown-menu profile-dropdown" role="menu">
@@ -519,10 +519,12 @@
                   <div class="inner">
                     <div class="bottom-left m-b-30">
                     <div class="thumbnail-wrapper d68 circular bordered b-primary">
-					<img alt="Profile Image" width="103px" height="103px" 
+      
+					<img id="profileAvatar" width="103" height="103" 
 					  data-src-retina="/api/profile-avatar?id=<%= profileUser.id %>" 
 					  data-src="/api/profile-avatar?id=<%= profileUser.id %>" 
 					  src="/api/profile-avatar?id=<%= profileUser.id %>">
+					  
 					  </div>
 					  <h3 class="text-white"><% if (profileUser) { %>
                   <%= profileUser.firstname + " " + profileUser.lastname %>

@@ -109,7 +109,7 @@
 
         //Get from JSON data and build
 
-        d3.json('http://revox.io/json/min_sales_chart.json', function(data) {
+        d3.json('https://revox.io/json/min_sales_chart.json', function(data) {
 
             // Widget-15
             nv.addGraph(function() {
@@ -238,7 +238,7 @@
 
         // Widget 13
         $('.widget-13-map').mapplic({
-            source: 'http://revox.io/json/dashboard-map.json',
+            source: 'https://revox.io/json/dashboard-map.json',
             height: 465,
             sidebar: false,
             minimap: false,
@@ -275,7 +275,7 @@
 
 
         //NVD3 Charts
-        d3.json('http://revox.io/json/charts.json', function(data) {
+        d3.json('https://revox.io/json/charts.json', function(data) {
 
             // line chart
             (function() {
