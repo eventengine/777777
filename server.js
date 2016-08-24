@@ -119,6 +119,7 @@ Promise.resolve().then(function() {
 
     // определение моделей пользователя из архитектуры mvc
 	var models = {
+		file: require("./models/file"),
 		user: require("./models/user"),
 		digits: require("./models/digits"),
 		tokensRememberMe: require("./models/tokensRememberMe")
@@ -209,8 +210,8 @@ Promise.resolve().then(function() {
 
 
 	//блок подключения основных контроллеров
+	app.get('/file/:id', require("./controllers/file"));
 	app.get('/im', require("./controllers/im"));
-	app.get('/test', require("./controllers/test"));
 	app.get('/map', require("./controllers/map"));
 	app.get('/digits', require("./controllers/digits"));
 	app.use('/edit', require("./controllers/edit"));

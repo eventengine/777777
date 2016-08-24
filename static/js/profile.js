@@ -1,45 +1,56 @@
 
 /* global $ */
 
+"use strict";
+
 $(function() {
     
-    var uploadAvatar = $("#uploadAvatar");
-    var uploadAvatarInput = $("#uploadAvatarInput");
+    setupUpload("Avatar", function(data) {
+        updateSrc("profileAvatar");
+        updateSrc("authProfileAvatar");
+        notification("Ваш аватар обновлен!");
+    });
     
-    uploadAvatar.click(function() {
+    setupUpload("AvatarBackground", function(data) {
+        var backgroundImage = $(".cover-photo").css("background-image");
+        $(".cover-photo").css("background-image", backgroundImage.replace(/(url\(")(.*)("\))/, function(str, p1, p2, p3) {
+            return `${p1}${p2}?${Math.random()}${p3}`;
+        }));
+        notification("Фон страницы обновлен!");
+    });
+    
+});
+
+function setupUpload(id, callback) {
+    var upload = $("#upload" + id);
+    var uploadInput = $("#upload" + id + "Input");
+    
+    upload.click(function() {
         // https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement
         // https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/click
-        uploadAvatarInput.click();
+        uploadInput.click();
         return false;
     });
     
     // https://www.npmjs.com/package/blueimp-file-upload
     // https://github.com/blueimp/jQuery-File-Upload/wiki/Basic-plugin
     // https://github.com/blueimp/jQuery-File-Upload/wiki/Options
-    uploadAvatarInput.fileupload({
-        url: "/api/profile-avatar",
+    uploadInput.fileupload({
+        url: "/api/profile-avatar?fileType=" + id,
         dataType: "json",
         done: function(e, data) {
-            updateSrc("profileAvatar");
-            updateSrc("authProfileAvatar");
-            notification("Ваш аватар обновлен!");
+            callback(data);
         },
         fail: function() {
             console.error("Ошибки при загрузке файла", arguments);
         },
-        progressall: function(e, data) {
-            var progress = parseInt(data.loaded / data.total * 100, 10);
-            console.log(progress);
-        },
         dropZone: null
     });
-    
-});
+}
 
 function updateSrc(id) {
-    var selector = "#" + id;
-    var img = $(selector);
-    var src = img.get(0).src;
+    var img = $("#" + id);
+    var src = img.get(0).src + "?" + Math.random();
     img.removeAttr("data-src-retina data-src src");
     img.attr({
         "data-src-retina": src,

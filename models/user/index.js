@@ -52,27 +52,19 @@ User.update = function(userId, data) {
 };
 
 /**
- * Обновление аватара пользователя.
+ * Обновление аватара и фона на странице пользователя.
  */
-User.updateAvatar = function(userId, filepath) {
-    return db.query("select avatar_id from users where id = ?", [userId]).spread(rows => {
-        return rows[0]["avatar_id"];
-    }).then(avatarId => {
-        if (avatarId) {
-            return File.update(avatarId, filepath);
+User.updateFile = function(userId, fileType, filepath) {
+    var fileIdFieldName = { Avatar: "avatar_id", AvatarBackground: "avatar_bg_id" }[fileType];
+    return db.query("select ?? as file_id from users where id = ?", [fileIdFieldName, userId]).spread(rows => {
+        return rows[0]["file_id"];
+    }).then(fileId => {
+        if (fileId) {
+            return File.update(fileId, filepath);
         } else {
-            return File.insert(filepath).then(avatarId => {
-                return db.query("update users set avatar_id = ? where id = ?", [avatarId, userId]);
+            return File.insert(filepath).then(fileId => {
+                return db.query("update users set ?? = ? where id = ?", [fileIdFieldName, fileId, userId]);
             });
         }
-    });
-};
-
-/**
- * Получить аватар пользователя.
- */
-User.getAvatar = function(userId) {
-    return db.query(`select avatar_id from users where id = ?`, [userId]).spread(function(rows) {
-        return File.getFile(rows[0].avatar_id);
     });
 };

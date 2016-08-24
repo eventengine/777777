@@ -477,7 +477,11 @@
             <div class="dropdown pull-right">
               <button class="profile-dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <span class="thumbnail-wrapper d32 circular inline m-t-5">
-                <img id="authProfileAvatar" src="/api/profile-avatar" alt="" data-src="/api/profile-avatar" data-src-retina="/api/profile-avatar" width="32" height="32">
+                <img id="authProfileAvatar" 
+                  src="<%= user.avatar_id ? `/file/${user.avatar_id}` : "/assets/img/profiles/avatar.jpg" %>" alt="" 
+                  data-src="<%= user.avatar_id ? `/file/${user.avatar_id}` : "/assets/img/profiles/avatar.jpg" %>" 
+                  data-src-retina="<%= user.avatar_id ? `/file/${user.avatar_id}` : "/assets/img/profiles/avatar.jpg" %>" 
+                  width="32" height="32">
             </span>
               </button>
               <ul class="dropdown-menu profile-dropdown" role="menu">
@@ -513,7 +517,7 @@
               <!-- START JUMBOTRON -->
               <div class="jumbotron" data-pages="parallax" data-social="cover">
                 <div class="cover-photo">
-                  <img alt="Cover photo" src="assets/img/social/cover.png" />
+                  <img alt="Cover photo" src="<%= profileUser.avatar_bg_id ? `/file/${profileUser.avatar_bg_id}` : "/assets/img/social/cover.png" %>" />
                 </div>
                 <div class="container-fluid container-fixed sm-p-l-20 sm-p-r-20">
                   <div class="inner">
@@ -521,9 +525,9 @@
                     <div class="thumbnail-wrapper d68 circular bordered b-primary">
       
 					<img id="profileAvatar" width="103" height="103" 
-					  data-src-retina="/api/profile-avatar?id=<%= profileUser.id %>" 
-					  data-src="/api/profile-avatar?id=<%= profileUser.id %>" 
-					  src="/api/profile-avatar?id=<%= profileUser.id %>">
+					  data-src-retina="<%= profileUser.avatar_id ? `/file/${profileUser.avatar_id}` : "/assets/img/profiles/avatar.jpg" %>" 
+					  data-src="<%= profileUser.avatar_id ? `/file/${profileUser.avatar_id}` : "/assets/img/profiles/avatar.jpg" %>" 
+					  src="<%= profileUser.avatar_id ? `/file/${profileUser.avatar_id}` : "/assets/img/profiles/avatar.jpg" %>">
 					  
 					  </div>
 					  <h3 class="text-white"><% if (profileUser) { %>
@@ -584,12 +588,19 @@
                   </div>
                   <div class="col-sm-4">
                     <ul class="nav navbar-nav navbar-center">
-                      <li><button class="btn btn-primary btn-xs " type="button" data-target="#createPost" data-toggle="modal"><i class="fa fa-pencil-square-o"></i> Написать пост</button></li>
-                      <li><a href="#">Создать пост </a></li>
-                      <li><a href="#" data-toggle="tooltip" id="uploadAvatar" data-placement="bottom" title="Загрузить аватар"><i class="fa fa-file-picture-o"></i></a></li>
-                      <li><a href="#" data-toggle="tooltip" id="uploadAvatarBg" data-placement="bottom" title="Загрузить фон"><i class="fa fa-picture-o"></i></a></li>
-                      <input style="display1: none;" id="uploadAvatarInput" type="file" name="avatar" multiple="">
-                      <input style="display: none;" id="uploadAvatarBgInput" type="file" name="avatarBg" multiple="">
+                      
+                      
+                      
+                      <% if (user.id == profileUser.id) { %>
+                        <li><button class="btn btn-primary btn-xs " type="button" data-target="#createPost" data-toggle="modal"><i class="fa fa-pencil-square-o"></i> Написать пост</button></li>
+                        <li><a href="#">Создать пост </a></li>
+                        <li><a href="#" data-toggle="tooltip" id="uploadAvatar" data-placement="bottom" title="Загрузить аватар"><i class="fa fa-file-picture-o"></i></a></li>
+                        <li><a href="#" data-toggle="tooltip" id="uploadAvatarBackground" data-placement="bottom" title="Загрузить фон"><i class="fa fa-picture-o"></i></a></li>
+                        <input style="display: none;" id="uploadAvatarInput" type="file" name="file" multiple="">
+                        <input style="display: none;" id="uploadAvatarBackgroundInput" type="file" name="file" multiple="">
+                      <% } %>
+                      
+                      
                     </ul>
                   </div>
                   <div class="col-sm-4">
