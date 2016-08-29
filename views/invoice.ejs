@@ -56,7 +56,7 @@
       <!-- END SIDEBAR MENU TOP TRAY CONTENT-->
       <!-- BEGIN SIDEBAR MENU HEADER-->
       <div class="sidebar-header">
-        <img src="assets/img/logo_white.png" alt="logo" class="brand" data-src="assets/img/logo_white.png" data-src-retina="assets/img/logo_white_2x.png" width="78" height="22">
+        <img src="assets/img/logon_w.png" alt="logo" class="brand" data-src="assets/img/logon_w.png" data-src-retina="assets/img/logon_w.png" width="140" height="34">
         <div class="sidebar-header-controls">
           <button type="button" class="btn btn-xs sidebar-slide-toggle btn-link m-l-20" data-pages-toggle="#appMenu"><i class="fa fa-angle-down fs-16"></i>
           </button>
@@ -77,43 +77,43 @@
             <a href="javascript:;">
 			<span class="title">Мой гдетус</span>
             <span class=" arrow"></span></a>
-            <span class="bg-success icon-thumbnail"><a href="<%= user.useruri ? user.useruri : "id" + user.id%>"><i class="pg-home"></i></a></span>
+            <span class="icon-thumbnail"><a href="<%= user.useruri ? user.useruri : "id" + user.id%>"><i class="pg-home"></i></a></span>
             <ul class="sub-menu">
               <li class="">
-                <a href="calendar.html">Мои друзья</a>
-                <span class="icon-thumbnail"><i class="pg-servers"></i></span>
+                <a href="social.html">Мои друзья</a>
+                <span class="icon-thumbnail"><i class="fa fa-group"></i></span>
               </li>
               <li class="">
-                <a href="calendar_lang.html">Мои сообщения</a>
+                <a href="/im">Мои сообщения</a>
                 <span class="icon-thumbnail"><i class="pg-social"></i></span>
               </li>
 			  <li class="">
-                <a href="default_layout.html">Мои фото</a>
+                <a href="social.html">Мои фото</a>
                 <span class="icon-thumbnail"><i class="pg-camera"></i></span>
               </li>
 			  <li class="">
-                <a href="calendar_lang.html">Мои аудио</a>
-                <span class="icon-thumbnail"><i class="pg-movie"></i></span>
+                <a href="social.html">Мои аудио</a>
+                <span class="icon-thumbnail"><i class="fa fa-music"></i></span>
               </li>
 			  <li class="">
-                <a href="calendar_lang.html">Мои видео</a>
+                <a href="social.html">Мои видео</a>
                 <span class="icon-thumbnail"><i class="pg-movie"></i></span>
               </li>
               <li class="">
-                <a href="calendar_month.html">Мои сообщества</a>
+                <a href="social.html">Мои сообщества</a>
                 <span class="icon-thumbnail"><i class="pg-layouts3"></i></span>
               </li>
               <li class="">
-                <a href="calendar_lazy.html">Мои файлы</a>
-                <span class="icon-thumbnail"><i class="pg-folder_alt"></i></span>
+                <a href="social.html">Мои файлы</a>
+                <span class="icon-thumbnail"><i class="fa fa-paperclip"></i></span>
               </li>
 			  <li class="">
-                <a href="calendar_lazy.html">Мои настройки</a>
+                <a href="/edit">Мои настройки</a>
                 <span class="icon-thumbnail"><i class="pg-settings_small"></i></span>
               </li>
 			  <li class="">
                 <a href="calendar_lazy.html">Мои заметки</a>
-                <span class="icon-thumbnail"><i class="pg-note"></i></span>
+                <span class="icon-thumbnail"><i class="fa fa-pencil"></i></span>
               </li>
 			  <li class="">
                 <a href="calendar_lazy.html">Мои симпатии</a>
@@ -124,10 +124,10 @@
             <a href="javascript:;">
 			<span class="title">Моя карта</span>
             <span class=" arrow"></span></a>
-            <span class="icon-thumbnail"><i class="pg-map"></i></span>
+            <span class="bg-success icon-thumbnail"><i class="pg-map"></i></span>
             <ul class="sub-menu">
 			<li class="">
-                <a href="calendar_lazy.html">Создать</a>
+                <a href="">Создать</a>
                 <span class="icon-thumbnail"><i class="pg-plus"></i></span>
               </li>
               <li>
@@ -150,7 +150,7 @@
                   </li>
 				  <li>
                     <a href="javascript:;">квесты</a>
-                    <span class="icon-thumbnail"><i class="pg-search"></i></span>
+                    <span class="icon-thumbnail"><i class="fa fa-puzzle-piece"></i></span>
                   </li>
                 </ul>
               </li>
@@ -205,7 +205,7 @@
             <a href="javascript:;">
 			<span class="title">Мои квесты</span>
             <span class=" arrow"></span></a>
-            <span class="icon-thumbnail"><i class="pg-charts"></i></span>
+            <span class="icon-thumbnail"><i class="fa fa-puzzle-piece"></i></span>
             <ul class="sub-menu">
               <li>
                 <a href="javascript:;">
@@ -225,7 +225,7 @@
               </li>
             </ul>
 			<li class="">
-            <a href="javascript:;">
+            <a href="mail.html">
 			<span class="title">Моя почта</span>
             <span class=" arrow"></span></a>
             <span class="icon-thumbnail"><i class="pg-mail"></i></span>
@@ -249,9 +249,9 @@
             </ul>
 			<li class="">
             <a href="javascript:;">
-			<span class="title">Мой гдетус</span>
+			<span class="title">Калачиком</span>
             <span class=" arrow"></span></a>
-            <span class="icon-thumbnail"><i class="pg-home"></i></span>
+            <span class="icon-thumbnail"><i class="fa fa-paw"></i></span>
             <ul class="sub-menu">
               <li>
                 <a href="javascript:;">
@@ -260,25 +260,27 @@
                 <span class="icon-thumbnail">L2</span>
                 <ul class="sub-menu">
                   <li class="">
-                    <a href="javascript:;">1 левел</a>
+                    <a href="kalachikom.html">Потеряли</a>
                     <span class="icon-thumbnail">Sm</span>
                   </li>
                   <li>
-                    <a href="javascript:;">2 левел</a>
-                    <span class="icon-thumbnail"><i class="pg-search"></i></span>
+                    <a href="kalachikom.html">Нашли</a>
+                    <span class="icon-thumbnail">
+					<i class="pg-search"></i></span>
                   </li>
                 </ul>
               </li>
             </ul>
 			<li class="">
-            <a href="builder.html">
+            <a href="https://new.vk.com/im?media=&sel=-108146224" target="blank">
               <span class="title">FAQ</span>
             </a>
-            <span class="icon-thumbnail"><i class="pg-italic"></i></span>
+            <span class="icon-thumbnail"><i class="fa fa-question"></i></span>
           </li>
                 </ul>
               </li>
             </ul>
+			<a href="/logout?redirect=/"><span class="icon-thumbnail bg-transparent"><i class="pg-power"></i></a>
         <div class="clearfix"></div>
       </div>
       <!-- END SIDEBAR MENU -->
@@ -327,10 +329,13 @@
             </div>
             <!-- START NOTIFICATION LIST -->
             <ul class="notification-list no-margin hidden-sm hidden-xs b-grey b-l b-r no-style p-l-30 p-r-20">
-              <li class="p-r-15 inline">
+              <li class="p-r-35 inline">
+                <a href="#" id="" data-toggle="tooltip" data-placement="bottom" title="Создать"><i class="fa fa-pencil-square-o"></i></a>
+              </li>
+              <li class="p-r-25 inline">
                 <div class="dropdown">
                   <a href="javascript:;" id="notification-center" class="icon-set globe-fill" data-toggle="dropdown">
-                    <span class="bubble"></span>
+                    <span class="badge badge-important m-t-14 m-l-10">4043</span>
                   </a>
                   <!-- START Notification Dropdown -->
                   <div class="dropdown-menu notification-toggle" role="menu" aria-labelledby="notification-center">
@@ -345,14 +350,16 @@
                             <a href="#" class="text-complete pull-left">
                               <i class="pg-map fs-16 m-r-10"></i>
                               <span class="bold">Carrot Design</span>
-                              <span class="fs-12 m-l-10">David Nester</span>
+                              <span class="fs-12 m-l-10"><% if (user) { %>
+                    <%= user.firstname + " " + user.lastname %>
+                    <% } %></span>
                             </a>
                             <div class="pull-right">
                               <div class="thumbnail-wrapper d16 circular inline m-t-15 m-r-10 toggle-more-details">
                                 <div><i class="fa fa-angle-left"></i>
                                 </div>
                               </div>
-                              <span class=" time">few sec ago</span>
+                              <span class="time">пару секунд назад</span>
                             </div>
                             <div class="more-details">
                               <div class="more-details-inner">
@@ -368,7 +375,7 @@
                           </div>
                           <!-- END Notification Item-->
                           <!-- START Notification Item Right Side-->
-                          <div class="option" data-toggle="tooltip" data-placement="left" title="mark as read">
+                          <div class="option" data-toggle="tooltip" data-placement="left" title="Отметить как прочтённое">
                             <a href="#" class="mark"></a>
                           </div>
                           <!-- END Notification Item Right Side-->
@@ -379,10 +386,10 @@
                           <div class="heading">
                             <a href="#" class="text-danger pull-left">
                               <i class="fa fa-exclamation-triangle m-r-10"></i>
-                              <span class="bold">98% Server Load</span>
-                              <span class="fs-12 m-l-10">Take Action</span>
+                              <span class="bold">98% Загрузка сервера</span>
+                              <span class="fs-12 m-l-10">Принять меры</span>
                             </a>
-                            <span class="pull-right time">2 mins ago</span>
+                            <span class="pull-right time">2 минуты назад</span>
                           </div>
                           <!-- START Notification Item Right Side-->
                           <div class="option">
@@ -399,7 +406,7 @@
                               <span class="bold">Warning Notification</span>
                               <span class="fs-12 m-l-10">Buy Now</span>
                             </a>
-                            <span class="pull-right time">yesterday</span>
+                            <span class="pull-right time">вчера</span>
                           </div>
                           <!-- START Notification Item Right Side-->
                           <div class="option">
@@ -418,10 +425,10 @@
                               <span class="bold">Revox Design Labs</span>
                               <span class="fs-12 m-l-10">Owners</span>
                             </a>
-                            <span class="pull-right time">11:00pm</span>
+                            <span class="pull-right time">11:00 pm</span>
                           </div>
                           <!-- START Notification Item Right Side-->
-                          <div class="option" data-toggle="tooltip" data-placement="left" title="mark as read">
+                          <div class="option" data-toggle="tooltip" data-placement="left" title="Отметить как прочтённое">
                             <a href="#" class="mark"></a>
                           </div>
                           <!-- END Notification Item Right Side-->
@@ -431,7 +438,7 @@
                       <!-- END Notification Body-->
                       <!-- START Notification Footer-->
                       <div class="notification-footer text-center">
-                        <a href="#" class="">Read all notifications</a>
+                        <a href="#" class="">Прочесть все уведомления</a>
                         <a data-toggle="refresh" class="portlet-refresh text-black pull-right" href="#">
                           <i class="pg-refresh_new"></i>
                         </a>
@@ -443,11 +450,12 @@
                   <!-- END Notification Dropdown -->
                 </div>
               </li>
-              <li class="p-r-15 inline">
-                <a href="#" class="icon-set clip "></a>
+              <li class="p-r-25 inline">
+                <a href="#" class="icon-set clip "><span class="badge badge-inverse m-t-14 m-l-10">1717</span></a></a>
               </li>
-              <li class="p-r-15 inline">
-                <a href="#" class="icon-set grid-box"></a>
+              <li class="p-r-25 inline">
+                <a href="#" id="notification-center" class="icon-set grid-box">
+				<span class="badge badge-info m-t-14 m-l-10">4444</span></a>
               </li>
             </ul>
             <!-- END NOTIFICATIONS LIST -->
@@ -462,23 +470,33 @@
           <!-- START User Info-->
           <div class="visible-lg visible-md m-t-10">
             <div class="pull-left p-r-10 p-t-10 fs-16 font-heading">
-              <a href="social.html">Александр Новиков</a>
+              <a href="<%= user.useruri ? user.useruri : "id" + user.id%>"><% if (user) { %>
+                  <%= user.firstname + " " + user.lastname %>
+                  <% } %></a>
             </div>
             <div class="dropdown pull-right">
               <button class="profile-dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <span class="thumbnail-wrapper d32 circular inline m-t-5">
-                <img src="/api/profile-avatar" alt="" data-src="/api/profile-avatar" data-src-retina="/api/profile-avatar" width="32" height="32">
+                <img id="authProfileAvatar" 
+                  src="<%= user.avatar_id ? `/file/${user.avatar_id}` : "/assets/img/profiles/avatar.jpg" %>" alt="" 
+                  data-src="<%= user.avatar_id ? `/file/${user.avatar_id}` : "/assets/img/profiles/avatar.jpg" %>" 
+                  data-src-retina="<%= user.avatar_id ? `/file/${user.avatar_id}` : "/assets/img/profiles/avatar.jpg" %>" 
+                  width="32" height="32">
             </span>
               </button>
               <ul class="dropdown-menu profile-dropdown" role="menu">
-                <li><a href="#"><i class="pg-settings_small"></i> Настройки</a>
+				<li><a href="/map"><i class="pg-map"></i> Карта</a>
                 </li>
-                <li><a href="#"><i class="fa fa-ruble"></i> Баланс</a>
+                <li><a href="/im"><i class="pg-social"></i> Сообщения</a>
                 </li>
-                <li><a href="#"><i class="pg-signals"></i> Трансляции</a>
+                <li><a href="/payment"><i class="fa fa-ruble"></i>  Баланс  <span class="badge badge-inverse">7.777.777</span></a>
+                </li>
+				<li><a href="/edit"><i class="pg-settings_small"></i> Настройки</a>
+                </li>
+                <li><a href="#"><i class="pg-signals"></i> Трансляция</a>
                 </li>
                 <li class="bg-master-lighter">
-                  <a href="#" class="clearfix">
+                  <a href="/logout?redirect=/" class="clearfix">
                     <span class="pull-left">Выход</span>
                     <span class="pull-right"><i class="pg-power"></i></span>
                   </a>
@@ -559,7 +577,7 @@
                 <div class="invoice padding-50 sm-padding-10">
                   <div>
                     <div class="pull-left">
-                      <img width="140" height="34" alt="" class="invoice-logo" data-src-retina="assets/img/invoice/logo.png" data-src="assets/img/invoice/logo.png" src="assets/img/invoice/logo.png">
+                      <img src="assets/img/logon.png" alt="logo" class="brand" data-src="assets/img/logon.png" data-src-retina="assets/img/logon.png" width="140" height="34">
                       <address class="m-t-10">
                                       ООО "Гдетус"
                                       <br>+7.913.753.4.753
@@ -681,7 +699,7 @@
                   <br>
                   <hr>
                   <div>
-                    <img src="assets/img/logo.png" alt="logo" data-src="assets/img/logo.png" data-src-retina="assets/img/logo_2x.png" width="142" height="38">
+                    <img src="assets/img/logon.png" alt="logo" class="brand" data-src="assets/img/logon.png" data-src-retina="assets/img/logon.png" width="140" height="34">
                     <span class="m-l-70 text-black sm-pull-right">+7 913 753 4 753</span>
                     <span class="m-l-40 text-black sm-pull-right">management@gdetus.io</span>
                   </div>
@@ -1849,7 +1867,7 @@
         <!-- BEGIN Overlay Header !-->
         <div class="container-fluid">
           <!-- BEGIN Overlay Logo !-->
-          <img class="overlay-brand" src="assets/img/logo.png" alt="logo" data-src="assets/img/logo.png" data-src-retina="assets/img/logo_2x.png" width="78" height="22">
+          <img class="overlay-brand" src="assets/img/logo.png" alt="logo" data-src="assets/img/logo.png" data-src-retina="assets/img/logo_2x.png" width="140" height="34">
           <!-- END Overlay Logo !-->
           <!-- BEGIN Overlay Close !-->
           <a href="#" class="close-icon-light overlay-close text-black fs-16">

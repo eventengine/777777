@@ -233,6 +233,7 @@ Promise.resolve().then(function() {
 	app.get('/lock', require("./controllers/lock"));
 	app.get('/feed', require("./controllers/feed"));
 	app.get('/payment', require("./controllers/payment"));
+	app.get('/invoice', require("./controllers/invoice"));
 	app.get('/logout', require("./controllers/logout"));
 	app.get('/profile', require("./controllers/profile"));
 	app.get('/timeline', require("./controllers/timeline"));
