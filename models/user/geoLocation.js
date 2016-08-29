@@ -13,6 +13,7 @@ User.getLocations = function() {
         var locations = [];
         rows.forEach(function(user) {
             locations.push({
+                avatarSrc: user.avatar_id ? `/file/${user.avatar_id}` : "/assets/img/profiles/avatar.jpg",
                 coord: [user.location_lat, user.location_lon],
                 name: `${user.firstname} ${user.lastname}`,
                 href: user.useruri ? `/${user.useruri}` : `/id${user.id}`

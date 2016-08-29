@@ -18,6 +18,8 @@ User.registrationUser = function(newUser) {
         fieldNames.push(fieldName);
         values.push(newUser[fieldName]);
     });
+    
+        
     return db.query(`
         insert into users (${fieldNames.join(", ")}) 
         values (${fieldNames.map(i => "?").join(", ")})
@@ -36,4 +38,7 @@ User.registrationUser = function(newUser) {
             message: "Пользователь успешно зарегистрирован!"
         };
     });
+     
+    
+
 };

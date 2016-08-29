@@ -39,7 +39,7 @@ DG.then(function() {
 			DG.marker(point.coord).addTo(map).bindPopup(`
 				<span style="margin: 0px 10px 10px 0px; float: left; width: 32px; height: 32px; display: inline-block !important; overflow: hidden; border-radius: 50%; -webkit-border-radius: 50%; -moz-border-radius: 50%;">
 					<a href="${point.href}">
-						<img src="/assets/img/profiles/avatar.jpg" alt="" width="32" height="32">
+						<img src="${point.avatarSrc}" alt="" width="32" height="32">
 					</a>
 				</span>
 				<a href="${point.href}">${point.name}</a>
