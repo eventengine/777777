@@ -38,7 +38,8 @@
     "passport-local": "^1.0.0",
     "passport-remember-me": "0.0.1",
     "password-generator": "^2.0.2",
-    "validator": "^5.5.0"
+    "validator": "^5.5.0",
+    "vhost": "^3.0.2"
   },
   "devDependencies": {
     "shipit-cli": "^1.4.1",

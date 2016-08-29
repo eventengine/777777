@@ -3,6 +3,7 @@ var http = require('http');
 var https = require('https');
 var path = require('path');
 var express = require('express');
+var vhost = require('vhost');
 require('express-resource');
 var expressValidator = require('express-validator');
 var bodyParser = require('body-parser');
@@ -49,11 +50,25 @@ Promise.resolve().then(function() {
 	
 }).then(function(config) {
 	
+	var app = express();
+	
 	// Настройка подключения к базе данных.
 	// Передаем настройки БД из конфиг.файла в модуль models/db.js
 	require("./models/db").configure(config.database);
 	
-	var app = express();
+	
+	// Подключение нескольких тестовых статичных сайтов.
+	var apps = {
+		mail: express(),
+		m: express()
+	};
+	for (var key in apps) {
+		apps[key].use(express.static(__dirname + '/subdomains/' + key));
+		app.use(vhost(key + 'gdetus.io', apps[key]));
+	}
+	
+	
+	
 	
 	// Сохраняем наш конфиг файл в приложении экспресса app
 	app.locals.config = config;
