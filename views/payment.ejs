@@ -56,7 +56,7 @@
       <!-- END SIDEBAR MENU TOP TRAY CONTENT-->
       <!-- BEGIN SIDEBAR MENU HEADER-->
       <div class="sidebar-header">
-        <img src="assets/img/logo_white.png" alt="logo" class="brand" data-src="assets/img/logo_white.png" data-src-retina="assets/img/logo_white_2x.png" width="78" height="22">
+        <img src="assets/img/logon_w.png" alt="logo" class="brand" data-src="assets/img/logon_w.png" data-src-retina="assets/img/logon_w.png" width="140" height="34">
         <div class="sidebar-header-controls">
           <button type="button" class="btn btn-xs sidebar-slide-toggle btn-link m-l-20" data-pages-toggle="#appMenu"><i class="fa fa-angle-down fs-16"></i>
           </button>
@@ -304,7 +304,7 @@
           <div class="pull-center hidden-md hidden-lg">
             <div class="header-inner">
               <div class="brand inline">
-                <img src="assets/img/logo.png" alt="logo" data-src="assets/img/logo.png" data-src-retina="assets/img/logo_2x.png" width="78" height="22">
+                <img src="assets/img/logon.png" alt="logo" class="brand" data-src="assets/img/logon.png" data-src-retina="assets/img/logon.png" width="140" height="34">
               </div>
             </div>
           </div>
@@ -323,14 +323,17 @@
         <div class=" pull-left sm-table hidden-xs hidden-sm">
           <div class="header-inner">
             <div class="brand inline">
-              <img src="assets/img/logo.png" alt="logo" data-src="assets/img/logo.png" data-src-retina="assets/img/logo_2x.png" width="78" height="22">
+              <a href="/feed"><img src="assets/img/logon.png" alt="logo" data-src="assets/img/logon.png" data-src-retina="assets/img/logon.png" width="140" height="34"></a>
             </div>
             <!-- START NOTIFICATION LIST -->
             <ul class="notification-list no-margin hidden-sm hidden-xs b-grey b-l b-r no-style p-l-30 p-r-20">
-              <li class="p-r-15 inline">
+              <li class="p-r-35 inline">
+                <a href="#" id="" data-toggle="tooltip" data-placement="bottom" title="Создать"><i class="fa fa-pencil-square-o"></i></a>
+              </li>
+              <li class="p-r-25 inline">
                 <div class="dropdown">
                   <a href="javascript:;" id="notification-center" class="icon-set globe-fill" data-toggle="dropdown">
-                    <span class="bubble"></span>
+                    <span class="badge badge-important m-t-14 m-l-10">4043</span>
                   </a>
                   <!-- START Notification Dropdown -->
                   <div class="dropdown-menu notification-toggle" role="menu" aria-labelledby="notification-center">
@@ -345,14 +348,16 @@
                             <a href="#" class="text-complete pull-left">
                               <i class="pg-map fs-16 m-r-10"></i>
                               <span class="bold">Carrot Design</span>
-                              <span class="fs-12 m-l-10">David Nester</span>
+                              <span class="fs-12 m-l-10"><% if (user) { %>
+                    <%= user.firstname + " " + user.lastname %>
+                    <% } %></span>
                             </a>
                             <div class="pull-right">
                               <div class="thumbnail-wrapper d16 circular inline m-t-15 m-r-10 toggle-more-details">
                                 <div><i class="fa fa-angle-left"></i>
                                 </div>
                               </div>
-                              <span class=" time">few sec ago</span>
+                              <span class="time">пару секунд назад</span>
                             </div>
                             <div class="more-details">
                               <div class="more-details-inner">
@@ -368,7 +373,7 @@
                           </div>
                           <!-- END Notification Item-->
                           <!-- START Notification Item Right Side-->
-                          <div class="option" data-toggle="tooltip" data-placement="left" title="mark as read">
+                          <div class="option" data-toggle="tooltip" data-placement="left" title="Отметить как прочтённое">
                             <a href="#" class="mark"></a>
                           </div>
                           <!-- END Notification Item Right Side-->
@@ -379,10 +384,10 @@
                           <div class="heading">
                             <a href="#" class="text-danger pull-left">
                               <i class="fa fa-exclamation-triangle m-r-10"></i>
-                              <span class="bold">98% Server Load</span>
-                              <span class="fs-12 m-l-10">Take Action</span>
+                              <span class="bold">98% Загрузка сервера</span>
+                              <span class="fs-12 m-l-10">Принять меры</span>
                             </a>
-                            <span class="pull-right time">2 mins ago</span>
+                            <span class="pull-right time">2 минуты назад</span>
                           </div>
                           <!-- START Notification Item Right Side-->
                           <div class="option">
@@ -399,7 +404,7 @@
                               <span class="bold">Warning Notification</span>
                               <span class="fs-12 m-l-10">Buy Now</span>
                             </a>
-                            <span class="pull-right time">yesterday</span>
+                            <span class="pull-right time">вчера</span>
                           </div>
                           <!-- START Notification Item Right Side-->
                           <div class="option">
@@ -418,10 +423,10 @@
                               <span class="bold">Revox Design Labs</span>
                               <span class="fs-12 m-l-10">Owners</span>
                             </a>
-                            <span class="pull-right time">11:00pm</span>
+                            <span class="pull-right time">11:00 pm</span>
                           </div>
                           <!-- START Notification Item Right Side-->
-                          <div class="option" data-toggle="tooltip" data-placement="left" title="mark as read">
+                          <div class="option" data-toggle="tooltip" data-placement="left" title="Отметить как прочтённое">
                             <a href="#" class="mark"></a>
                           </div>
                           <!-- END Notification Item Right Side-->
@@ -431,7 +436,7 @@
                       <!-- END Notification Body-->
                       <!-- START Notification Footer-->
                       <div class="notification-footer text-center">
-                        <a href="#" class="">Read all notifications</a>
+                        <a href="#" class="">Прочесть все уведомления</a>
                         <a data-toggle="refresh" class="portlet-refresh text-black pull-right" href="#">
                           <i class="pg-refresh_new"></i>
                         </a>
@@ -443,15 +448,16 @@
                   <!-- END Notification Dropdown -->
                 </div>
               </li>
-              <li class="p-r-15 inline">
-                <a href="#" class="icon-set clip "></a>
+              <li class="p-r-25 inline">
+                <a href="#" class="icon-set clip "><span class="badge badge-inverse m-t-14 m-l-10">1717</span></a></a>
               </li>
-              <li class="p-r-15 inline">
-                <a href="#" class="icon-set grid-box"></a>
+              <li class="p-r-25 inline">
+                <a href="#" id="notification-center" class="icon-set grid-box">
+				<span class="badge badge-info m-t-14 m-l-10">4444</span></a>
               </li>
             </ul>
             <!-- END NOTIFICATIONS LIST -->
-            <a href="#" class="search-link" data-toggle="search"><i class="pg-search"></i>Type anywhere to <span class="bold">search</span></a> </div>
+            <a href="#" class="search-link" data-toggle="search"><i class="pg-search"></i>Кто ищет - <span class="bold">тот найдёт!</span></a> </div>
         </div>
         <div class=" pull-right">
           <div class="header-inner">
@@ -477,15 +483,19 @@
             </span>
               </button>
               <ul class="dropdown-menu profile-dropdown" role="menu">
-                <li><a href="#"><i class="pg-settings_small"></i> Settings</a>
+				<li><a href="/map"><i class="pg-map"></i> Карта</a>
                 </li>
-                <li><a href="#"><i class="pg-outdent"></i> Feedback</a>
+                <li><a href="/im"><i class="pg-social"></i> Сообщения</a>
                 </li>
-                <li><a href="#"><i class="pg-signals"></i> Help</a>
+                <li><a href="/payment"><i class="fa fa-ruble"></i>  Баланс  <span class="badge badge-inverse">7.777.777</span></a>
+                </li>
+				<li><a href="/edit"><i class="pg-settings_small"></i> Настройки</a>
+                </li>
+                <li><a href="#"><i class="pg-signals"></i> Трансляция</a>
                 </li>
                 <li class="bg-master-lighter">
-                  <a href="#" class="clearfix">
-                    <span class="pull-left">Logout</span>
+                  <a href="/logout?redirect=/" class="clearfix">
+                    <span class="pull-left">Выход</span>
                     <span class="pull-right"><i class="pg-power"></i></span>
                   </a>
                 </li>
@@ -525,7 +535,7 @@
                     <div class="col-md-5 b-r b-dashed b-grey sm-b-b">
                       <div class="padding-30 m-t-50">
                         <i class="fa fa-shopping-cart fa-2x hint-text"></i>
-                        <h2>Your Bags are ready to check out!</h2>
+                        <h2>Ваш заказ готов к оплате!</h2>
                         <p>Discover goods you'll love from brands that inspire. The easiest way to open your own online store. Discover amazing stuff or open your own store for free!</p>
                         <p class="small hint-text">Below is a sample page for your cart , Created using pages design UI Elementes</p>
                       </div>
@@ -607,7 +617,7 @@
                   <div class="row row-same-height">
                     <div class="col-md-5 b-r b-dashed b-grey ">
                       <div class="padding-30 m-t-50">
-                        <h2>Your Information is safe with us!</h2>
+                        <h2>Ваши личные данные - только ваши.</h2>
                         <p>We respect your privacy and protect it with strong encryption, plus strict policies . Two-step verification, which we encourage all our customers to use.</p>
                         <p class="small hint-text">Below is a sample page for your cart , Created using pages design UI Elementes</p>
                       </div>
@@ -755,7 +765,7 @@
                   <div class="row row-same-height">
                     <div class="col-md-5 b-r b-dashed b-grey ">
                       <div class="padding-30 m-t-50">
-                        <h2>We Secured Your Line</h2>
+                        <h2>Все операции по защищённым каналам</h2>
                         <p>Below is a sample page for your cart , Created using pages design UI Elementes</p>
                         <p class="small hint-text">Below is a sample page for your cart , Created using pages design UI Elementes</p>
                         <table class="table table-condensed">
@@ -906,7 +916,7 @@
                     The Top Content Is Soley Created using pages UI Elements such as Invoice, Tabs, Form Layouts etc. and are prior for representation Purpose Only.
                   </p>
                   <div class="pull-right">
-                    <img src="assets/img/logo.png" alt="logo" data-src="assets/img/logo.png" data-src-retina="assets/img/logo_2x.png" width="78" height="22">
+                  <a href="/feed"><img src="assets/img/logon.png" alt="logo" data-src="assets/img/logon.png" data-src-retina="assets/img/logon.png" width="140" height="34"></a>
                   </div>
                   <div class="clearfix"></div>
                 </div>
