@@ -541,7 +541,9 @@
 					  </h5>
 					  <p class="text-white no-margin fs-16">Распиздяй, коих ещё поискать. Но, сука, распиздяй при этом гениальный, что характерно <br>и по совместительству изрядно временами доставляет. Как-то так :))</p>
                                   <p class="m-t-5">
-								  <span class="badge badge-primary">CEO Гдетуса | <a href="/map"><i class="pg-map"></i>  Россия, Новосибирск</a></p></span>
+								  <span class="badge badge-primary"><% if (profileUser) { %>
+                  <%= profileUser.chevron %>
+                  <% } %> <a href="/map"><i class="pg-map"></i>  Россия, Новосибирск</a></p></span>
 								  
 								  <% if (user.id == profileUser.id) { %>
   								  <label class="btn btn-primary btn-xs btn-small">
@@ -575,7 +577,7 @@
               <div class="navbar-header">
                 <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#sub-nav">
                   <span class="sr-only">Toggle navigation</span>
-                  <span class="icon-bar"></span>
+                  <span class="icon-bar">kkk</span>
                   <span class="icon-bar"></span>
                   <span class="icon-bar"></span>
                 </button>
@@ -601,7 +603,6 @@
                   <div class="col-sm-4">
                     <ul class="nav navbar-nav navbar-center">
                       <li><button class="btn btn-primary btn-xs " type="button" data-target="#createPost" data-toggle="modal"><i class="fa fa-pencil-square-o"></i> Написать пост</button></li>
-                      <li><a href="#">Создать пост </a></li>
                     </ul>
                   </div>
                   <div class="col-sm-4">
@@ -970,7 +971,7 @@
                         <div class="clearfix"></div>
                       </div>
                       <div class="card-description">
-                        <h3>Ебола атакуе: кли��ические долбоёбы опять обожрались спидов и транков</h3>
+                        <h3>Ебола атакуе: клинические долбоёбы опять обожрались спидов и транков</h3>
                       </div>
                       <div class="card-footer clearfix">
                         <div class="pull-left"> <span class="text-complete">Блог пьяного гендиректора</span>

@@ -19,7 +19,7 @@ Object.assign(User, require("./get"));
  * Перечисление всех полей в профиле пользователя.
  */
 User.fieldNames = ["firstname", "lastname", "useruri", "email", "birthday_date", 
-    "password", "salt", "location_lon", "location_lat", "avatar_id", "avatar_bg_id"];
+    "password", "salt", "location_lon", "location_lat", "avatar_id", "avatar_bg_id", "chevron"];
 
 /**
  * Обновление данных пользователя.
