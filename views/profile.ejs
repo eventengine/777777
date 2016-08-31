@@ -544,10 +544,10 @@
 					  
 					  <% if (!profileUser.birthday_date_muted) { %>
 					  
-  					  <span class="badge badge-primary">
-  					     Дата рождения: <i class="fa fa-calendar"></i> 
+  					  <h3></h3><span class="badge badge-info">
+  					     <i class="fa fa-birthday-cake"></i> 
   					     <%= dateHelper.outputDateMonthStringFullYear(profileUser.birthday_date) %>
-  					   </span>
+  					   </span></h>
 					   
 					   <% } %>
 					   
@@ -556,7 +556,7 @@
 					    Распиздяй, коих ещё поискать. Но, сука, распиздяй при этом гениальный, что характерно <br>и по совместительству изрядно временами доставляет. Как-то так :))
 					    </p>
                                   <p class="m-t-5">
-								  <span class="badge badge-primary"><% if (profileUser) { %>
+								  <span class="badge badge"><% if (profileUser) { %>
                   <%= profileUser.chevron %> |
                   <% } %> <a href="/map"><i class="pg-map"></i>  Россия, Новосибирск</a></p></span>
 								  
