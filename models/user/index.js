@@ -18,8 +18,22 @@ Object.assign(User, require("./get"));
 /**
  * Перечисление всех полей в профиле пользователя.
  */
-User.fieldNames = ["firstname", "lastname", "useruri", "email", "birthday_date", "nickname",
-    "password", "salt", "location_lon", "location_lat", "avatar_id", "avatar_bg_id", "chevron"];
+User.fieldNames = [
+    "firstname",
+    "nickname", 
+    "lastname", 
+    "useruri", 
+    "email", 
+    "password", 
+    "salt", 
+    "birthday_date",
+    "birthday_date_muted", 
+    "avatar_id", 
+    "avatar_bg_id", 
+    "location_lon", 
+    "location_lat", 
+    "chevron"
+];
 
 /**
  * Обновление данных пользователя.
@@ -38,7 +52,10 @@ User.update = function(userId, data) {
     
     var values = [];
     existsFieldNames.forEach(function(fieldName) {
-        values.push(data[fieldName]);
+        var value = data[fieldName];
+        if (fieldName == "birthday_date") value = new Date(value);
+        if (fieldName == "birthday_date_muted") value = value == "on" ? 1 : 0;
+        values.push(value);
     });
     values.push(userId);
     

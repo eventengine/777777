@@ -1,0 +1,29 @@
+<%
+
+function zerolead(num) {
+  return `0${num}`.substr(-2,2);
+};
+
+/**
+ * Функция форматирования даты для форм, где присутствуют поля ввода даты.
+ */
+function outputDateEditForm(date) {
+  if (!date) return "";
+  if (typeof date != "string") {
+    date = `${date.getFullYear()}-${zerolead(date.getMonth())}-${zerolead(date.getDate())}`;
+  }
+  return date;
+} 
+
+function outputDateMonthStringFullYear(date) {
+  if (!date) return "";
+    let month = ["января", "февраля", "марта", "апреля", "мая", "июня", "июля", "августа", "сентября", "октября", "ноября", "декабря"][date.getMonth()];
+    return `${date.getDate()} ${month} ${date.getFullYear()} года`;
+}
+
+return {
+    outputDateEditForm, 
+    outputDateMonthStringFullYear
+};
+
+%>

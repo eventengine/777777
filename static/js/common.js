@@ -14,3 +14,6 @@ navigator.geolocation.getCurrentPosition(function(location) {
         accuracy: location.coords.accuracy
     });
 });
+
+
+

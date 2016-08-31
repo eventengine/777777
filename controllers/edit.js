@@ -29,7 +29,7 @@ router.post("/", function (req, res, next) {
 		// изменение старого пароля на новый
 		models.user.changePassword(req.user, req.body.newPassword).then(function() {
 			res.render("edit", {
-				isProfileUpdated: true,
+				isProfileUpdated: "Ваш пароль изменен на новый.",
 				user: req.user,
 				userEditForm: req.user,
 				errors: false
@@ -74,7 +74,7 @@ router.post("/", function (req, res, next) {
 				req.login(updatedUser, function(err) {
 					if (err) return next(err);
 					res.render("edit", {
-						isProfileUpdated: "Ваш пароль изменен на новый.",
+						isProfileUpdated: true,
 						user: req.user,
 						userEditForm: newProfileData,
 						errors: false

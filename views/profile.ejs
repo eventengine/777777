@@ -1,4 +1,7 @@
 <!DOCTYPE html>
+
+<% var dateHelper = include("helpers/date"); %>
+
 <html>
   <head>
     <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
@@ -538,8 +541,20 @@
 					  <a href="https://vk.com/gdetusio" target="blank" i class="fa fa-vk"></a>
 					  <a href="https://twitter.com/gdetus" target="blank"><i class="fa fa-twitter"></i></a>
 					  <a href="https://instagram.com/gdetus" target="blank"><i class="fa fa-instagram"></i></a>
+					  
+					  <% if (!profileUser.birthday_date_muted) { %>
+					  
+  					  <span class="badge badge-primary">
+  					     Дата рождения: <i class="fa fa-calendar"></i> 
+  					     <%= dateHelper.outputDateMonthStringFullYear(profileUser.birthday_date) %>
+  					   </span>
+					   
+					   <% } %>
+					   
 					  </h5>
-					  <p class="text-white no-margin fs-16">Распиздяй, коих ещё поискать. Но, сука, распиздяй при этом гениальный, что характерно <br>и по совместительству изрядно временами доставляет. Как-то так :))</p>
+					  <p class="text-white no-margin fs-16">
+					    Распиздяй, коих ещё поискать. Но, сука, распиздяй при этом гениальный, что характерно <br>и по совместительству изрядно временами доставляет. Как-то так :))
+					    </p>
                                   <p class="m-t-5">
 								  <span class="badge badge-primary"><% if (profileUser) { %>
                   <%= profileUser.chevron %> |
@@ -596,6 +611,7 @@
 						  <li class="divider"></li>
                           <li><a href="#">Созданные квесты</a></li>
                           <li><a href="#">Выполненные квесты</a></li>
+                          
                         </ul>
                       </li>
                     </ul>
@@ -766,6 +782,7 @@
                   <%= profileUser.firstname %>
                   <% } %> обновил свой статус
 					  <span class="hint-text">пару секунд назад</span></h5>
+					            
                       <h2>Распиздяй, коих ещё поискать. Но, сука, распиздяй при этом гениальный, что характерно 
                        и по совместительству изрядно временами доставляет. Как-то так :))</h2>
                       <ul class="reactions pull-right">

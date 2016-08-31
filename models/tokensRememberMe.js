@@ -26,10 +26,15 @@ TokensRememberMe.consume = function(token) {
         select user_id as userId from tokens_remember_me
         where token = ?
     `, [token]).spread(function(result) {
-        var userId = result[0].userId;
-        return db.query("delete from tokens_remember_me where token = ?", [token]).spread(function(result) {
-            return userId;
-        });
+        var user = result[0];
+        if (user) {
+            var userId = user.userId;
+            return db.query("delete from tokens_remember_me where token = ?", [token]).spread(function(result) {
+                return userId;
+            });
+        } else {
+            Promise.resolve(null);
+        }
     });
 };
 
