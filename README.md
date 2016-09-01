@@ -79,4 +79,10 @@ https://github.com/creationix/nvm
 `nvm deactivate`
 деактивировать nvm
 
-_________
+
+
+Команды управления MySQL
+---------
+`service mysql stop`
+
+`service mysql restart`
