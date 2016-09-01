@@ -10,7 +10,7 @@ function zerolead(num) {
 function outputDateEditForm(date) {
   if (!date) return "";
   if (typeof date != "string") {
-    date = `${date.getFullYear()}-${zerolead(date.getMonth())}-${zerolead(date.getDate())}`;
+    date = `${date.getFullYear()}-${zerolead(date.getMonth() + 1)}-${zerolead(date.getDate())}`;
   }
   return date;
 } 

@@ -46,6 +46,9 @@ User.update = function(userId, data) {
         if (fieldName in data) existsFieldNames.push(fieldName);
     });
     
+    // Checkboxes fields
+    existsFieldNames.push("birthday_date_muted");
+    
     var setStatement = existsFieldNames.map(function(fieldName) {
         return `${fieldName} = ?`;
     }).join(", ");
@@ -53,7 +56,10 @@ User.update = function(userId, data) {
     var values = [];
     existsFieldNames.forEach(function(fieldName) {
         var value = data[fieldName];
-        if (fieldName == "birthday_date") value = new Date(value);
+        if (fieldName == "birthday_date") {
+            value = new Date(value);
+            value = isNaN(value.getFullYear()) ? null : value;
+        }
         if (fieldName == "birthday_date_muted") value = value == "on" ? 1 : 0;
         values.push(value);
     });

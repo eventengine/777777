@@ -585,12 +585,10 @@
                         <label>Почта</label>
                         <input type="text" name="email" class="form-control" value="<%= userEditForm.email %>">
                       </div>
-					  <div class="form-group form-group-default input-group">
+					            <div class="form-group form-group-default input-group">
                         <label>Адрес страницы</label>
                         <input type="text" name="useruri" class="form-control" value="<%= userEditForm.useruri %>">
-                        <span class="input-group-addon primary">
-                                           gdetus.io/<%= userEditForm.useruri %>
-                                        </span>
+                        <span class="input-group-addon primary">gdetus.io/<%= userEditForm.useruri %></span>
                       </div>
                     <div id="birthdayDateDatepicker" class="form-group form-group-default input-group date col-sm-12">
                       <label>Дата рождения</label>
@@ -601,8 +599,8 @@
                       <input type="checkbox" id="birthday_date_muted" <%= userEditForm.birthday_date_muted ? "checked" : "" %> name="birthday_date_muted">
                       <label for="birthday_date_muted">Не палить возраст в профиле :3</label>
                     </div>
-				<button class="btn btn-complete btn-cons btn-xs">Сохранить</button>
-				</form>
+				            <button class="btn btn-complete btn-cons btn-xs">Сохранить</button>
+				          </form>
                 </div>
 				</div>
 				<!-- END PANEL -->

@@ -542,12 +542,12 @@
 					  <a href="https://twitter.com/gdetus" target="blank"><i class="fa fa-twitter"></i></a>
 					  <a href="https://instagram.com/gdetus" target="blank"><i class="fa fa-instagram"></i></a>
 					  
-					  <% if (!profileUser.birthday_date_muted) { %>
+					  <% if (!profileUser.birthday_date_muted && profileUser.birthday_date) { %>
 					  
-  					  <h3></h3><span class="badge badge-info">
-  					     <i class="fa fa-birthday-cake"></i> 
+  					   <span class="badge badge-info">
+  					     Дата рождения: <i class="fa fa-birthday-cake"></i> 
   					     <%= dateHelper.outputDateMonthStringFullYear(profileUser.birthday_date) %>
-  					   </span></h>
+  					   </span>
 					   
 					   <% } %>
 					   
