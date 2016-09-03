@@ -40,28 +40,21 @@
         <!-- BEGIN SIDEBAR MENU ITEMS-->
         <ul class="menu-items">
           <li class="m-t-30 open" ui-sref-active="active">
-            <a ui-sref="app.dashboard" class="detailed">
+            <a ui-sref="app.social" class="detailed">
               <span class="title">Мой гдетус</span>
             </a>
             <span class="icon-thumbnail"><i class="pg-home"></i></span>
-          </li>
-          <li class="">
-            <a href="http://pages.revox.io/dashboard/latest/html/widget.html" class="detailed" target="_blank">
-              <span class="title">Widgets</span>
-              <span class="details">22 items</span>
-            </a>
-            <span class=" icon-thumbnail">W</span>
           </li>
           <li class="" ui-sref-active="active">
             <a ui-sref="app.email.inbox" class="detailed">
               <span class="title">Сообщения</span>
               <span class="details">234 новых сообщений</span>
             </a>
-            <span class="icon-thumbnail "><i class="pg-mail"></i></span>
+            <span class="icon-thumbnail "><i class="pg-social"></i></span>
           </li>
           <li class="" ui-sref-active="active">
             <a ui-sref="app.social"><span class="title">Social</span></a>
-            <span class="icon-thumbnail "><i class="pg-social"></i></span>
+            <span class="icon-thumbnail "><i class="pg-mail"></i></span>
           </li>
           <li class="" ui-sref-active="active">
             <a ui-sref="app.calendar"><span class="title">Calendar</span></a>
@@ -148,18 +141,6 @@
               </li>
             </ul>
           </li>
-          <li ui-sref-active="active">
-            <a ui-sref="app.portlets">
-              <span class="title">Portlets</span>
-            </a>
-            <span class="icon-thumbnail"><i class="pg-grid"></i></span>
-          </li>
-          <li ui-sref-active="active">
-            <a ui-sref="app.views">
-              <span class="title">Views</span>
-            </a>
-            <span class="icon-thumbnail"><i class="pg pg-ui"></i></span>
-          </li>
           <li ng-class="{'open active':includes('app.tables')}">
             <a href="javascript:;"><span class="title">Tables</span>
             <span class=" arrow" ng-class="{'active open':$state.includes('app.tables')}"></span></a>
@@ -176,23 +157,19 @@
             </ul>
           </li>
           <li ng-class="{'open active':includes('app.maps')}">
-            <a href="javascript:;"><span class="title">Maps</span> 
+            <a href="javascript:;"><span class="title">Моя карта</span> 
             <span class=" arrow" ng-class="{'active open':$state.includes('app.maps')}"></span></a>
             <span class="icon-thumbnail "><i class="pg-map"></i></span>
             <ul class="sub-menu">
               <li ui-sref-active="active">
-                <a ui-sref="app.maps.google">Google Maps</a>
-                <span class="icon-thumbnail">gm</span>
+                <a ui-sref="app.maps">найти</a>
+                <span class="icon-thumbnail"><i class="pg-bag"></i></span>
               </li>
               <li ui-sref-active="active">
-                <a ui-sref="app.maps.vector">Vector Maps</a>
-                <span class="icon-thumbnail">vm</span>
+                <a ui-sref="app.maps.vector">создать</a>
+                <span class="icon-thumbnail"><i class="pg-bag"></i></span>
               </li>
             </ul>
-          </li>
-          <li ui-sref-active="active">
-            <a ui-sref="app.charts"><span class="title">Charts</span></a>
-            <span class="icon-thumbnail"><i class="pg-charts"></i></span>
           </li>
           <li ng-class="{'open active':includes('app.extra')}">
             <a href="javascript:;"><span class="title">Extra</span>
