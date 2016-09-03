@@ -66,6 +66,7 @@ Promise.resolve().then(function() {
 	for (var key in apps) {
 		apps[key].use(express.static(__dirname + '/subdomains/' + key));
 		app.use(vhost(key + '.gdetus.io', apps[key]));
+		app.use(`/subdomain/${key}`, apps[key]); // для тестирования субдомена на сервере разработки
 	}
 	
 	

@@ -8,7 +8,7 @@ angular.module('app')
 
         // App globals
         $scope.app = {
-            name: 'Pages',
+            name: 'Gdetus.io',
             description: 'Admin Dashboard UI kit',
             layout: {
                 menuPin: false,

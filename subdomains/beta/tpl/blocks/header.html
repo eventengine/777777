@@ -165,7 +165,7 @@
               </li>
             </ul>
             <!-- END NOTIFICATIONS LIST -->
-            <a class="search-link" ng-click="showSearchOverlay()"><i class="pg-search"></i>Type anywhere to <span class="bold">search</span></a>
+            <a class="search-link" ng-click="showSearchOverlay()"><i class="pg-search"></i>Кто ищет - <span class="bold">тот найдёт!</span></a>
         </div>
     </div>
     <div class=" pull-right">
@@ -178,7 +178,7 @@
         <!-- START User Info-->
         <div class="visible-lg visible-md m-t-10">
             <div class="pull-left p-r-10 p-t-10 fs-16 font-heading">
-                <span class="semi-bold">David</span> <span class="text-master">Nest</span>
+                <span class="semi-bold">Александр </span> <span class="text-master">Новиков</span>
             </div>
             <div class="dropdown pull-right">
                 <button class="profile-dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -187,19 +187,23 @@
             </span>
                 </button>
                 <ul class="dropdown-menu profile-dropdown" role="menu">
-                    <li><a href=""><i class="pg-settings_small"></i> Settings</a>
-                    </li>
-                    <li><a href=""><i class="pg-outdent"></i> Feedback</a>
-                    </li>
-                    <li><a href=""><i class="pg-signals"></i> Help</a>
-                    </li>
-                    <li class="bg-master-lighter">
-                        <a href="" class="clearfix">
-                            <span class="pull-left">Logout</span>
-                            <span class="pull-right"><i class="pg-power"></i></span>
-                        </a>
-                    </li>
-                </ul>
+				        <li><a href="/map"><i class="pg-map"></i> Карта</a>
+                </li>
+                <li><a href="/im"><i class="pg-social"></i> Сообщения</a>
+                </li>
+                <li><a href="/payment"><i class="fa fa-ruble"></i>  Баланс  <span class="badge badge-inverse">7.777.777</span></a>
+                </li>
+				        <li><a href="/edit"><i class="pg-settings_small"></i> Настройки</a>
+                </li>
+                <li><a href="#"><i class="pg-signals"></i> Трансляция</a>
+                </li>
+                <li class="bg-master-lighter">
+                  <a href="/logout?redirect=/" class="clearfix">
+                    <span class="pull-left">Выход</span>
+                    <span class="pull-right"><i class="pg-power"></i></span>
+                  </a>
+                </li>
+              </ul>
             </div>
         </div>
         <!-- END User Info-->
