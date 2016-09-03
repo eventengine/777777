@@ -59,8 +59,9 @@ Promise.resolve().then(function() {
 	
 	// Подключение нескольких тестовых статичных сайтов или поддоменов.
 	var apps = {
-		mail: express(),
-		m: express()
+		beta: express(),
+		m: express(),
+		mail: express()
 	};
 	for (var key in apps) {
 		apps[key].use(express.static(__dirname + '/subdomains/' + key));
