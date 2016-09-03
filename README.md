@@ -86,3 +86,27 @@ https://github.com/creationix/nvm
 `service mysql stop`
 
 `service mysql restart`
+
+
+
+
+софт для установки на боевом сервере
+---------
+apt-get install mc
+apt-get install htop
+
+apt-get install ncdu (команда ncdu /)
+
+
+
+
+про создание поддоменов при работе с NodeJS
+---------
+В конце поддомена обязательно должна быть точка, например:
+beta.gdetus.io.	A 141.8.194.121
+
+или (без точки):
+
+beta A 141.8.194.121
+
+После обновления записей необходимо подождать от 2 до 8 часов.

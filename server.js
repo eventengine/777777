@@ -57,14 +57,14 @@ Promise.resolve().then(function() {
 	require("./models/db").configure(config.database);
 	
 	
-	// Подключение нескольких тестовых статичных сайтов.
+	// Подключение нескольких тестовых статичных сайтов или поддоменов.
 	var apps = {
 		mail: express(),
 		m: express()
 	};
 	for (var key in apps) {
 		apps[key].use(express.static(__dirname + '/subdomains/' + key));
-		app.use(vhost(key + 'gdetus.io', apps[key]));
+		app.use(vhost(key + '.gdetus.io', apps[key]));
 	}
 	
 	

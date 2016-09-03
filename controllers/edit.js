@@ -66,9 +66,6 @@ router.post("/", function (req, res, next) {
 			newProfileData[n] = req[n in req.body ? "body" : "user"][n];
 		});
 		
-		// Checkboxes fields
-		newProfileData["birthday_date_muted"] = !("birthday_date_muted" in req.body) ? 0 : req.body["birthday_date_muted"];
-		
 		req.checkBody(models.user.getValidateSchema());
 		
 		req.asyncValidationErrors().then(function() {
