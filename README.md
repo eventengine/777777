@@ -81,7 +81,7 @@ https://github.com/creationix/nvm
 
 
 
-Команды управления MySQL
+Команды управления MySQL (в консоли боевого сервера)
 ---------
 `service mysql stop`
 
