@@ -35,24 +35,24 @@
     <!-- START OPENED EMAIL -->
     <div data-email="opened" class="split-details" ng-controller="EmailViewCtrl">
         <div class="no-result" ng-hide="email">
-            <h1>No email has been selected</h1>
+            <h2>Выберите письмо для прочтения</h2>
         </div>
          <div class="email-content-wrapper" ng-show="email">
             <div class="actions-wrapper menuclipper bg-master-lightest" ui-jq="menuclipper" ui-options="{bufferWidth: 20}">
                 <ul class="actions menuclipper-menu no-margin p-l-20 ">
                     <li class="visible-sm-inline-block visible-xs-inline-block">
-                        <a ng-click="showInbox()" class="email-list-toggle"><i class="fa fa-angle-left"></i> All Inboxes
+                        <a ng-click="showInbox()" class="email-list-toggle"><i class="fa fa-angle-left"></i> Все входящие
                                     </a>
                     </li>
-                    <li class="no-padding "><a href="" class="text-info">Reply</a>
+                    <li class="no-padding "><a href="" class="text-info">Ответить</a>
                     </li>
-                    <li class="no-padding "><a href="">Reply all</a>
+                    <li class="no-padding "><a href="">Ответить всем</a>
                     </li>
-                    <li class="no-padding "><a href="">Forward</a>
+                    <li class="no-padding "><a href="">Отправить копию</a>
                     </li>
-                    <li class="no-padding "><a href="">Mark as read</a>
+                    <li class="no-padding "><a href="">Отметить как прочтённое</a>
                     </li>
-                    <li class="no-padding "><a href="" class="text-danger">Delete</a>
+                    <li class="no-padding "><a href="" class="text-danger">Удалить</a>
                     </li>
                 </ul>
                 <div class="clearfix"></div>
@@ -87,7 +87,7 @@
                                 </ul>
                             </div>
                             <label class="inline">
-                                <span class="muted">&nbsp;&nbsp;to</span>
+                                <span class="muted">&nbsp;&nbsp;кому:</span>
                                 <span class=" small-text">johnsmith@skyace.com</span>
                             </label>
                         </div>

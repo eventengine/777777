@@ -94,7 +94,7 @@ https://github.com/creationix/nvm
 ---------
 apt-get install mc
 apt-get install htop
-
+apt-get install mysql (точная команда требует уточнений)
 apt-get install ncdu (команда ncdu /)
 
 
