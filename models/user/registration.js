@@ -15,8 +15,10 @@ User.registrationUser = function(newUser) {
     // процедура регистрации, путем составления SQL-запроса и отправка этого запроса в MySQL
     var fieldNames = [], values = [];
     this.fieldNames.forEach(function(fieldName) {
-        fieldNames.push(fieldName);
-        values.push(newUser[fieldName]);
+        if (fieldName in newUser) {
+            fieldNames.push(fieldName);
+            values.push(newUser[fieldName]);
+        }
     });
     
         
