@@ -8,14 +8,14 @@ angular.module('app')
 
         // App globals
         $scope.app = {
-            name: 'Gdetus.io',
-            description: 'Admin Dashboard UI kit',
+            name: 'beta.gdetus.io',
+            description: '#gdetus - геолокационный сервис для SMM-хулиганов',
             layout: {
                 menuPin: false,
                 menuBehind: false,
                 theme: 'pages/css/pages.css'
             },
-            author: 'Revox'
+            author: '#NothingPersonalCorp'
         }
         // Checks if the given state is the current state
         $scope.is = function(name) {

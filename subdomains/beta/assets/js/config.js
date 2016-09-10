@@ -8,7 +8,7 @@ angular.module('app')
 
         function($stateProvider, $urlRouterProvider, $ocLazyLoadProvider) {
             $urlRouterProvider
-                .otherwise('/app/dashboard');
+                .otherwise('/access/login');
 
             $stateProvider
                 .state('app', {
@@ -517,7 +517,7 @@ angular.module('app')
                 })
                 .state('app.extra.timeline', {
                     url: '/timeline',
-                    templateUrl: 'tpl/extra_timeline.html'
+                    templateUrl: 'tpl/timeline.html'
                 })
 
             // Extra - Others
@@ -527,23 +527,23 @@ angular.module('app')
                 })
                 .state('access.404', {
                     url: '/404',
-                    templateUrl: 'tpl/extra_404.html'
+                    templateUrl: 'tpl/404.html'
                 })
                 .state('access.500', {
                     url: '/500',
-                    templateUrl: 'tpl/extra_500.html'
+                    templateUrl: 'tpl/500.html'
                 })
                 .state('access.login', {
                     url: '/login',
-                    templateUrl: 'tpl/extra_login.html'
+                    templateUrl: 'tpl/login.html'
                 })
                 .state('access.register', {
                     url: '/register',
-                    templateUrl: 'tpl/extra_register.html'
+                    templateUrl: 'tpl/register.html'
                 })
                 .state('access.lock_screen', {
                     url: '/lock_screen',
-                    templateUrl: 'tpl/extra_lock_screen.html'
+                    templateUrl: 'tpl/lock_screen.html'
                 })
 
         }

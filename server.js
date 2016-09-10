@@ -61,7 +61,8 @@ Promise.resolve().then(function() {
 	var apps = {
 		beta: express(),
 		m: express(),
-		mail: express()
+		mail: express(),
+		player: express()
 	};
 	for (var key in apps) {
 		apps[key].use(express.static(__dirname + '/subdomains/' + key));
@@ -236,6 +237,7 @@ Promise.resolve().then(function() {
 	app.get('/feed', require("./controllers/feed"));
 	app.get('/payment', require("./controllers/payment"));
 	app.get('/invoice', require("./controllers/invoice"));
+	app.get('/settings', require("./controllers/settings"));
 	app.get('/logout', require("./controllers/logout"));
 	app.get('/profile', require("./controllers/profile"));
 	app.get('/timeline', require("./controllers/timeline"));
