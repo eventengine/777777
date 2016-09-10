@@ -8,7 +8,7 @@ angular.module('app')
 
         function($stateProvider, $urlRouterProvider, $ocLazyLoadProvider) {
             $urlRouterProvider
-                .otherwise('/access/login');
+                .otherwise('/login');
 
             $stateProvider
                 .state('app', {
@@ -519,6 +519,12 @@ angular.module('app')
                     url: '/timeline',
                     templateUrl: 'tpl/timeline.html'
                 })
+
+            
+            .state('login', {
+                url: '/login',
+                templateUrl: 'tpl/login.html'
+            })
 
             // Extra - Others
             .state('access', {
