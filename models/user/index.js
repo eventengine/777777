@@ -20,18 +20,18 @@ Object.assign(User, require("./get"));
  */
 User.fieldNames = [
     "firstname",
-    "nickname", 
-    "lastname", 
-    "useruri", 
-    "email", 
-    "password", 
-    "salt", 
+    "nickname",
+    "lastname",
+    "useruri",
+    "email",
+    "password",
+    "salt",
     "birthday_date",
-    "birthday_date_muted", 
-    "avatar_id", 
-    "avatar_bg_id", 
-    "location_lon", 
-    "location_lat", 
+    "birthday_date_muted",
+    "avatar_id",
+    "avatar_bg_id",
+    "location_lon",
+    "location_lat",
     "chevron"
 ];
 

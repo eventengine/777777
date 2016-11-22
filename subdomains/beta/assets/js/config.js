@@ -4,9 +4,13 @@
  * ============================================================ */
 
 angular.module('app')
+    .config(['$locationProvider', function($locationProvider) {
+        //$locationProvider.html5Mode(true);
+    }])
     .config(['$stateProvider', '$urlRouterProvider', '$ocLazyLoadProvider',
 
         function($stateProvider, $urlRouterProvider, $ocLazyLoadProvider) {
+            
             $urlRouterProvider
                 .otherwise('/login');
 

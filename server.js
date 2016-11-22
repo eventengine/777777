@@ -4,11 +4,11 @@ var https = require('https');
 var path = require('path');
 var express = require('express');
 var vhost = require('vhost');
-require('express-resource');
+	require('express-resource');
 var expressValidator = require('express-validator');
 var bodyParser = require('body-parser');
 var cookieParser = require('cookie-parser');
-var passport = require('passport'), 
+var passport = require('passport'),
 	LocalStrategy = require('passport-local').Strategy,
 	RememberMeStrategy = require('passport-remember-me').Strategy;
 var session = require('express-session');
@@ -16,6 +16,8 @@ var MySQLStore = require('express-mysql-session')(session);
 var fs = require("fs");
 var yaml = require("js-yaml");
 var program = require('commander');
+
+var io = require('socket.io');
 
 
 program
@@ -50,12 +52,12 @@ Promise.resolve().then(function() {
 	
 }).then(function(config) {
 	
-	var app = express();
-	
 	// Настройка подключения к базе данных.
 	// Передаем настройки БД из конфиг.файла в модуль models/db.js
 	require("./models/db").configure(config.database);
 	
+	
+	var app = express();
 	
 	// Подключение нескольких тестовых статичных сайтов или поддоменов.
 	var apps = {
@@ -70,20 +72,16 @@ Promise.resolve().then(function() {
 		app.use(`/subdomain/${key}`, apps[key]); // для тестирования субдомена на сервере разработки
 	}
 	
-	
-	
-	
 	// Сохраняем наш конфиг файл в приложении экспресса app
 	app.locals.config = config;
 
 	app.disable('x-powered-by');
 	
-	// - - - - - - - - - - - - - - - - - - - - -
+	// - - - - - - - - - - - //
 	// блок базовых настроек // 
-	// - - - - - - - - - - - - - - - - - - - - -
+	// - - - - - - - - - - - //
 	app.set('views', path.join(__dirname,'views'));
 	app.set('view engine','ejs');
-	app.set('trust proxy', 1); // trust first proxy
 
 	app.use(cookieParser());
 	
@@ -136,12 +134,7 @@ Promise.resolve().then(function() {
 	});
 
     // определение моделей пользователя из архитектуры mvc
-	var models = {
-		file: require("./models/file"),
-		user: require("./models/user"),
-		digits: require("./models/digits"),
-		tokensRememberMe: require("./models/tokensRememberMe")
-	};
+	var models = require("./models");
 
 	app.set('models', models);
 	app.use(bodyParser.urlencoded({ extended: true }));
@@ -209,6 +202,10 @@ Promise.resolve().then(function() {
 	app.use(passport.session());
 	app.use(passport.authenticate('remember-me'));
 	
+	app.use(function(req, res, next) {
+		res.cookie("isAuthenticated", req.isAuthenticated());
+		next();
+	});
 
 	// - - - - - - - - - - - - - - -//
 	// конец блока базовых настроек //
@@ -270,8 +267,8 @@ Promise.resolve().then(function() {
 	app.use(require("./controllers/404"));
 	app.use(require("./controllers/500"));
 
+
 	// Запуск веб-сервера.
-	
 	var httpServer = http.createServer(app);
 	httpServer.listen(app.locals.config.server.port, function () {
 	  console.log('HTTP-сервер Gdetus запущен на порту: ' + app.locals.config.server.port);
@@ -294,7 +291,6 @@ Promise.resolve().then(function() {
 		httpsServer.on("error", onServerError.bind(httpsServer));
 	}
 
-	
 	
 	function onServerError(err) {
 		if (err.syscall == "listen") {
@@ -325,4 +321,3 @@ Promise.resolve().then(function() {
 	console.error("Фатальная ошибка:");
 	console.error(err);
 });
-

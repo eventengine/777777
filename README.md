@@ -6,13 +6,15 @@ http://pages.revox.io/dashboard/latest/html/
 Ссылка на документацию по nvm:
 https://github.com/creationix/nvm
 
+
+
 Команды управления деплоем
 ---------
 
 `npm run start`  
 запуск приложения в режиме отладки.
 
-`npm run deploy`  
+`npm run deploy`
 разворачивание проекта на боевом сервере.
 
 `npm run rollback`  
@@ -88,8 +90,6 @@ https://github.com/creationix/nvm
 `service mysql restart`
 
 
-
-
 софт для установки на боевом сервере
 ---------
 apt-get install mc
@@ -98,6 +98,9 @@ apt-get install mysql (точная команда требует уточнен
 apt-get install ncdu (команда ncdu /)
 
 
+команды для нпм
+---------
+`npm install --link --production` - зависимости ставятся командой 
 
 
 про создание поддоменов при работе с NodeJS

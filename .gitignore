@@ -1,4 +1,5 @@
 temp
+frame
 node_modules
 bower_components
 npm-debug.log
@@ -12,4 +13,3 @@ BETA.md
 INSTALL.md
 README.md
 DEPLOY.md
-frame

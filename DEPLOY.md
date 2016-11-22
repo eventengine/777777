@@ -9,7 +9,7 @@ deployTo: '/имя_папки',
 workspace: '/tmp/имя_папки/github-monitor',
 
 Путь к приватному ключу на сервере разработки
-key: '/home/ubuntu/.ssh/id_rsa',
+key: '/home/ubuntu/.ssh/id_rsa'
 
 Создание ключей
 1) Ключи создаются на сервере разработки (внимание, не на боевом!)
@@ -22,13 +22,13 @@ servers: 'username@141.8.194.121'
 
 
 Ссылки по теме:
------------------
+---------------
 
 https://www.npmjs.com/package/shipit-pm2
-http://pm2.keymetrics.io/docs/usage/deployment/
-http://pm2.keymetrics.io/docs/tutorials/capistrano-like-deployments
-https://github.com/shipitjs/shipit-deploy
+https://pm2.keymetrics.io/docs/usage/deployment/
+https://pm2.keymetrics.io/docs/tutorials/capistrano-like-deployments
 https://github.com/shipitjs/shipit
+https://github.com/shipitjs/shipit-deploy
 
 https://github.com/mattanglin/shipit-pm2-nginx
 

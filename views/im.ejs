@@ -527,17 +527,16 @@
                   <div class="actions-wrapper menuclipper bg-master-lightest">
                     <ul class="actions menuclipper-menu no-margin p-l-20 ">
                       <li class="visible-sm-inline-block visible-xs-inline-block">
-                      <li class="no-padding "><a href="#" class="text-info"> Александр Новиков</a>
+                      <li class="no-padding "><a class="text-info"> Александр Новиков</a>
                       </li>
-                      <li class="no-padding "><a href="#" class="text-info"> <i class="fa fa-plus"></i> добавить собеседников</a>
+                      <li class="no-padding "><a href="#" class="text-info"> <i class="fa fa-plus"></i> добавить собедников</a>
                       </li>
                       <li class="no-padding "><a href="#" class="text-info"><i class="fa fa-files-o"></i> показать вложения</a>
                       </li>
                       <li class="no-padding "><a href="#" class="text-info"><i class="pg-search"></i> поиск по истории сообщений</a>
                       </li>
-                      <li class="no-padding "><a href="#" class="text-danger"> <i class="fa fa-trash-o"></i> удалить историю</a>
+                      <li class="no-padding "><a href="#" class="text-danger"><i class="fa fa-trash-o"></i> удалить историю</a>
                       </li>
-                      
                       <li class="no-padding "><i class="fa fa-bell-slash"></i>
                       </li>
                     </ul>
@@ -595,13 +594,13 @@
       <!-- Nav tabs -->
       <ul class="nav nav-tabs">
         <li class="">
-          <a href="#quickview-notes" data-toggle="tab">Notes</a>
+          <a href="#quickview-notes" data-toggle="tab"><i class="pg-note" title="Заметки"></i></a>
         </li>
         <li>
-          <a href="#quickview-alerts" data-toggle="tab">Alerts</a>
+          <a href="#quickview-alerts" data-toggle="tab"><i class="fa fa-warning" title="Уведомления"></i></a>
         </li>
         <li class="active">
-          <a href="#quickview-chat" data-toggle="tab">Chat</a>
+          <a href="#quickview-chat" data-toggle="tab"><i class="pg-comment" title="Сообщения"></i></a>
         </li>
       </ul>
       <a class="btn-link quickview-toggle" data-toggle-element="#quickview" data-toggle="quickview"><i class="pg-close"></i></a>
@@ -1695,10 +1694,11 @@
                     <a href="#" class="link text-master"><i class="fa fa-plus-circle"></i></a>
                   </div>
                   <div class="col-xs-8 no-padding">
-                    <input type="text" class="form-control chat-input" data-chat-input="" data-chat-conversation="#my-conversation" placeholder="Say something">
+                    <input type="text" class="form-control chat-input" data-chat-input="" data-chat-conversation="#my-conversation" placeholder="Ваше сообщение...">
                   </div>
                   <div class="col-xs-2 link text-master m-l-10 m-t-15 p-l-10 b-l b-grey col-top">
-                    <a href="#" class="link text-master"><i class="pg-camera"></i></a>
+                    <a href="#" class="link text-master"><i class="pg-camera"><input id="uploadImage" type="file" name="file" multiple="" style="display: none;"></i></a>
+                    
                   </div>
                 </div>
               </div>

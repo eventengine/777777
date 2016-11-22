@@ -18,6 +18,7 @@ $(function() {
     /**
      * Запрос количественных параметров, необходимых для страницы быстрой статистики /digits.
      */
+     
     $.get("/digits").done(function(data, textStatus) {
         if (data.success) {
             $("#digits h1[name='userCount']").text(data.info.userCount);
